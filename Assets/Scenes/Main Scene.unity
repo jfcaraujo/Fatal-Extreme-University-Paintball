@@ -1997,6 +1997,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_GroundCheck: {fileID: 1639961258}
+  animator: {fileID: 1837310079}
   runSpeed: 40
 --- !u!4 &1837310078 stripped
 Transform:
@@ -2100,6 +2101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 212699115550802086, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212699115550802086, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
       propertyPath: m_SortingLayerID
       value: -2146391535
       objectReference: {fileID: 0}
@@ -2126,6 +2132,11 @@ PrefabInstance:
     - target: {fileID: 212874855828977060, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}
       propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212874855828977060, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212874855828977060, guid: 6877fb649746c674d8fbbcf60d41892b,
@@ -2137,6 +2148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578662813673703190, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6578662813673703190, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}
@@ -2147,6 +2163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8772659448831463118, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8772659448831463118, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}

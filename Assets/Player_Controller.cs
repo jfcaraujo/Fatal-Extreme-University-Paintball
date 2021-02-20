@@ -7,6 +7,8 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
 
+    public Animator animator;
+
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
@@ -27,6 +29,8 @@ public class Player_Controller : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         if (Input.GetButtonDown("Jump"))
             jump = true;
+
+        animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalMove));
     }
 
     private void FixedUpdate()
@@ -40,6 +44,8 @@ public class Player_Controller : MonoBehaviour
                 m_Grounded = true;
             }
         }
+
+        animator.SetBool("IsJumping", !m_Grounded);
 
         Move(horizontalMove * Time.fixedDeltaTime);
         jump = false;
