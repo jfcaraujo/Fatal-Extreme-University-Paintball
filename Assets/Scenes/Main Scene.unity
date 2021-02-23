@@ -392,6 +392,29 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &806488945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6446799157288387727, guid: 6877fb649746c674d8fbbcf60d41892b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1874392723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806488947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806488945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631f0abfeca9f0f42accad4eaa788bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
+    type: 3}
+  firepoint: {fileID: 249837699}
+  bulletForce: 20
+  fireCooldown: 0.4
 --- !u!1 &841236027
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +933,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 916b3c63ae6da8c49a6310e205a7963e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
