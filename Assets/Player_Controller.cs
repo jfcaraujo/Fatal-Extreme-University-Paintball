@@ -11,12 +11,13 @@ public class Player_Controller : MonoBehaviour
 
     public Animator animator;
     public Camera cam;
+    public GameObject gunPrefab;
 
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
     public Transform gun;
     private Vector3 m_Velocity = Vector3.zero;
-    private bool m_FacingRight = false;
+    public bool m_FacingRight = false;
     private bool m_Grounded;
     private bool jump = false;
     private float horizontalMove = 0f;
@@ -28,6 +29,9 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+        Transform body = gameObject.transform.Find("body");
+        Instantiate(gunPrefab, body.Find("Weapon"));
     }
 
     private void Update()
@@ -56,30 +60,7 @@ public class Player_Controller : MonoBehaviour
         animator.SetBool("IsJumping", !m_Grounded);
 
         Move(horizontalMove * Time.fixedDeltaTime);
-        Aim();
         jump = false;
-    }
-
-    private void Aim()
-    {
-        Vector2 center = new Vector2(m_Center.position.x, m_Center.position.y);
-
-        Vector2 lookDir = mousePos - center;
-        float lookAngle = -(Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f);
-
-        Vector2 gunDir = new Vector2(m_FirePoint.position.x, m_FirePoint.position.y) - center;
-        float gunAngle = -(Mathf.Atan2(gunDir.y, gunDir.x) * Mathf.Rad2Deg - 180f);
-
-        gun.RotateAround(m_Center.position, Vector3.back, lookAngle - gunAngle);
-
-        if ((lookAngle < 85 || lookAngle > 275) && m_FacingRight)
-        {
-            Flip();
-        }
-        else if (lookAngle > 95 && lookAngle < 265 && !m_FacingRight)
-        {
-            Flip();
-        }
     }
 
     private void Move(float move)
@@ -95,7 +76,7 @@ public class Player_Controller : MonoBehaviour
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
     }
 
-    private void Flip()
+    public void Flip()
     {
         m_FacingRight = !m_FacingRight;
         transform.Rotate(0f, 180, 0f);
