@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     private Transform firepoint = null;
     private Transform rotationCenter = null;
 
+    public bool automaticFire = false;
     public float bulletForce = 20f;
 
     // Fire cooldown in seconds
@@ -30,7 +31,9 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && allowFire)
+        bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+
+        if (shouldFire && allowFire)
         {
             StartCoroutine(Shoot());
         }

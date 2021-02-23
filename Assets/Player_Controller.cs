@@ -6,24 +6,18 @@ public class Player_Controller : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
-    [SerializeField] private Transform m_Center;
-    [SerializeField] private Transform m_FirePoint;
 
     public Animator animator;
-    public Camera cam;
     public GameObject gunPrefab;
 
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
-    public Transform gun;
     private Vector3 m_Velocity = Vector3.zero;
     public bool m_FacingRight = false;
     private bool m_Grounded;
     private bool jump = false;
     private float horizontalMove = 0f;
     public float runSpeed = 40f;
-
-    private Vector2 mousePos;
 
     // Start is called before the first frame update
     private void Start()
@@ -41,8 +35,6 @@ public class Player_Controller : MonoBehaviour
             jump = true;
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalMove));
-
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
