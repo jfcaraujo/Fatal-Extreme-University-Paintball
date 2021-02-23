@@ -324,6 +324,11 @@ PrefabInstance:
       propertyPath: bulletForce
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -5916248941715427416, guid: ef8308db7854dcc41837d6f2e5030537,
+        type: 3}
+      propertyPath: remainingAmmo
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4098890654367285386, guid: ef8308db7854dcc41837d6f2e5030537,
         type: 3}
       propertyPath: m_Name
@@ -2401,7 +2406,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_GroundCheck: {fileID: 1639961258}
   animator: {fileID: 1837310079}
-  gunPrefab: {fileID: 0}
   m_FacingRight: 0
   runSpeed: 40
 --- !u!4 &1837310078 stripped

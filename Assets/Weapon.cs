@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,9 @@ public class Weapon : MonoBehaviour
 
     public bool automaticFire = false;
     public float bulletForce = 20f;
-
-    // Fire cooldown in seconds
-    public float fireCooldown = 0.4f;
+    
+    public float fireCooldown = 0.4f; // Fire cooldown in seconds
+    public int remainingAmmo = 10;
     private bool allowFire = true;
 
     void Start() {
@@ -32,9 +32,9 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
-
-        if (shouldFire && allowFire)
-        {
+        if (shouldFire && allowFire && remainingAmmo>0)
+        {       
+            remainingAmmo--;
             StartCoroutine(Shoot());
         }
 
@@ -47,7 +47,8 @@ public class Weapon : MonoBehaviour
 
     void Aim()
     {
-        Vector2 center = new Vector2(rotationCenter.position.x, rotationCenter.position.y);
+        var centerPosition = rotationCenter.position;
+        Vector2 center = new Vector2(centerPosition.x, centerPosition.y);
 
         Vector2 lookDir = mousePos - center;
         float lookAngle = -(Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f);
@@ -55,9 +56,7 @@ public class Weapon : MonoBehaviour
         Vector2 gunDir = new Vector2(firepoint.position.x, firepoint.position.y) - center;
         float gunAngle = -(Mathf.Atan2(gunDir.y, gunDir.x) * Mathf.Rad2Deg - 180f);
 
-        Debug.Log(lookAngle + " " + gunAngle);
-
-        gameObject.transform.RotateAround(rotationCenter.position, Vector3.back, lookAngle - gunAngle);
+        gameObject.transform.RotateAround(centerPosition, Vector3.back, lookAngle - gunAngle);
 
         if ((lookAngle < 85 || lookAngle > 275) && playerController.m_FacingRight)
         {
@@ -80,5 +79,10 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(fireCooldown);
 
         allowFire = true;
+    }
+
+    public void gainAmmo(int amount)
+    {
+        remainingAmmo+=amount;
     }
 }

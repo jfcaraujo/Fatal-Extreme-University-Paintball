@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -8,7 +8,6 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;
 
     public Animator animator;
-    public GameObject gunPrefab;
 
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
@@ -23,9 +22,6 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-        Transform body = gameObject.transform.Find("body");
-        Instantiate(gunPrefab, body.Find("Weapon"));
     }
 
     private void Update()
