@@ -97,8 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
+  automaticFire: 0
   bulletForce: 20
   fireCooldown: 0.4
+  remainingAmmo: 100
 --- !u!1 &2992716866022215653
 GameObject:
   m_ObjectHideFlags: 0
