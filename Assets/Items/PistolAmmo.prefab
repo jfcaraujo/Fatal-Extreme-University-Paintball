@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8789478575508534212
+--- !u!1 &5140166328435070038
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8789478575508534213}
-  - component: {fileID: 8789478575508534215}
-  - component: {fileID: 8789478575508534214}
+  - component: {fileID: 5140166328435070039}
+  - component: {fileID: 5140166328435070037}
+  - component: {fileID: 5140166328435070036}
   m_Layer: 9
-  m_Name: CoffeeSprite
+  m_Name: PistolAmmoSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8789478575508534213
+--- !u!4 &5140166328435070039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478575508534212}
+  m_GameObject: {fileID: 5140166328435070038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.46978298, y: 0.46978298, z: 0.46978298}
   m_Children: []
-  m_Father: {fileID: 8789478576760226393}
+  m_Father: {fileID: 5140166328663893451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8789478575508534215
+--- !u!212 &5140166328435070037
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478575508534212}
+  m_GameObject: {fileID: 5140166328435070038}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -2059113923
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e89468f4078fc4293c95ff55125a26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec1e465a02d057a4ca315cd2301ee4d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,14 +82,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8789478575508534214
+--- !u!95 &5140166328435070036
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478575508534212}
+  m_GameObject: {fileID: 5140166328435070038}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9449fcc8c5e54544c81211015021243d, type: 2}
@@ -101,7 +101,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &8789478576760226214
+--- !u!1 &5140166328663893556
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,41 +109,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8789478576760226393}
-  - component: {fileID: 8789478576760226392}
-  - component: {fileID: 8789478576760226215}
-  - component: {fileID: 8789478576760226395}
-  - component: {fileID: -4637461022771806391}
+  - component: {fileID: 5140166328663893451}
+  - component: {fileID: 5140166328663893450}
+  - component: {fileID: 5140166328663893557}
+  - component: {fileID: 5140166328663893449}
+  - component: {fileID: 5254315906164271614}
   m_Layer: 9
-  m_Name: Coffee
+  m_Name: PistolAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8789478576760226393
+--- !u!4 &5140166328663893451
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478576760226214}
+  m_GameObject: {fileID: 5140166328663893556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.4793205, y: 2.496522, z: -4.885674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8789478575508534213}
+  - {fileID: 5140166328435070039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &8789478576760226392
+--- !u!50 &5140166328663893450
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478576760226214}
+  m_GameObject: {fileID: 5140166328663893556}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -157,13 +157,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &8789478576760226215
+--- !u!61 &5140166328663893557
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478576760226214}
+  m_GameObject: {fileID: 5140166328663893556}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -183,13 +183,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4266491, y: 0.017707825}
   m_EdgeRadius: 0
---- !u!61 &8789478576760226395
+--- !u!61 &5140166328663893449
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478576760226214}
+  m_GameObject: {fileID: 5140166328663893556}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -209,15 +209,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-4637461022771806391
+--- !u!114 &5254315906164271614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789478576760226214}
+  m_GameObject: {fileID: 5140166328663893556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f825f92678083034fa6f1b64df6b6d6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4813c2437d054f7439e20b36727976e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: Pistol
+  ammo: 10

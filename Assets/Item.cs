@@ -5,12 +5,9 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     private Collider2D itemCollider;
-    protected PowerUpController powerUpController;
 
     private void Start()
     {
-        powerUpController = GameObject.FindObjectOfType<PowerUpController>();
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Collider2D[] playerColliders = player.GetComponents<Collider2D>();
 

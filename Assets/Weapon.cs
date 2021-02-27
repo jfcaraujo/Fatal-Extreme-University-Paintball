@@ -15,12 +15,14 @@ public class Weapon : MonoBehaviour
 
     public bool automaticFire = false;
     public float bulletForce = 20f;
-    
+
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
     public int remainingAmmo = 10;
+    public int maxAmmo = 150;
     private bool allowFire = true;
 
-    void Start() {
+    void Start()
+    {
         firepoint = gameObject.transform.Find("FirePoint");
         rotationCenter = gameObject.transform.parent.parent.Find("Center");
 
@@ -32,8 +34,8 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
-        if (shouldFire && allowFire && remainingAmmo>0)
-        {       
+        if (shouldFire && allowFire && remainingAmmo > 0)
+        {
             remainingAmmo--;
             StartCoroutine(Shoot());
         }
@@ -41,7 +43,8 @@ public class Weapon : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Aim();
     }
 
@@ -81,8 +84,13 @@ public class Weapon : MonoBehaviour
         allowFire = true;
     }
 
-    public void gainAmmo(int amount)
+    public bool gainAmmo(int amount)
     {
-        remainingAmmo+=amount;
+        if (remainingAmmo >= maxAmmo)
+            return false;
+
+        remainingAmmo = Mathf.Min(remainingAmmo + amount, maxAmmo);
+
+        return true;
     }
 }
