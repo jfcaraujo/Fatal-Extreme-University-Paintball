@@ -6,15 +6,18 @@ using UnityEngine;
 public class PowerUpController : MonoBehaviour
 {
     private Player_Controller playerController;
+    private TimeController timeController;
 
     public bool DoubleSpeed { get; private set; }
     public bool SlowMotion { get; private set; }
     public bool ShieldProtection { get; private set; }
 
     public float powerUpDuration = 15f;
+    public float slowMotionFactor = 0.4f;
 
     private void Start() {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Controller>();
+        timeController = GameObject.FindObjectOfType<TimeController>();
     }
 
     public bool ActivatePowerUp(string powerUp)
@@ -30,6 +33,7 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(SlowMotion):
                 SlowMotion = true;
+                timeController.SlowDownTime(slowMotionFactor);
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = true;
@@ -45,7 +49,7 @@ public class PowerUpController : MonoBehaviour
 
     private IEnumerator TimePowerUp(string powerUp)
     {
-        yield return new WaitForSeconds(powerUpDuration);
+        yield return new WaitForSecondsRealtime(powerUpDuration);
 
         DisablePowerUp(powerUp);
     }
@@ -65,6 +69,7 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(SlowMotion):
                 SlowMotion = false;
+                timeController.ResetTime();
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = false;
