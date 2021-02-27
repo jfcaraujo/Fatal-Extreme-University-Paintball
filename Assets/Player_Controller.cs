@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 500f;
+    [SerializeField] private float m_JumpForce = 10f;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
@@ -18,6 +18,8 @@ public class Player_Controller : MonoBehaviour
     private float horizontalMove = 0f;
     public float runSpeed = 40f;
 
+    public bool doubleSpeed = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,7 +28,7 @@ public class Player_Controller : MonoBehaviour
 
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (doubleSpeed ? 2 : 1);
         if (Input.GetButtonDown("Jump"))
             jump = true;
 
@@ -61,7 +63,7 @@ public class Player_Controller : MonoBehaviour
         if (!m_Grounded || !jump) return;
         // Add a vertical force to the player.
         m_Grounded = false;
-        m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 
     public void Flip()

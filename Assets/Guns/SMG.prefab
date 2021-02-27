@@ -100,6 +100,8 @@ MonoBehaviour:
   automaticFire: 1
   bulletForce: 40
   fireCooldown: 0.15
+  remainingAmmo: 10
+  maxAmmo: 300
 --- !u!1 &7079011476199003572
 GameObject:
   m_ObjectHideFlags: 0
