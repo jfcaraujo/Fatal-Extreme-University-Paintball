@@ -1,0 +1,1064 @@
+fileFormatVersion: 2
+guid: ee659e2541604c0468e28c87fa22c03f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2185163039001267071
+    second: NTlikeTDSSprites_4X_Size_0
+  - first:
+      213: 573479234759112619
+    second: NTlikeTDSSprites_4X_Size_1
+  - first:
+      213: -2679715221588850386
+    second: NTlikeTDSSprites_4X_Size_2
+  - first:
+      213: -927538903568469438
+    second: NTlikeTDSSprites_4X_Size_3
+  - first:
+      213: 6629760533943941521
+    second: NTlikeTDSSprites_4X_Size_4
+  - first:
+      213: 6390846288397137664
+    second: NTlikeTDSSprites_4X_Size_5
+  - first:
+      213: 3533803349791316360
+    second: NTlikeTDSSprites_4X_Size_6
+  - first:
+      213: 8323605717244238545
+    second: NTlikeTDSSprites_4X_Size_7
+  - first:
+      213: -834599413189889928
+    second: NTlikeTDSSprites_4X_Size_8
+  - first:
+      213: -1767224645009033406
+    second: NTlikeTDSSprites_4X_Size_9
+  - first:
+      213: -6664126695915194120
+    second: NTlikeTDSSprites_4X_Size_10
+  - first:
+      213: -677216832310474822
+    second: NTlikeTDSSprites_4X_Size_11
+  - first:
+      213: 3744821938143309115
+    second: NTlikeTDSSprites_4X_Size_12
+  - first:
+      213: -4511727703590134553
+    second: NTlikeTDSSprites_4X_Size_13
+  - first:
+      213: -1927614665704842139
+    second: NTlikeTDSSprites_4X_Size_14
+  - first:
+      213: -3316715181330570903
+    second: NTlikeTDSSprites_4X_Size_15
+  - first:
+      213: 2897279414890354510
+    second: NTlikeTDSSprites_4X_Size_16
+  - first:
+      213: -2668314411033144633
+    second: NTlikeTDSSprites_4X_Size_17
+  - first:
+      213: -7290515206930350431
+    second: NTlikeTDSSprites_4X_Size_18
+  - first:
+      213: -4126747378880549332
+    second: NTlikeTDSSprites_4X_Size_19
+  - first:
+      213: 2664121039715839060
+    second: NTlikeTDSSprites_4X_Size_20
+  - first:
+      213: 2430197195667962030
+    second: NTlikeTDSSprites_4X_Size_21
+  - first:
+      213: 61299637565853655
+    second: NTlikeTDSSprites_4X_Size_22
+  - first:
+      213: 517377751854460846
+    second: NTlikeTDSSprites_4X_Size_23
+  - first:
+      213: 6871489498435157456
+    second: NTlikeTDSSprites_4X_Size_24
+  - first:
+      213: 8701486912295038373
+    second: NTlikeTDSSprites_4X_Size_25
+  - first:
+      213: -4700221610114497526
+    second: NTlikeTDSSprites_4X_Size_26
+  - first:
+      213: 4998442459212805349
+    second: NTlikeTDSSprites_4X_Size_27
+  - first:
+      213: -1426446044262804672
+    second: NTlikeTDSSprites_4X_Size_28
+  - first:
+      213: -3359651308822623753
+    second: NTlikeTDSSprites_4X_Size_29
+  - first:
+      213: 2561513786224093975
+    second: NTlikeTDSSprites_4X_Size_30
+  - first:
+      213: -6726780753110142722
+    second: NTlikeTDSSprites_4X_Size_31
+  - first:
+      213: 5756550259432659779
+    second: NTlikeTDSSprites_4X_Size_32
+  - first:
+      213: -6132375826925062728
+    second: NTlikeTDSSprites_4X_Size_33
+  - first:
+      213: 1233808131865125735
+    second: NTlikeTDSSprites_4X_Size_34
+  - first:
+      213: 2901104567601788413
+    second: NTlikeTDSSprites_4X_Size_35
+  - first:
+      213: -7565847284358604529
+    second: NTlikeTDSSprites_4X_Size_36
+  - first:
+      213: 6404235893726060306
+    second: NTlikeTDSSprites_4X_Size_37
+  - first:
+      213: 4251351422966585575
+    second: NTlikeTDSSprites_4X_Size_38
+  - first:
+      213: 249447832784469235
+    second: NTlikeTDSSprites_4X_Size_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7bcbfbd432435e10800000000000000
+      internalID: 2185163039001267071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba731e9535865f700800000000000000
+      internalID: 573479234759112619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e294df5243dbfcad0800000000000000
+      internalID: -2679715221588850386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24232711848b023f0800000000000000
+      internalID: -927538903568469438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 199f1a36414a10c50800000000000000
+      internalID: 6629760533943941521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1024
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007f802d6d8d0b850800000000000000
+      internalID: 6390846288397137664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889956a7c679a0130800000000000000
+      internalID: 3533803349791316360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dad0caac43638370800000000000000
+      internalID: 8323605717244238545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870311f6148ea64f0800000000000000
+      internalID: -834599413189889928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 247bbeb6c8e8977e0800000000000000
+      internalID: -1767224645009033406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_10
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8f6cff3144483a0800000000000000
+      internalID: -6664126695915194120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7083a01ea0a96f0800000000000000
+      internalID: -677216832310474822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3d2f1a36b748f330800000000000000
+      internalID: 3744821938143309115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec9838ce8f1361c0800000000000000
+      internalID: -4511727703590134553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_14
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56c54daacacbf35e0800000000000000
+      internalID: -1927614665704842139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96165a38d19a8f1d0800000000000000
+      internalID: -3316715181330570903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4757930744353820800000000000000
+      internalID: 2897279414890354510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c250553e2e38fad0800000000000000
+      internalID: -2668314411033144633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_18
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae355dcb03e2da90800000000000000
+      internalID: -7290515206930350431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_19
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2eec049f19dab6c0800000000000000
+      internalID: -4126747378880549332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c28e278fbd8f420800000000000000
+      internalID: 2664121039715839060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea870f5497bc9b120800000000000000
+      internalID: 2430197195667962030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df09f112b7c9d000800000000000000
+      internalID: 61299637565853655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_23
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eafa9f9f2581e2700800000000000000
+      internalID: 517377751854460846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_24
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ddfd08ca4f6c5f50800000000000000
+      internalID: 6871489498435157456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_25
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad6e098e34e1c870800000000000000
+      internalID: 8701486912295038373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04c283395575ceb0800000000000000
+      internalID: -4700221610114497526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_27
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e4fb9b0fe80e5540800000000000000
+      internalID: 4998442459212805349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_28
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043547061ee343ce0800000000000000
+      internalID: -1426446044262804672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_29
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f983705fee1061d0800000000000000
+      internalID: -3359651308822623753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_30
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b272397335c8320800000000000000
+      internalID: 2561513786224093975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef07fe88b8ca5a2a0800000000000000
+      internalID: -6726780753110142722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b9a2126ff53ef40800000000000000
+      internalID: 5756550259432659779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_33
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b570f61dac65eaa0800000000000000
+      internalID: -6132375826925062728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_34
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7632fcc75fd5f1110800000000000000
+      internalID: 1233808131865125735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5fa28cb3bc24820800000000000000
+      internalID: 2901104567601788413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_36
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0993fefaf5b00790800000000000000
+      internalID: -7565847284358604529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_37
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f195f3d9a60e850800000000000000
+      internalID: 6404235893726060306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_38
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e856453895dffa30800000000000000
+      internalID: 4251351422966585575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NTlikeTDSSprites_4X_Size_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcfb177b77367300800000000000000
+      internalID: 249447832784469235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
