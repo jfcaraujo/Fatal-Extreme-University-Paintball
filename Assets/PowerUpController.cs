@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime;
 using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
@@ -15,7 +13,8 @@ public class PowerUpController : MonoBehaviour
     public float powerUpDuration = 15f;
     public float slowMotionFactor = 0.4f;
 
-    private void Start() {
+    private void Start()
+    {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Controller>();
         timeController = GameObject.FindObjectOfType<TimeController>();
     }
@@ -37,6 +36,9 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = true;
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                Backpack backpack = player.GetComponentInChildren<Backpack>(true);
+                backpack.gameObject.SetActive(true);
                 break;
             default:
                 return false;
@@ -73,6 +75,9 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = false;
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                Backpack backpack = player.GetComponentInChildren<Backpack>(true);
+                backpack.gameObject.SetActive(false);
                 break;
             default:
                 break;
