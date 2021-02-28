@@ -2606,7 +2606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658b149709840584b9394b453c4d375e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPaperTowels: 5
+  startingPaperTowels: 5
+  maxPaperTowels: 10
   invulnerable: 0
 --- !u!1001 &1874392723
 PrefabInstance:
@@ -2974,7 +2975,7 @@ PrefabInstance:
     - target: {fileID: 7678771002451430914, guid: 5188185f0ed64fb4198042e8cedd7de5,
         type: 3}
       propertyPath: fireCooldown
-      value: 0.4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7678771002451430920, guid: 5188185f0ed64fb4198042e8cedd7de5,
         type: 3}

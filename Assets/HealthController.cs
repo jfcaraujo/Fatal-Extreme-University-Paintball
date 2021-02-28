@@ -5,7 +5,9 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     // Health
-    public int numPaperTowels = 5;
+    private int numPaperTowels;
+    public int startingPaperTowels = 5;
+    public int maxPaperTowels = 10;
     public bool invulnerable = false;
 
     private Animator animator;
@@ -14,11 +16,23 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        numPaperTowels = startingPaperTowels;
+    }
+
+    public bool AddPaperTowels(int num)
+    {
+        if (numPaperTowels >= maxPaperTowels)
+            return false;
+
+        numPaperTowels = Mathf.Min(numPaperTowels + num, maxPaperTowels);
+
+        return true;
     }
 
     public bool Damage(int damage)
     {
-        if(invulnerable)
+        if (invulnerable)
             return false;
 
         // Vulnerability is set to true here
