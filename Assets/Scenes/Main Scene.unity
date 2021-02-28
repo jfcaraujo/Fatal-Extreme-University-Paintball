@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 198122893840451456, guid: bac2a1563afbfa84d869a724672d3882,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
         type: 3}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 841236031}
   - component: {fileID: 841236030}
   - component: {fileID: 841236029}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Tilemap_Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -974,7 +974,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16518778, y: -0.016431868}
+  m_Offset: {x: -0.04020101, y: -0.016431868}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -985,7 +985,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24413145, y: 0.6220659}
+  m_Size: {x: 0.49410498, y: 0.6220659}
   m_EdgeRadius: 0
 --- !u!1 &1141849163
 GameObject:
@@ -2568,6 +2568,7 @@ MonoBehaviour:
   m_FacingRight: 0
   runSpeed: 40
   doubleSpeed: 0
+  inputBlocked: 0
 --- !u!4 &1837310078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b,
@@ -2593,6 +2594,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1837310080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837310073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658b149709840584b9394b453c4d375e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numPaperTowels: 5
+  invulnerable: 0
 --- !u!1001 &1874392723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2928,7 +2943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d135067bc71634ebda592e9a9f1737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpDuration: 5
+  powerUpDuration: 30
   slowMotionFactor: 0.4
 --- !u!4 &1984226557
 Transform:
@@ -2956,6 +2971,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 105095039}
+    - target: {fileID: 7678771002451430914, guid: 5188185f0ed64fb4198042e8cedd7de5,
+        type: 3}
+      propertyPath: fireCooldown
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7678771002451430920, guid: 5188185f0ed64fb4198042e8cedd7de5,
         type: 3}
       propertyPath: m_RootOrder
@@ -3015,6 +3035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678771002451430921, guid: 5188185f0ed64fb4198042e8cedd7de5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5188185f0ed64fb4198042e8cedd7de5, type: 3}

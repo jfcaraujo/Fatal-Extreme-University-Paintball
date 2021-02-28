@@ -33,6 +33,9 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        if (playerController.inputBlocked)
+            return;
+
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
         if (shouldFire && allowFire && remainingAmmo > 0)
         {
@@ -45,6 +48,9 @@ public class Weapon : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (playerController.inputBlocked)
+            return;
+
         Aim();
     }
 

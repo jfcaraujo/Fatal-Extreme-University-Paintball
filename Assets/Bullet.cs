@@ -6,12 +6,21 @@ public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // TODO: trigger enemy damage
+        
+        Vector3 position = gameObject.transform.position;
+        Destroy(gameObject);
 
-        // TODO: use 'other' to see if it is enemy and do stuff
+        HealthController healthController = other.gameObject.GetComponent<HealthController>();
 
-        GameObject effect = Instantiate(hitEffect, gameObject.transform.position, Quaternion.identity);
+        if (healthController != null)
+        {
+            healthController.Damage(1);
+        }
+
+        GameObject effect = Instantiate(hitEffect, position, Quaternion.identity);
         Destroy(effect, 0.6f);
-        Destroy(gameObject);    
     }
 }

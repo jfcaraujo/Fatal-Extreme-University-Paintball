@@ -20,6 +20,8 @@ public class Player_Controller : MonoBehaviour
 
     public bool doubleSpeed = false;
 
+    public bool inputBlocked = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,9 +30,16 @@ public class Player_Controller : MonoBehaviour
 
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (doubleSpeed ? 2 : 1);
-        if (Input.GetButtonDown("Jump"))
-            jump = true;
+        if (inputBlocked)
+        {
+            horizontalMove = 0;
+        }
+        else
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (doubleSpeed ? 2 : 1);
+            if (Input.GetButtonDown("Jump"))
+                jump = true;
+        }
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalMove));
     }
