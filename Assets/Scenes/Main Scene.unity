@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4151
   m_GroundCheck: {fileID: 1639961258}
   animator: {fileID: 1837310079}
   m_FacingRight: 0
@@ -2809,6 +2809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2934474000816617565, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934474000816617565, guid: 6877fb649746c674d8fbbcf60d41892b,
+        type: 3}
       propertyPath: m_SortingLayerID
       value: -2146391535
       objectReference: {fileID: 0}
@@ -2967,6 +2972,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7678771000589310746, guid: 5188185f0ed64fb4198042e8cedd7de5,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy4Sprite
+      objectReference: {fileID: 0}
     - target: {fileID: 7678771002451430914, guid: 5188185f0ed64fb4198042e8cedd7de5,
         type: 3}
       propertyPath: target

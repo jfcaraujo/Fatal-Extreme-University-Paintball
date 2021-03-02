@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +24,7 @@ public class Enemy_Controller : MonoBehaviour
     public float bulletForce = 20f;
 
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
+    [SerializeField] private float health = 1;
     private bool allowFire = true;
 
 
@@ -99,5 +100,20 @@ public class Enemy_Controller : MonoBehaviour
     {
         m_FacingRight = !m_FacingRight;
         transform.Rotate(0f, 180, 0f);
+    }
+
+    public void Damage(float damage)
+    {
+        health-=damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        //TODO add animation
+        Destroy(gameObject);
     }
 }

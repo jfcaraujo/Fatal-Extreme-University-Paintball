@@ -6,15 +6,18 @@ public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // TODO: trigger enemy damage
         
         Vector3 position = gameObject.transform.position;
         Destroy(gameObject);
-
-        HealthController healthController = other.gameObject.GetComponent<HealthController>();
-
+        Enemy_Controller enemy = hitInfo.GetComponent<Enemy_Controller>();
+        if (enemy != null)
+        {
+            enemy.Damage(1);
+        }
+        HealthController healthController = hitInfo.gameObject.GetComponent<HealthController>();
         if (healthController != null)
         {
             healthController.Damage(1);
