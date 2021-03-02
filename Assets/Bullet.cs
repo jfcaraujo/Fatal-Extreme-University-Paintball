@@ -7,9 +7,7 @@ public class Bullet : MonoBehaviour
     public GameObject hitEffect;
 
     void OnTriggerEnter2D(Collider2D hitInfo)
-    {
-        // TODO: trigger enemy damage
-        
+    {   
         Vector3 position = gameObject.transform.position;
         Destroy(gameObject);
         Enemy_Controller enemy = hitInfo.GetComponent<Enemy_Controller>();

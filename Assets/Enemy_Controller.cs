@@ -14,7 +14,7 @@ public class Enemy_Controller : MonoBehaviour
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
-    public bool m_FacingRight = true;
+    private bool m_FacingRight = true;
     private bool m_Grounded;
     private bool jump = false;
     public float runSpeed = 40f;
@@ -26,6 +26,7 @@ public class Enemy_Controller : MonoBehaviour
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
     [SerializeField] private float health = 1;
     private bool allowFire = true;
+    public GameObject ammoDrop;
 
 
     void Start()
@@ -115,5 +116,6 @@ public class Enemy_Controller : MonoBehaviour
     {
         //TODO add animation
         Destroy(gameObject);
+        Instantiate(ammoDrop, gameObject.transform.position, Quaternion.identity);
     }
 }
