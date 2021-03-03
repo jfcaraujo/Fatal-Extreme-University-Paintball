@@ -18,8 +18,8 @@ TagManager:
   - EnemyBullets
   - BulletShield
   - Ground
-  - 
-  - 
+  - PlayerBullets
+  - Enemy
   - 
   - 
   - 

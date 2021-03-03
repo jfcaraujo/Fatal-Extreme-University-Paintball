@@ -27,6 +27,7 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private float health = 1;
     private bool allowFire = true;
     public GameObject ammoDrop;
+    private static readonly int HorizontalMove = Animator.StringToHash("HorizontalMove");
 
 
     void Start()
@@ -47,11 +48,11 @@ public class Enemy_Controller : MonoBehaviour
         }*/
         
         //flip the player
-        if (target.position.x - m_Rigidbody2D.position.x < 0 && m_FacingRight) Flip();
-        if (target.position.x - m_Rigidbody2D.position.x > 0 && !m_FacingRight) Flip();
-        if (Mathf.Abs(target.position.x - m_Rigidbody2D.position.x) > 5)
+        if (target.position.x - gameObject.transform.position.x < 0 && m_FacingRight) Flip();
+        if (target.position.x - gameObject.transform.position.x > 0 && !m_FacingRight) Flip();
+        if (Mathf.Abs(target.position.x - gameObject.transform.position.x) > 5)
         {
-            if (target.position.x < m_Rigidbody2D.position.x)
+            if (target.position.x < gameObject.transform.position.x)
             {
                 Move(-runSpeed * Time.fixedDeltaTime);
             }
@@ -72,7 +73,7 @@ public class Enemy_Controller : MonoBehaviour
     
     private void Move(float move)
     {
-        animator.SetFloat("HorizontalMove", Mathf.Abs(move));
+        animator.SetFloat(HorizontalMove, Mathf.Abs(move));
         var velocity = m_Rigidbody2D.velocity;
         Vector3 targetVelocity = new Vector2(move * 10f, velocity.y);
         m_Rigidbody2D.velocity =
@@ -90,6 +91,7 @@ public class Enemy_Controller : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        bullet.layer = LayerMask.NameToLayer("EnemyBullets");
         rb.AddForce(firepoint.right * bulletForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(fireCooldown);
@@ -100,7 +102,7 @@ public class Enemy_Controller : MonoBehaviour
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
-        transform.Rotate(0f, 180, 0f);
+        gameObject.transform.Rotate(0f, 180, 0f);
     }
 
     public void Damage(float damage)
