@@ -16,7 +16,7 @@ public class Player_Controller : MonoBehaviour
     private bool m_Grounded;
     private bool jump = false;
     private float horizontalMove = 0f;
-    public float runSpeed = 40f;
+    public float runSpeed = 8f;
 
     public bool doubleSpeed = false;
 
@@ -58,14 +58,16 @@ public class Player_Controller : MonoBehaviour
 
         animator.SetBool("IsJumping", !m_Grounded);
 
-        Move(horizontalMove * Time.fixedDeltaTime);
+        Move(horizontalMove);
         jump = false;
     }
 
     private void Move(float move)
     {
         var velocity = m_Rigidbody2D.velocity;
-        Vector3 targetVelocity = new Vector2(move * 10f, velocity.y);
+
+        Vector3 targetVelocity = new Vector2(move, velocity.y);
+
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 

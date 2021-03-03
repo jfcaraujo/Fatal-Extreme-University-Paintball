@@ -17,7 +17,7 @@ public class Enemy_Controller : MonoBehaviour
     private bool m_FacingRight = true;
     private bool m_Grounded;
     private bool jump = false;
-    public float runSpeed = 40f;
+    public float runSpeed = 8f;
     public Transform target;
     public Transform firepoint;
     public GameObject bulletPrefab;
@@ -54,11 +54,11 @@ public class Enemy_Controller : MonoBehaviour
         {
             if (target.position.x < gameObject.transform.position.x)
             {
-                Move(-runSpeed * Time.fixedDeltaTime);
+                Move(-runSpeed);
             }
             else
             {
-                Move(runSpeed * Time.fixedDeltaTime);
+                Move(runSpeed);
             }
         }
         else
@@ -75,7 +75,7 @@ public class Enemy_Controller : MonoBehaviour
     {
         animator.SetFloat(HorizontalMove, Mathf.Abs(move));
         var velocity = m_Rigidbody2D.velocity;
-        Vector3 targetVelocity = new Vector2(move * 10f, velocity.y);
+        Vector3 targetVelocity = new Vector2(move, velocity.y);
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 

@@ -14,7 +14,7 @@ public class TimeController : MonoBehaviour
     public void SlowDownTime(float factor)
     {
         Time.timeScale *= factor;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        Time.fixedDeltaTime *= factor;
     }
 
     public void ResetTime()
