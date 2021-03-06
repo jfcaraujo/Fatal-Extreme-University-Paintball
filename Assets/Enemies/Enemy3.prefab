@@ -50,7 +50,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 83f711dabb13e0346952422c02a3f226, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -80,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9942565, y: 1.2648787}
+  m_Size: {x: 0.91007936, y: 1.1763518}
   m_EdgeRadius: 0.05
 --- !u!114 &1941108551844561593
 MonoBehaviour:
@@ -94,14 +94,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba1b0141bd34026a821eb6f5e0aff56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 500
+  m_JumpForce: 9
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 36864
   m_GroundCheck: {fileID: 1941108553074494870}
   animator: {fileID: 1941108552010431051}
-  runSpeed: 40
+  runSpeed: 8
   target: {fileID: 0}
   firepoint: {fileID: 1941108552681324305}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
@@ -181,7 +181,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2146391535
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 61299637565853655, guid: ee659e2541604c0468e28c87fa22c03f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -312,7 +312,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2146391535
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: fa8feb6960aa40e43a8daa35348197b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941108553074494869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1941108551844561588}

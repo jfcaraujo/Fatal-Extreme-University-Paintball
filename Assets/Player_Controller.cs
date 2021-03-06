@@ -9,7 +9,7 @@ public class Player_Controller : MonoBehaviour
 
     public Animator animator;
 
-    const float k_GroundedRadius = .2f;
+    const float k_GroundedRadius = .1f;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
     public bool m_FacingRight = false;
@@ -71,7 +71,7 @@ public class Player_Controller : MonoBehaviour
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-        if (!m_Grounded || !jump) return;
+        if (!m_Grounded || !jump||m_Rigidbody2D.velocity.y>0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);

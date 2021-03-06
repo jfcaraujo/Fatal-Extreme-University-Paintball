@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,12 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;
 
     public Animator animator;
-    
+
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_FacingRight = true;
     private bool m_Grounded;
-    private bool jump = false;
     public float runSpeed = 8f;
     public Transform target;
     public Transform firepoint;
@@ -37,7 +37,7 @@ public class Enemy_Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*m_Grounded = false;
+        m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         foreach (var temp_collider in colliders)
         {
@@ -45,8 +45,8 @@ public class Enemy_Controller : MonoBehaviour
             {
                 m_Grounded = true;
             }
-        }*/
-        
+        }
+
         //flip the player
         if (target.position.x - gameObject.transform.position.x < 0 && m_FacingRight) Flip();
         if (target.position.x - gameObject.transform.position.x > 0 && !m_FacingRight) Flip();
@@ -67,10 +67,8 @@ public class Enemy_Controller : MonoBehaviour
             if (allowFire)
                 StartCoroutine(Shoot());
         }
-
-        jump = false;
     }
-    
+
     private void Move(float move)
     {
         animator.SetFloat(HorizontalMove, Mathf.Abs(move));
@@ -78,11 +76,15 @@ public class Enemy_Controller : MonoBehaviour
         Vector3 targetVelocity = new Vector2(move, velocity.y);
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        if (m_Grounded && Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x/2)) {Jump();}
+    }
 
-        /*if (!m_Grounded || !jump) return;
+    void Jump()
+    {
+        if (m_Rigidbody2D.velocity.y>0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
-        m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));*/
+        m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 
     IEnumerator Shoot()
@@ -98,7 +100,7 @@ public class Enemy_Controller : MonoBehaviour
 
         allowFire = true;
     }
-    
+
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;
@@ -107,7 +109,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public void Damage(float damage)
     {
-        health-=damage;
+        health -= damage;
         if (health <= 0)
         {
             Die();
