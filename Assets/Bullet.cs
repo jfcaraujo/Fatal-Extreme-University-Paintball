@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {   
+        Debug.Log(LayerMask.LayerToName(hitInfo.gameObject.layer) + " - " + LayerMask.LayerToName(gameObject.layer));
+
         Vector3 position = gameObject.transform.position;
         Destroy(gameObject);
         Enemy_Controller enemy = hitInfo.GetComponent<Enemy_Controller>();
