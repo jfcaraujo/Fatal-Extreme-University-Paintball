@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManagement : MonoBehaviour
 {
     public int selectedWeapon = 0;
     int previousSelectedWeapon = 0;
     int penultimateWeapon = 0;
+    public Transform weaponUI;
+    public Text ammoDisplay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +53,11 @@ public class WeaponManagement : MonoBehaviour
         int i = 0;
         foreach (Transform weapon in transform)
         {
+            weaponUI.GetChild(i).gameObject.SetActive(i == selectedWeapon);//update ui sprite
             weapon.gameObject.SetActive(i == selectedWeapon);
             i++;
         }
+        ammoDisplay.text=gameObject.GetComponentsInChildren<Weapon>(false)[0].remainingAmmo.ToString();
+
     }
 }

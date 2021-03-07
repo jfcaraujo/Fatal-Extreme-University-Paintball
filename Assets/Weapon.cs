@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     private Transform firepoint = null;
     private Transform rotationCenter = null;
+    private Text ammoDisplay;
 
     public bool automaticFire = false;
     public float bulletForce = 20f;
@@ -29,6 +31,7 @@ public class Weapon : MonoBehaviour
         cam = FindObjectOfType<Camera>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<Player_Controller>();
+        ammoDisplay = GameObject.Find("Ammo Amount").GetComponent<Text>();
     }
 
     void Update()
@@ -39,7 +42,6 @@ public class Weapon : MonoBehaviour
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
         if (shouldFire && allowFire && remainingAmmo > 0)
         {
-            remainingAmmo--;
             StartCoroutine(Shoot());
         }
 
@@ -79,12 +81,14 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        remainingAmmo--;
         allowFire = false;
+        ammoDisplay.text = remainingAmmo.ToString();
+
 
         GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(-firepoint.right * bulletForce, ForceMode2D.Impulse);
-
         yield return new WaitForSeconds(fireCooldown);
 
         allowFire = true;
@@ -97,6 +101,8 @@ public class Weapon : MonoBehaviour
 
         remainingAmmo = Mathf.Min(remainingAmmo + amount, maxAmmo);
 
+        if (gameObject.activeSelf)
+            ammoDisplay.text = remainingAmmo.ToString();
         return true;
     }
 }

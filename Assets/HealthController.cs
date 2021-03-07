@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class HealthController : MonoBehaviour
     public bool invulnerable = false;
 
     private Animator animator;
+    public Text healthDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class HealthController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         numPaperTowels = startingPaperTowels;
+        healthDisplay.text = numPaperTowels.ToString();
     }
 
     public bool AddPaperTowels(int num)
@@ -26,7 +29,7 @@ public class HealthController : MonoBehaviour
             return false;
 
         numPaperTowels = Mathf.Min(numPaperTowels + num, maxPaperTowels);
-
+        healthDisplay.text = numPaperTowels.ToString();
         return true;
     }
 
@@ -40,6 +43,7 @@ public class HealthController : MonoBehaviour
         invulnerable = true;
 
         numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
+        healthDisplay.text = numPaperTowels.ToString();
 
         if (numPaperTowels > 0)
             animator.SetTrigger("Heal");
