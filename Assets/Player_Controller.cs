@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
@@ -15,8 +16,11 @@ public class Player_Controller : MonoBehaviour
     public bool m_FacingRight = false;
     private bool m_Grounded;
     private bool jump = false;
+    private bool dropDown = false;
     private float horizontalMove = 0f;
     public float runSpeed = 8f;
+    public float dropDownInterval = 0.25f;
+    public float dropDownForce = 1f;
 
     public bool doubleSpeed = false;
 
@@ -39,6 +43,9 @@ public class Player_Controller : MonoBehaviour
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (doubleSpeed ? 2 : 1);
             if (Input.GetButtonDown("Jump"))
                 jump = true;
+
+            if (Input.GetButtonDown("Drop"))
+                dropDown = true;
         }
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalMove));
@@ -48,11 +55,16 @@ public class Player_Controller : MonoBehaviour
     {
         m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-        foreach (var temp_collider in colliders)
+        foreach (Collider2D temp_collider in colliders)
         {
             if (temp_collider.gameObject != gameObject)
             {
                 m_Grounded = true;
+
+                if (dropDown && temp_collider.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
+                {
+                    StartCoroutine(DropDownPlatform(temp_collider));
+                }
             }
         }
 
@@ -60,6 +72,7 @@ public class Player_Controller : MonoBehaviour
 
         Move(horizontalMove);
         jump = false;
+        dropDown = false;
     }
 
     private void Move(float move)
@@ -71,10 +84,32 @@ public class Player_Controller : MonoBehaviour
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-        if (!m_Grounded || !jump||m_Rigidbody2D.velocity.y>0.05) return;
+        if (!m_Grounded || !jump || m_Rigidbody2D.velocity.y > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
+    }
+
+    private IEnumerator DropDownPlatform(Collider2D platformCollider)
+    {
+        Collider2D[] playerColliders = gameObject.GetComponents<Collider2D>();
+
+        // Disable collisions between player and platform
+        foreach (Collider2D collider in playerColliders)
+        {
+            Physics2D.IgnoreCollision(platformCollider, collider, true);
+        }
+
+        // Add downforce to drop down faster
+        m_Rigidbody2D.AddForce(new Vector2(0, -dropDownForce), ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(dropDownInterval);
+
+        // Re-enable collisions between player and platform
+        foreach (Collider2D collider in playerColliders)
+        {
+            Physics2D.IgnoreCollision(platformCollider, collider, false);
+        }
     }
 
     public void Flip()

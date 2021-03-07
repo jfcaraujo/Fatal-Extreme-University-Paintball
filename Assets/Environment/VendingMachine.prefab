@@ -127,4 +127,4 @@ PlatformEffector2D:
   m_SurfaceArc: 10
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 0

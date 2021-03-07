@@ -1071,6 +1071,7 @@ MonoBehaviour:
   animator: {fileID: 1837310079}
   m_FacingRight: 0
   runSpeed: 8
+  dropDownInterval: 0.25
   doubleSpeed: 0
   inputBlocked: 0
 --- !u!4 &1837310078 stripped
