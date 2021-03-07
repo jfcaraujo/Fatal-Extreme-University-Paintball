@@ -225,8 +225,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7862320417276006210}
   - component: {fileID: 7862320417276006211}
-  - component: {fileID: 7862320417276006208}
   - component: {fileID: 7862320417276006209}
+  - component: {fileID: 1368000385}
   m_Layer: 14
   m_Name: Enemy4
   m_TagString: Untagged
@@ -271,32 +271,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &7862320417276006208
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7862320417276006214}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 83f711dabb13e0346952422c02a3f226, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.006344557, y: -0.0959537}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8651667, y: 1.2402631}
-  m_EdgeRadius: 0.05
 --- !u!114 &7862320417276006209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +300,22 @@ MonoBehaviour:
   health: 1
   ammoDrop: {fileID: 5140166328663893556, guid: cf2234c64b77a8643b2e53f202102608,
     type: 3}
+--- !u!70 &1368000385
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862320417276006214}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 83f711dabb13e0346952422c02a3f226, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0069856644, y: -0.0908339}
+  m_Size: {x: 0.8772192, y: 1.3214121}
+  m_Direction: 0
 --- !u!1 &7862320417300832199
 GameObject:
   m_ObjectHideFlags: 0

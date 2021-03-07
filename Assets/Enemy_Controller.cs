@@ -92,7 +92,11 @@ public class Enemy_Controller : MonoBehaviour
         Vector3 targetVelocity = new Vector2(move, velocity.y);
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        if (m_Grounded && Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x / 2)) { Jump(); }
+        if (m_Grounded && Math.Abs(m_Rigidbody2D.velocity.x) > 0.5 &&
+            Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x / 2))
+        {
+            Jump();
+        }
     }
 
     void Jump()
