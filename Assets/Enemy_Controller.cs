@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
+    private static readonly List<Color> colors = new List<Color>()
+    {
+        new Color(1f, 0f, 0f, 1f), // Red
+        new Color(0f, 1f, 0f, 1f), // Green
+        new Color(0f, 0f, 1f, 1f), // Blue 
+    };
+
+    private int colorIndex = -1;
+
     [SerializeField] private float m_JumpForce = 500f;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
     [SerializeField] private LayerMask m_WhatIsGround;
@@ -33,6 +42,13 @@ public class Enemy_Controller : MonoBehaviour
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+        if (colors.Count > 0)
+        {
+            // Use instance ID as an unique seed
+            System.Random rnd = new System.Random(gameObject.GetInstanceID());
+            colorIndex = rnd.Next(colors.Count);
+        }
     }
 
     void FixedUpdate()
@@ -76,12 +92,12 @@ public class Enemy_Controller : MonoBehaviour
         Vector3 targetVelocity = new Vector2(move, velocity.y);
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        if (m_Grounded && Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x/2)) {Jump();}
+        if (m_Grounded && Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x / 2)) { Jump(); }
     }
 
     void Jump()
     {
-        if (m_Rigidbody2D.velocity.y>0.05) return;
+        if (m_Rigidbody2D.velocity.y > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
@@ -92,6 +108,12 @@ public class Enemy_Controller : MonoBehaviour
         allowFire = false;
 
         GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+
+        if (colorIndex != -1)
+        {
+            bullet.GetComponent<SpriteRenderer>().color = colors[colorIndex];
+        }
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.layer = LayerMask.NameToLayer("EnemyBullets");
         rb.AddForce(firepoint.right * bulletForce, ForceMode2D.Impulse);
