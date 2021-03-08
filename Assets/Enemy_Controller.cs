@@ -71,6 +71,7 @@ public class Enemy_Controller : MonoBehaviour
             }
         }
 
+        float playerDistance = Mathf.Abs(player.position.x - gameObject.transform.position.x);
         bool playerIsRight = player.position.x > gameObject.transform.position.x;
 
         if (fleeingDirection == 0)
@@ -78,7 +79,7 @@ public class Enemy_Controller : MonoBehaviour
             //flip the player
             Flip(playerIsRight);
 
-            if (Mathf.Abs(player.position.x - gameObject.transform.position.x) > 5)
+            if (playerDistance > 5)
             {
                 if (playerIsRight)
                 {
@@ -91,9 +92,25 @@ public class Enemy_Controller : MonoBehaviour
             }
             else
             {
-                Move(0);
-                if (allowFire)
-                    StartCoroutine(Shoot());
+                RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? 1 : -1) * Vector2.right, Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
+
+                if (playerDistance < 1.8 || raycast.transform != null && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    Move(0);
+                    if (allowFire)
+                        StartCoroutine(Shoot());
+                }
+                else
+                {
+                    if (playerIsRight)
+                    {
+                        Move(runSpeed);
+                    }
+                    else
+                    {
+                        Move(-runSpeed);
+                    }
+                }
             }
         }
         else
@@ -110,7 +127,7 @@ public class Enemy_Controller : MonoBehaviour
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
         if (m_Grounded && Math.Abs(m_Rigidbody2D.velocity.x) > 0.5 &&
-            Math.Abs(velocity.x) < Math.Abs(m_Rigidbody2D.velocity.x / 2))
+            Math.Abs(velocity.x) < Math.Abs(2 * m_Rigidbody2D.velocity.x / 3))
         {
             Jump();
         }
@@ -164,19 +181,17 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Flee()
     {
-        bool targetIsRight = player.position.x > gameObject.transform.position.x;
+        bool playerIsRight = player.position.x > gameObject.transform.position.x;
 
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, (targetIsRight ? -1 : 1) * Vector2.right, seeingDistance, LayerMask.GetMask("Ground"));
-
-        Debug.Log(raycast.collider);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? -1 : 1) * Vector2.right, seeingDistance, LayerMask.GetMask("Ground"));
 
         if (raycast.collider == null)
         {
-            fleeingDirection = targetIsRight ? -1 : 1;
+            fleeingDirection = playerIsRight ? -1 : 1;
         }
         else
         {
-            fleeingDirection = targetIsRight ? 1 : -1;
+            fleeingDirection = playerIsRight ? 1 : -1;
         }
 
         Flip(fleeingDirection == 1);
