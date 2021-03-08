@@ -37,6 +37,7 @@ public class Enemy_Controller : MonoBehaviour
     private bool allowFire = true;
     public GameObject ammoDrop;
     private HealthController healthController;
+    private bool fleeing = false;
 
     void Start()
     {
@@ -66,25 +67,39 @@ public class Enemy_Controller : MonoBehaviour
             }
         }
 
-        //flip the player
-        if (target.position.x - gameObject.transform.position.x < 0 && m_FacingRight) Flip();
-        if (target.position.x - gameObject.transform.position.x > 0 && !m_FacingRight) Flip();
-        if (Mathf.Abs(target.position.x - gameObject.transform.position.x) > 5)
+        if (!fleeing)
         {
-            if (target.position.x < gameObject.transform.position.x)
+            //flip the player
+            if (target.position.x - gameObject.transform.position.x < 0 && m_FacingRight) Flip();
+            if (target.position.x - gameObject.transform.position.x > 0 && !m_FacingRight) Flip();
+            if (Mathf.Abs(target.position.x - gameObject.transform.position.x) > 5)
             {
-                Move(-runSpeed);
+                if (target.position.x < gameObject.transform.position.x)
+                {
+                    Move(-runSpeed);
+                }
+                else
+                {
+                    Move(runSpeed);
+                }
             }
             else
             {
-                Move(runSpeed);
+                Move(0);
+                if (allowFire)
+                    StartCoroutine(Shoot());
             }
         }
         else
         {
-            Move(0);
-            if (allowFire)
-                StartCoroutine(Shoot());
+            if (target.position.x < gameObject.transform.position.x)
+            {
+                Move(runSpeed);
+            }
+            else
+            {
+                Move(-runSpeed);
+            }
         }
     }
 
@@ -147,16 +162,15 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Flee()
     {
-        Debug.Log("Shot");
-        
+        Flip();
+        fleeing=true;
     }
-    
+
     private void StopFlee()
     {
-        Debug.Log("Not Shot");
-        
+        fleeing=false;
     }
-    
+
     private void Die()
     {
         //TODO add animation
