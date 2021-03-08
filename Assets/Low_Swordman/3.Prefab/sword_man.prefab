@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 4210157123753652}
   - component: {fileID: 1837310076}
   - component: {fileID: 1837310074}
-  - component: {fileID: 1837310075}
   - component: {fileID: 1837310079}
   - component: {fileID: 1837310077}
   - component: {fileID: 1837310080}
@@ -215,25 +214,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: -0.06}
-  m_Size: {x: 0.5259932, y: 0.7124462}
+  m_Offset: {x: -0.01997912, y: 0.218256}
+  m_Size: {x: 0.68590975, y: 1.2689581}
   m_Direction: 0
---- !u!58 &1837310075
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290715225530138}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 83f711dabb13e0346952422c02a3f226, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0.46}
-  serializedVersion: 2
-  m_Radius: 0.4005177
 --- !u!95 &1837310079
 Animator:
   serializedVersion: 3
@@ -293,6 +276,7 @@ MonoBehaviour:
   startingPaperTowels: 5
   maxPaperTowels: 10
   invulnerable: 0
+  healthDisplay: {fileID: 0}
 --- !u!1 &1315759352830414
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeapon: 0
+  weaponUI: {fileID: 0}
+  ammoDisplay: {fileID: 0}
 --- !u!1 &5613983497831730202
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +927,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
+        type: 3}
+      propertyPath: automaticFire
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
         type: 3}

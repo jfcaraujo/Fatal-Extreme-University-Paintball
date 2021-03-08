@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &105095039 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 105095039, guid: 6877fb649746c674d8fbbcf60d41892b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1874392723}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188877030
 GameObject:
   m_ObjectHideFlags: 3
@@ -1223,26 +1217,6 @@ PrefabInstance:
       propertyPath: ammoDisplay
       value: 
       objectReference: {fileID: 1196315630}
-    - target: {fileID: 1837310077, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_MyEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837310077, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_MyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837310077, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_MyEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837310077, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_MyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837310077, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_MyEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: healthDisplay
       value: 
@@ -1294,11 +1268,6 @@ PrefabInstance:
     - target: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2816387341626082106, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: automaticFire
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
@@ -1614,11 +1583,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy3
       objectReference: {fileID: 0}
-    - target: {fileID: 1941108551844561593, guid: 8af160b3fb88bba4ab24aa4db99d21dc,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 105095039}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8af160b3fb88bba4ab24aa4db99d21dc, type: 3}
 --- !u!1001 &2469202789550302741
@@ -1929,11 +1893,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7862320417276006209, guid: 5188185f0ed64fb4198042e8cedd7de5,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 105095039}
     - target: {fileID: 7862320417276006210, guid: 5188185f0ed64fb4198042e8cedd7de5,
         type: 3}
       propertyPath: m_RootOrder

@@ -291,7 +291,6 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 7862320415833254348}
   animator: {fileID: 7862320416458088522}
   runSpeed: 8
-  target: {fileID: 0}
   firepoint: {fileID: 7862320417300832198}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
