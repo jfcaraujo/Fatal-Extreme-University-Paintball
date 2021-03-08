@@ -12,6 +12,7 @@ public class Healing : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.gameObject.GetComponent<Player_Controller>().inputBlocked = false;
-        animator.gameObject.GetComponent<HealthController>().invulnerable = false;
+        animator.gameObject.GetComponent<HealthController>().StopHeal();
+        
     }
 }

@@ -27,7 +27,7 @@ public class Enemy_Controller : MonoBehaviour
     private bool m_FacingRight = true;
     private bool m_Grounded;
     public float runSpeed = 8f;
-    public Transform target;
+    private Transform target;
     public Transform firepoint;
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
@@ -36,13 +36,16 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private float health = 1;
     private bool allowFire = true;
     public GameObject ammoDrop;
-    private static readonly int HorizontalMove = Animator.StringToHash("HorizontalMove");
-
+    private HealthController healthController;
 
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+        healthController = player.GetComponent<HealthController>();
+        healthController.onHeal += Flee;
+        healthController.onStopHeal += StopFlee;
         if (colors.Count > 0)
         {
             // Use instance ID as an unique seed
@@ -87,7 +90,7 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Move(float move)
     {
-        animator.SetFloat(HorizontalMove, Mathf.Abs(move));
+        animator.SetFloat("HorizontalMove", Mathf.Abs(move));
         var velocity = m_Rigidbody2D.velocity;
         Vector3 targetVelocity = new Vector2(move, velocity.y);
         m_Rigidbody2D.velocity =
@@ -142,9 +145,23 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
+    private void Flee()
+    {
+        Debug.Log("Shot");
+        
+    }
+    
+    private void StopFlee()
+    {
+        Debug.Log("Not Shot");
+        
+    }
+    
     private void Die()
     {
         //TODO add animation
+        healthController.onHeal -= Flee;
+        healthController.onStopHeal -= StopFlee;
         Destroy(gameObject);
         Instantiate(ammoDrop, gameObject.transform.position, Quaternion.identity);
     }

@@ -13,7 +13,10 @@ public class HealthController : MonoBehaviour
 
     private Animator animator;
     public Text healthDisplay;
-
+    public delegate void OnHeal();
+    public event OnHeal onHeal;
+    public event OnHeal onStopHeal;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +47,7 @@ public class HealthController : MonoBehaviour
 
         numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
         healthDisplay.text = numPaperTowels.ToString();
-
+        onHeal?.Invoke();
         if (numPaperTowels > 0)
             animator.SetTrigger("Heal");
         else
@@ -52,5 +55,11 @@ public class HealthController : MonoBehaviour
             animator.SetTrigger("Leave");
 
         return true;
+    }
+
+    public void StopHeal()
+    {
+        invulnerable = false;
+        onStopHeal?.Invoke();
     }
 }
