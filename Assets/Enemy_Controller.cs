@@ -27,23 +27,27 @@ public class Enemy_Controller : MonoBehaviour
     private bool m_FacingRight = true;
     private bool m_Grounded;
     public float runSpeed = 8f;
-    private Transform target;
+    private Transform player;
     public Transform firepoint;
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
+
+    public float seeingDistance = 5f;
 
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
     [SerializeField] private float health = 1;
     private bool allowFire = true;
     public GameObject ammoDrop;
     private HealthController healthController;
-    private bool fleeing = false;
+
+    // fleeing: 0 = not fleeing; 1 = fleeing right; -1 = fleeing left
+    private int fleeingDirection = 0;
 
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
+        this.player = player.transform;
         healthController = player.GetComponent<HealthController>();
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
@@ -67,20 +71,22 @@ public class Enemy_Controller : MonoBehaviour
             }
         }
 
-        if (!fleeing)
+        bool playerIsRight = player.position.x > gameObject.transform.position.x;
+
+        if (fleeingDirection == 0)
         {
             //flip the player
-            if (target.position.x - gameObject.transform.position.x < 0 && m_FacingRight) Flip();
-            if (target.position.x - gameObject.transform.position.x > 0 && !m_FacingRight) Flip();
-            if (Mathf.Abs(target.position.x - gameObject.transform.position.x) > 5)
+            Flip(playerIsRight);
+
+            if (Mathf.Abs(player.position.x - gameObject.transform.position.x) > 5)
             {
-                if (target.position.x < gameObject.transform.position.x)
+                if (playerIsRight)
                 {
-                    Move(-runSpeed);
+                    Move(runSpeed);
                 }
                 else
                 {
-                    Move(runSpeed);
+                    Move(-runSpeed);
                 }
             }
             else
@@ -92,14 +98,7 @@ public class Enemy_Controller : MonoBehaviour
         }
         else
         {
-            if (target.position.x < gameObject.transform.position.x)
-            {
-                Move(runSpeed);
-            }
-            else
-            {
-                Move(-runSpeed);
-            }
+            Move(fleeingDirection * runSpeed);
         }
     }
 
@@ -145,10 +144,13 @@ public class Enemy_Controller : MonoBehaviour
         allowFire = true;
     }
 
-    private void Flip()
+    private void Flip(bool right)
     {
-        m_FacingRight = !m_FacingRight;
-        gameObject.transform.Rotate(0f, 180, 0f);
+        if (m_FacingRight && !right || !m_FacingRight && right)
+        {
+            gameObject.transform.Rotate(0f, 180, 0f);
+            m_FacingRight = right;
+        }
     }
 
     public void Damage(float damage)
@@ -162,13 +164,27 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Flee()
     {
-        Flip();
-        fleeing=true;
+        bool targetIsRight = player.position.x > gameObject.transform.position.x;
+
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, (targetIsRight ? -1 : 1) * Vector2.right, seeingDistance, LayerMask.GetMask("Ground"));
+
+        Debug.Log(raycast.collider);
+
+        if (raycast.collider == null)
+        {
+            fleeingDirection = targetIsRight ? -1 : 1;
+        }
+        else
+        {
+            fleeingDirection = targetIsRight ? 1 : -1;
+        }
+
+        Flip(fleeingDirection == 1);
     }
 
     private void StopFlee()
     {
-        fleeing=false;
+        fleeingDirection = 0;
     }
 
     private void Die()
