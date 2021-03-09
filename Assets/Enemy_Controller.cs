@@ -38,6 +38,8 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject ammoDrop;
     private HealthController healthController;
     private bool fleeing = false;
+    public delegate void OnEnemyDeath();
+    public event OnEnemyDeath onEnemyDeath;
 
     void Start()
     {
@@ -176,6 +178,7 @@ public class Enemy_Controller : MonoBehaviour
         //TODO add animation
         healthController.onHeal -= Flee;
         healthController.onStopHeal -= StopFlee;
+        onEnemyDeath?.Invoke();
         Destroy(gameObject);
         Instantiate(ammoDrop, gameObject.transform.position, Quaternion.identity);
     }
