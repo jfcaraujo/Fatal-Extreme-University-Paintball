@@ -11,9 +11,15 @@ public class Round_Controller : MonoBehaviour
     private int enemiesThisRoundMachineGun = 0;
     private int enemiesRemaining = 0;
 
+    private bool fleeing = false;
+    private HealthController healthController;
+
     // Start is called before the first frame update
     void Start()
     {
+        healthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
+        healthController.onHeal += Flee;
+        healthController.onStopHeal += StopFlee;
         StartNextRound();
     }
 
@@ -26,7 +32,8 @@ public class Round_Controller : MonoBehaviour
     {
         Enemy_Controller enemy = Instantiate(enemyPistol, gameObject.transform.position, gameObject.transform.rotation)
             .GetComponent<Enemy_Controller>();
-        ;
+        if (fleeing)
+            enemy.Flee();
         enemy.onEnemyDeath += EnemyDeath;
     }
 
@@ -35,14 +42,15 @@ public class Round_Controller : MonoBehaviour
         Enemy_Controller enemy =
             Instantiate(enemyMachineGun, gameObject.transform.position, gameObject.transform.rotation)
                 .GetComponent<Enemy_Controller>();
-        ;
+        if (fleeing)
+            enemy.Flee();
         enemy.onEnemyDeath += EnemyDeath;
     }
 
     private void EnemyDeath()
     {
         enemiesRemaining--;
-        Debug.Log("Enemies remaining:" + enemiesRemaining);
+        //Debug.Log("Enemies remaining:" + enemiesRemaining);
         if (enemiesRemaining == 0)
             StartNextRound();
     }
@@ -56,10 +64,11 @@ public class Round_Controller : MonoBehaviour
             enemiesThisRoundMachineGun++;
         }
 
-        StartCoroutine(SpawnEnemies());
         enemiesRemaining = enemiesThisRoundPistol + enemiesThisRoundMachineGun;
 
-        Debug.Log(enemiesThisRoundPistol + "  " + enemiesThisRoundMachineGun);
+        StartCoroutine(SpawnEnemies());
+
+        // Debug.Log(enemiesThisRoundPistol + "  " + enemiesThisRoundMachineGun);
     }
 
     IEnumerator SpawnEnemies()
@@ -68,6 +77,7 @@ public class Round_Controller : MonoBehaviour
 
         for (var i = 0; i < enemiesThisRoundPistol; i++)
         {
+            //Debug.Log("Spawning pistol " + i);
             SpawnEnemyPistol();
             yield return new WaitForSeconds(3);
         }
@@ -77,5 +87,15 @@ public class Round_Controller : MonoBehaviour
             SpawnEnemyMachineGun();
             yield return new WaitForSeconds(3);
         }
+    }
+
+    private void Flee()
+    {
+        fleeing = true;
+    }
+
+    private void StopFlee()
+    {
+        fleeing = false;
     }
 }
