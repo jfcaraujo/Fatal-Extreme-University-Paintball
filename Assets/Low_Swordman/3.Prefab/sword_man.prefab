@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 53248
+    m_Bits: 118784
   m_GroundCheck: {fileID: 1639961258}
   animator: {fileID: 1837310079}
   m_FacingRight: 0

@@ -45,6 +45,10 @@ public class HealthController : MonoBehaviour
         // Has to be set to false at the end of the Heal animation
         invulnerable = true;
 
+        // Disable collisions between player and enemies
+        // Has to be reenabled at the end of the Heal animation
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+
         numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
         healthDisplay.text = numPaperTowels.ToString();
         onHeal?.Invoke();
@@ -60,6 +64,7 @@ public class HealthController : MonoBehaviour
     public void StopHeal()
     {
         invulnerable = false;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
         onStopHeal?.Invoke();
     }
 }

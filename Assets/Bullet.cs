@@ -6,9 +6,14 @@ public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;
 
+    private bool exists = true;
+
     void OnTriggerEnter2D(Collider2D hitInfo)
-    {   
-        //Debug.Log(LayerMask.LayerToName(hitInfo.gameObject.layer) + " - " + LayerMask.LayerToName(gameObject.layer));
+    {
+        if (!exists)
+            return;
+
+        exists = false;
 
         Vector3 position = gameObject.transform.position;
         Destroy(gameObject);
