@@ -10,6 +10,8 @@ public class Round_Controller : MonoBehaviour
     private int enemiesThisRoundPistol = 0;
     private int enemiesThisRoundMachineGun = 0;
     private int enemiesRemaining = 0;
+    [SerializeField] private float timeBetweenSpawns = 2;
+    [SerializeField] private float timeBetweenRounds = 3;
 
     private bool fleeing = false;
     private HealthController healthController;
@@ -32,8 +34,6 @@ public class Round_Controller : MonoBehaviour
     {
         Enemy_Controller enemy = Instantiate(enemyPistol, gameObject.transform.position, gameObject.transform.rotation)
             .GetComponent<Enemy_Controller>();
-        if (fleeing)
-            enemy.Flee();
         enemy.onEnemyDeath += EnemyDeath;
     }
 
@@ -42,8 +42,6 @@ public class Round_Controller : MonoBehaviour
         Enemy_Controller enemy =
             Instantiate(enemyMachineGun, gameObject.transform.position, gameObject.transform.rotation)
                 .GetComponent<Enemy_Controller>();
-        if (fleeing)
-            enemy.Flee();
         enemy.onEnemyDeath += EnemyDeath;
     }
 
@@ -73,19 +71,25 @@ public class Round_Controller : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeBetweenRounds);
 
         for (var i = 0; i < enemiesThisRoundPistol; i++)
         {
             //Debug.Log("Spawning pistol " + i);
-            SpawnEnemyPistol();
-            yield return new WaitForSeconds(3);
+            if (fleeing)
+                i--;
+            else
+                SpawnEnemyPistol();
+            yield return new WaitForSeconds(timeBetweenSpawns);
         }
 
         for (var i = 0; i < enemiesThisRoundMachineGun; i++)
         {
-            SpawnEnemyMachineGun();
-            yield return new WaitForSeconds(3);
+            if (fleeing)
+                i--;
+            else
+                SpawnEnemyMachineGun();
+            yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
 

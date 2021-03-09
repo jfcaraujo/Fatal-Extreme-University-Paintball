@@ -180,7 +180,7 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
-    public void Flee()
+    private void Flee()
     {
         bool playerIsRight = player.position.x > gameObject.transform.position.x;
 
