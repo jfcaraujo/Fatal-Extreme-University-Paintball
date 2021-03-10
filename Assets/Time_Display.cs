@@ -1,20 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Time_Display : MonoBehaviour
 {
+    public Text timeDisplay;
     
-    // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
-        
-    }
+        timeDisplay.text=Math.Floor(Time.time).ToString();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
