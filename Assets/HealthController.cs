@@ -48,16 +48,15 @@ public class HealthController : MonoBehaviour
         // Disable collisions between player and enemies
         // Has to be reenabled at the end of the Heal animation
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
-
-        numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
-        healthDisplay.text = numPaperTowels.ToString();
+        
         onHeal?.Invoke();
         if (numPaperTowels > 0)
             animator.SetTrigger("Heal");
         else
             // TODO: create leave animation
             animator.SetTrigger("Leave");
-
+        numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
+        healthDisplay.text = numPaperTowels.ToString();
         return true;
     }
 

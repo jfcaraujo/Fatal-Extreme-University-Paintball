@@ -784,7 +784,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.16
+  orthographic size: 5.33
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1806,7 +1806,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1837310078}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 3.16
+    OrthographicSize: 5.33
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2104,7 +2104,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Enemies Left:'
