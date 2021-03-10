@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Round_Controller : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Round_Controller : MonoBehaviour
 
     private bool fleeing = false;
     private HealthController healthController;
+
+    public Text scoreText;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +38,7 @@ public class Round_Controller : MonoBehaviour
     {
         Enemy_Controller enemy = Instantiate(enemyPistol, gameObject.transform.position, gameObject.transform.rotation)
             .GetComponent<Enemy_Controller>();
-        enemy.onEnemyDeath += EnemyDeath;
+        enemy.onEnemyDeath += EnemyPistolDeath;
     }
 
     private void SpawnEnemyMachineGun()
@@ -42,12 +46,24 @@ public class Round_Controller : MonoBehaviour
         Enemy_Controller enemy =
             Instantiate(enemyMachineGun, gameObject.transform.position, gameObject.transform.rotation)
                 .GetComponent<Enemy_Controller>();
-        enemy.onEnemyDeath += EnemyDeath;
+        enemy.onEnemyDeath += EnemyMachineGunDeath;
     }
 
-    private void EnemyDeath()
+    private void EnemyPistolDeath()
     {
         enemiesRemaining--;
+        score += 15;
+        scoreText.text = score.ToString();
+        //Debug.Log("Enemies remaining:" + enemiesRemaining);
+        if (enemiesRemaining == 0)
+            StartNextRound();
+    }
+
+    private void EnemyMachineGunDeath()
+    {
+        enemiesRemaining--;
+        score += 30;
+        scoreText.text = score.ToString();
         //Debug.Log("Enemies remaining:" + enemiesRemaining);
         if (enemiesRemaining == 0)
             StartNextRound();
@@ -55,6 +71,8 @@ public class Round_Controller : MonoBehaviour
 
     private void StartNextRound()
     {
+        /*score += 100;
+        scoreText.text = score.ToString();*/
         enemiesThisRoundPistol++;
         if (enemiesThisRoundPistol == 4)
         {
