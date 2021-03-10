@@ -19,6 +19,7 @@ public class Round_Controller : MonoBehaviour
 
     public Text scoreText;
     private int score;
+    public Text enemiesLeftText;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,7 @@ public class Round_Controller : MonoBehaviour
     private void EnemyPistolDeath()
     {
         enemiesRemaining--;
+        enemiesLeftText.text = enemiesRemaining.ToString();
         score += 15;
         scoreText.text = score.ToString();
         //Debug.Log("Enemies remaining:" + enemiesRemaining);
@@ -62,6 +64,7 @@ public class Round_Controller : MonoBehaviour
     private void EnemyMachineGunDeath()
     {
         enemiesRemaining--;
+        enemiesLeftText.text = enemiesRemaining.ToString();
         score += 30;
         scoreText.text = score.ToString();
         //Debug.Log("Enemies remaining:" + enemiesRemaining);
@@ -81,6 +84,7 @@ public class Round_Controller : MonoBehaviour
         }
 
         enemiesRemaining = enemiesThisRoundPistol + enemiesThisRoundMachineGun;
+        enemiesLeftText.text = enemiesRemaining.ToString();
 
         StartCoroutine(SpawnEnemies());
 
