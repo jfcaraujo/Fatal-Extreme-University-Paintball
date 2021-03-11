@@ -109,12 +109,12 @@ public class Bullet : MonoBehaviour
             }
 
             // Damage entity (if applicable)
-            Enemy_Controller enemy = gameObject.GetComponent<Enemy_Controller>();
+            Enemy_Controller enemy = hitObject.GetComponent<Enemy_Controller>();
             if (enemy != null)
             {
                 enemy.Damage(1);
             }
-            HealthController healthController = gameObject.GetComponent<HealthController>();
+            HealthController healthController = hitObject.GetComponent<HealthController>();
             if (healthController != null)
             {
                 healthController.Damage(1);
