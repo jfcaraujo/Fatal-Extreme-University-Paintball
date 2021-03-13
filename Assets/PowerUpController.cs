@@ -13,17 +13,20 @@ public class PowerUpController : MonoBehaviour
     public float powerUpDuration = 15f;
     public float slowMotionFactor = 0.4f;
 
+    public PowerUpDisplay powerUpDisplay;
+
     private void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Controller>();
         timeController = GameObject.FindObjectOfType<TimeController>();
+        powerUpDisplay.SetMaxDuration((int) powerUpDuration);
     }
 
     public bool ActivatePowerUp(string powerUp)
     {
         if (IsAnyActive())
             return false;
-
+        powerUpDisplay.StartNewPowerUp(1);
         switch (powerUp)
         {
             case nameof(DoubleSpeed):
