@@ -10,6 +10,13 @@ public class Bullet : MonoBehaviour
     private bool exists = true;
     private float travelledDistance = 0f;
 
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
         travelledDistance += GetComponent<Rigidbody2D>().velocity.magnitude * Time.deltaTime;
@@ -68,7 +75,12 @@ public class Bullet : MonoBehaviour
         HealthController healthController = hitObject.GetComponent<HealthController>();
         if (healthController != null)
         {
-            healthController.Damage(1);
+            Player_Controller pc = hitObject.GetComponent<Player_Controller>();
+
+            bool hitFront = pc.m_FacingRight && rb.velocity.x < 0 ||
+                            !pc.m_FacingRight && rb.velocity.x > 0;
+
+            healthController.Damage(1, hitFront);
         }
     }
 

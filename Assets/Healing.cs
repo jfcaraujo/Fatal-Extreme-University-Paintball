@@ -10,8 +10,6 @@ public class Healing : StateMachineBehaviour
     {
         splatters = new List<GameObject>();
 
-        animator.gameObject.GetComponent<Player_Controller>().inputBlocked = true;
-
         Transform legRight = animator.gameObject.transform.Find("LegRight");
         Transform legLeft = animator.gameObject.transform.Find("LegLeft");
         Transform body = animator.gameObject.transform.Find("body");

@@ -16,7 +16,7 @@ public class HealthController : MonoBehaviour
     public delegate void OnHeal();
     public event OnHeal onHeal;
     public event OnHeal onStopHeal;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +36,7 @@ public class HealthController : MonoBehaviour
         return true;
     }
 
-    public bool Damage(int damage)
+    public bool Damage(int damage, bool hitFront)
     {
         if (invulnerable)
             return false;
@@ -48,13 +48,20 @@ public class HealthController : MonoBehaviour
         // Disable collisions between player and enemies
         // Has to be reenabled at the end of the Heal animation
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
-        
+
         onHeal?.Invoke();
+
         if (numPaperTowels > 0)
-            animator.SetTrigger("Heal");
+        {
+            if (hitFront)
+                animator.SetTrigger("HitFront");
+            else
+                animator.SetTrigger("HitBack");
+        }
         else
             // TODO: create leave animation
             animator.SetTrigger("Leave");
+
         numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
         healthDisplay.text = numPaperTowels.ToString();
         return true;
