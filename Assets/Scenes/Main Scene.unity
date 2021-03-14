@@ -2719,7 +2719,7 @@ PrefabInstance:
       objectReference: {fileID: 2115021597}
     - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: startingPaperTowels
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1290715225530138, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_Name

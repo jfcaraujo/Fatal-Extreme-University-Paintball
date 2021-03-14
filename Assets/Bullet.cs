@@ -10,13 +10,6 @@ public class Bullet : MonoBehaviour
     private bool exists = true;
     private float travelledDistance = 0f;
 
-    private Rigidbody2D rb;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void Update()
     {
         travelledDistance += GetComponent<Rigidbody2D>().velocity.magnitude * Time.deltaTime;
@@ -63,14 +56,25 @@ public class Bullet : MonoBehaviour
 
             hitGameObjects = new GameObject[] { legRight.gameObject, legLeft.gameObject, body.gameObject, head.gameObject };
         }
+        else if (hitObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            GameObject obj = hitObject.GetComponentInChildren<SpriteRenderer>().gameObject;
+
+            hitGameObjects = new GameObject[] { obj };
+        }
 
         DestroyPellet(hitGameObjects);
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         // Damage entity (if applicable)
         Enemy_Controller enemy = hitObject.GetComponent<Enemy_Controller>();
         if (enemy != null)
         {
-            enemy.Damage(1);
+            bool hitFront = enemy.getFacingRight() && rb.velocity.x < 0 ||
+                            !enemy.getFacingRight() && rb.velocity.x > 0;
+
+            enemy.Damage(1, hitFront);
         }
         HealthController healthController = hitObject.GetComponent<HealthController>();
         if (healthController != null)

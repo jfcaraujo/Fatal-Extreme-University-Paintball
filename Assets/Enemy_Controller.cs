@@ -44,6 +44,8 @@ public class Enemy_Controller : MonoBehaviour
     public delegate void OnEnemyDeath();
     public event OnEnemyDeath onEnemyDeath;
 
+    public bool inputBlocked = false;
+
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -74,6 +76,12 @@ public class Enemy_Controller : MonoBehaviour
 
         float playerDistance = Mathf.Abs(player.position.x - gameObject.transform.position.x);
         bool playerIsRight = player.position.x > gameObject.transform.position.x;
+
+        if (inputBlocked)
+        {
+            Move(0);
+            return;
+        }
 
         if (fleeingDirection == 0)
         {
@@ -171,13 +179,22 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, bool hitFront)
     {
+        if (health <= 0)
+            return;
+
         health -= damage;
+
         if (health <= 0)
         {
             Die();
         }
+
+        if (hitFront)
+            animator.SetTrigger("HitFront");
+        else
+            animator.SetTrigger("HitBack");
     }
 
     private void Flee()
@@ -205,11 +222,16 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Die()
     {
-        //TODO add animation
+        animator.SetTrigger("Lose");
+
         healthController.onHeal -= Flee;
         healthController.onStopHeal -= StopFlee;
+
         onEnemyDeath?.Invoke();
-        Destroy(gameObject);
-        Instantiate(ammoDrop, gameObject.transform.position, Quaternion.identity);
+    }
+
+    public bool getFacingRight()
+    {
+        return m_FacingRight;
     }
 }
