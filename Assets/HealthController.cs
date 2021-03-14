@@ -51,16 +51,16 @@ public class HealthController : MonoBehaviour
 
         onHeal?.Invoke();
 
-        if (numPaperTowels > 0)
+        // TODO: Invoke another event to signal that the player has lost and put enemies fighting against each other
+        if (numPaperTowels <= 0)
         {
-            if (hitFront)
-                animator.SetTrigger("HitFront");
-            else
-                animator.SetTrigger("HitBack");
+            animator.SetTrigger("Lose");
         }
+
+        if (hitFront)
+            animator.SetTrigger("HitFront");
         else
-            // TODO: create leave animation
-            animator.SetTrigger("Leave");
+            animator.SetTrigger("HitBack");
 
         numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
         healthDisplay.text = numPaperTowels.ToString();
