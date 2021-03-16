@@ -19,7 +19,7 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
 
-    public Animator animator;
+    private Animator animator;
 
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
@@ -49,9 +49,10 @@ public class Enemy_Controller : MonoBehaviour
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        this.player = player.transform;
-        healthController = player.GetComponent<HealthController>();
+        animator = gameObject.GetComponentInChildren<Animator>();
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        this.player = playerObject.transform;
+        healthController = playerObject.GetComponent<HealthController>();
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
         if (colors.Count > 0)
@@ -74,8 +75,9 @@ public class Enemy_Controller : MonoBehaviour
             }
         }
 
-        float playerDistance = Mathf.Abs(player.position.x - gameObject.transform.position.x);
-        bool playerIsRight = player.position.x > gameObject.transform.position.x;
+        float playerDistance = player.position.x - gameObject.transform.position.x;
+        bool playerIsRight = playerDistance>0;
+        playerDistance = Math.Abs(playerDistance);
 
         if (inputBlocked)
         {
@@ -130,6 +132,7 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Move(float move)
     {
+
         animator.SetFloat("HorizontalMove", Mathf.Abs(move));
         var velocity = m_Rigidbody2D.velocity;
         Vector3 targetVelocity = new Vector2(move, velocity.y);

@@ -43,6 +43,9 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        if (!exists)
+            return;
+        
         GameObject hitObject = hitInfo.gameObject;
 
         GameObject[] hitGameObjects = new GameObject[] { hitObject };

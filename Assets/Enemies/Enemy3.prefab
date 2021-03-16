@@ -74,7 +74,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 36864
   m_GroundCheck: {fileID: 1941108553074494870}
-  animator: {fileID: 1941108552010431051}
   runSpeed: 8
   firepoint: {fileID: 1941108552681324305}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
@@ -85,6 +84,7 @@ MonoBehaviour:
   health: 1
   ammoDrop: {fileID: 5104931113129625706, guid: 46130719e2448194ab5bc2ad906f064d,
     type: 3}
+  inputBlocked: 0
 --- !u!70 &1193654783
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
