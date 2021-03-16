@@ -4,7 +4,6 @@ using UnityEngine;
 public class PowerUpController : MonoBehaviour
 {
     public Player_Controller playerController;
-    public TimeController timeController;
     public Backpack backpack;
 
     public bool DoubleSpeed { get; private set; }
@@ -35,7 +34,7 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(SlowMotion):
                 SlowMotion = true;
-                timeController.SlowDownTime(slowMotionFactor);
+                TimeController.SlowDownTime(slowMotionFactor);
                 powerUpDisplay.StartNewPowerUp(2);
                 break;
             case nameof(ShieldProtection):
@@ -74,7 +73,7 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(SlowMotion):
                 SlowMotion = false;
-                timeController.ResetTime();
+                TimeController.ResetTime();
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = false;
@@ -89,5 +88,6 @@ public class PowerUpController : MonoBehaviour
         if (DoubleSpeed) DisablePowerUp(nameof(DoubleSpeed));
         if (SlowMotion) DisablePowerUp(nameof(SlowMotion));
         if (ShieldProtection) DisablePowerUp(nameof(ShieldProtection));
+        powerUpDisplay.EndDisplay();
     }
 }

@@ -105,7 +105,7 @@ public class Enemy_Controller : MonoBehaviour
             {
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? 1 : -1) * Vector2.right, Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
 
-                if (playerDistance < 1.8 || raycast.transform != null && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                if (playerDistance < 1.8 || raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     Move(0);
                     if (allowFire)

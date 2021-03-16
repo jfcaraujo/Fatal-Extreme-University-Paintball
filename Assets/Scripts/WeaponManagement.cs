@@ -13,13 +13,13 @@ public class WeaponManagement : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SelectWeapon();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("SwitchLastWeapon")) {
             selectedWeapon = penultimateWeapon;
@@ -45,7 +45,7 @@ public class WeaponManagement : MonoBehaviour
             SelectWeapon();
     }
 
-    void SelectWeapon()
+    private void SelectWeapon()
     {
         penultimateWeapon = previousSelectedWeapon;
         previousSelectedWeapon = selectedWeapon;
@@ -57,7 +57,7 @@ public class WeaponManagement : MonoBehaviour
             weapon.gameObject.SetActive(i == selectedWeapon);
             i++;
         }
-        ammoDisplay.text=gameObject.GetComponentsInChildren<Weapon>(false)[0].remainingAmmo.ToString();
+        ammoDisplay.text=gameObject.GetComponentInChildren<Weapon>(false).remainingAmmo.ToString();
 
     }
 }

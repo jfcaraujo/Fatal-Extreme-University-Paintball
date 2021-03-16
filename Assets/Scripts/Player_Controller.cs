@@ -26,10 +26,13 @@ public class Player_Controller : MonoBehaviour
 
     public bool inputBlocked = false;
 
+    private Collider2D playerCollider;
+
     // Start is called before the first frame update
     private void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        playerCollider = gameObject.GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -92,13 +95,8 @@ public class Player_Controller : MonoBehaviour
 
     private IEnumerator DropDownPlatform(Collider2D platformCollider)
     {
-        Collider2D[] playerColliders = gameObject.GetComponents<Collider2D>();
-
         // Disable collisions between player and platform
-        foreach (Collider2D collider in playerColliders)
-        {
-            Physics2D.IgnoreCollision(platformCollider, collider, true);
-        }
+        Physics2D.IgnoreCollision(platformCollider, playerCollider, true);
 
         // Add downforce to drop down faster
         m_Rigidbody2D.AddForce(new Vector2(0, -dropDownForce), ForceMode2D.Impulse);
@@ -106,10 +104,7 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(dropDownInterval);
 
         // Re-enable collisions between player and platform
-        foreach (Collider2D collider in playerColliders)
-        {
-            Physics2D.IgnoreCollision(platformCollider, collider, false);
-        }
+        Physics2D.IgnoreCollision(platformCollider, playerCollider, false);
     }
 
     public void Flip()

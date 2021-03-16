@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HitEnemy : StateMachineBehaviour
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.parent.GetComponent<Enemy_Controller>().inputBlocked = true;
     }
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.parent.GetComponent<Enemy_Controller>().inputBlocked = false;
     }

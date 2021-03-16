@@ -9,7 +9,7 @@ public class Backpack : MonoBehaviour
     private Transform rotationCenter = null;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rotationCenter = gameObject.transform.parent.Find("Center");
 
@@ -17,12 +17,12 @@ public class Backpack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         var centerPosition = rotationCenter.position;
         Vector2 center = new Vector2(centerPosition.x, centerPosition.y);
@@ -30,7 +30,8 @@ public class Backpack : MonoBehaviour
         Vector2 lookDir = mousePos - center;
         float lookAngle = -(Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f);
 
-        Vector2 backpackPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        var position = gameObject.transform.position;
+        Vector2 backpackPosition = new Vector2(position.x, position.y);
         Vector2 backpackDir = backpackPosition - center;
         float backpackAngle = -(Mathf.Atan2(backpackDir.y, backpackDir.x) * Mathf.Rad2Deg - 180f);
 

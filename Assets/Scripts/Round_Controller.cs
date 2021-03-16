@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ public class Round_Controller : MonoBehaviour
     private int enemiesThisRoundMachineGun = 0;
     private int enemiesRemaining = 0;
     [SerializeField] private float timeBetweenSpawns = 2;
-    [SerializeField] private float timeBetweenRounds = 3;
+    [SerializeField] private float timeBetweenRounds = 2;
 
     private bool fleeing = false;
     private HealthController healthController;
@@ -30,22 +30,19 @@ public class Round_Controller : MonoBehaviour
         StartNextRound();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private void SpawnEnemyPistol()
     {
-        Enemy_Controller enemy = Instantiate(enemyPistol, gameObject.transform.position, gameObject.transform.rotation)
+        Transform gameObjectTransform = gameObject.transform;
+        Enemy_Controller enemy = Instantiate(enemyPistol, gameObjectTransform.position, gameObjectTransform.rotation)
             .GetComponent<Enemy_Controller>();
         enemy.onEnemyDeath += EnemyPistolDeath;
     }
 
     private void SpawnEnemyMachineGun()
     {
+        Transform gameObjectTransform = gameObject.transform;
         Enemy_Controller enemy =
-            Instantiate(enemyMachineGun, gameObject.transform.position, gameObject.transform.rotation)
+            Instantiate(enemyMachineGun, gameObjectTransform.position, gameObjectTransform.rotation)
                 .GetComponent<Enemy_Controller>();
         enemy.onEnemyDeath += EnemyMachineGunDeath;
     }
@@ -93,25 +90,28 @@ public class Round_Controller : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
+        //Debug.Log(enemiesThisRoundPistol+"  "+enemiesThisRoundMachineGun+" "+enemiesRemaining);
         yield return new WaitForSeconds(timeBetweenRounds);
 
         for (var i = 0; i < enemiesThisRoundPistol; i++)
         {
+            yield return new WaitForSeconds(timeBetweenSpawns);
             //Debug.Log("Spawning pistol " + i);
             if (fleeing)
                 i--;
             else
                 SpawnEnemyPistol();
-            yield return new WaitForSeconds(timeBetweenSpawns);
         }
 
         for (var i = 0; i < enemiesThisRoundMachineGun; i++)
         {
+            yield return new WaitForSeconds(timeBetweenSpawns);
+
             if (fleeing)
                 i--;
             else
                 SpawnEnemyMachineGun();
-            yield return new WaitForSeconds(timeBetweenSpawns);
+
         }
     }
 

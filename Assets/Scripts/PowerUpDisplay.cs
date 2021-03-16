@@ -27,11 +27,11 @@ public class PowerUpDisplay : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        
     }
 
     public void StartNewPowerUp(int powerUp)
     {
-        //TODO display powerup image?
         slider.value = maxDuration;
         gameObject.SetActive(true);
         int i = 0;
@@ -41,5 +41,10 @@ public class PowerUpDisplay : MonoBehaviour
             i++;
 
         }
+    }
+
+    public void EndDisplay()
+    {
+        slider.value = 0;
     }
 }

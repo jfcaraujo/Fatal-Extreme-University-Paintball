@@ -9,36 +9,43 @@ public class Bullet : MonoBehaviour
 
     private bool exists = true;
     private float travelledDistance = 0f;
+    private Rigidbody2D m_Rigidbody2D;
+    private Color color;
 
+    private void Start()
+    {
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        color = gameObject.GetComponent<SpriteRenderer>().color;
+    }
+    
     private void Update()
     {
-        travelledDistance += GetComponent<Rigidbody2D>().velocity.magnitude * Time.deltaTime;
+        travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
 
-        if (travelledDistance > maxDistance)
+        if (travelledDistance <= maxDistance) return;
+        
+        RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
+
+        List<GameObject> hitObjectsList = new List<GameObject>();
+
+        // If there is an environment object, the splatter will only be placed on it
+        // If not, the splatter will be placed in every BackgroundWall captured by the raycast
+        foreach (var raycast in raycasts)
         {
-            RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
-
-            List<GameObject> hitObjectsList = new List<GameObject>();
-
-            // If there is an environment object, the splatter will only be placed on it
-            // If not, the splatter will be placed in every BackgroundWall captured by the raycast
-            for (int i = 0; i < raycasts.Length; i++)
+            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
             {
-                if (raycasts[i].transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
-                {
-                    hitObjectsList = new List<GameObject> { raycasts[i].transform.gameObject };
-                    break;
-                }
-
-                if (raycasts[i].transform.gameObject.layer == LayerMask.NameToLayer("BackgroundWall"))
-                {
-                    // BackgroundWall layer is used only for colliders and masks, so we should send the parent
-                    hitObjectsList.Add(raycasts[i].transform.parent.gameObject);
-                }
+                hitObjectsList = new List<GameObject> { raycast.transform.gameObject };
+                break;
             }
 
-            DestroyPellet(hitObjectsList.ToArray());
+            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("BackgroundWall"))
+            {
+                // BackgroundWall layer is used only for colliders and masks, so we should send the parent
+                hitObjectsList.Add(raycast.transform.parent.gameObject);
+            }
         }
+
+        DestroyPellet(hitObjectsList.ToArray());
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -84,8 +91,9 @@ public class Bullet : MonoBehaviour
         {
             Player_Controller pc = hitObject.GetComponent<Player_Controller>();
 
-            bool hitFront = pc.m_FacingRight && rb.velocity.x < 0 ||
-                            !pc.m_FacingRight && rb.velocity.x > 0;
+            var velocity = rb.velocity;
+            bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
+                            !pc.m_FacingRight && velocity.x > 0;
 
             healthController.Damage(1, hitFront);
         }
@@ -105,15 +113,15 @@ public class Bullet : MonoBehaviour
         if (hitObjectsList == null)
             return;
 
-        for (int i = 0; i < hitObjectsList.Length; i++)
+        foreach (var hitObject in hitObjectsList)
         {
-            PlaceSplatter(position, hitObjectsList[i]);
+            PlaceSplatter(position, hitObject);
         }
     }
 
     private void PlaceSplatter(Vector3 position, GameObject hitObject)
     {
-        if (hitObject == null)
+        if (!hitObject)
             return;
 
         // Places paint splatter
@@ -123,7 +131,7 @@ public class Bullet : MonoBehaviour
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
-        splatterSR.color = gameObject.GetComponent<SpriteRenderer>().color;
+        splatterSR.color = color;
 
         if (hitObject.layer == LayerMask.NameToLayer("Ground"))
         {

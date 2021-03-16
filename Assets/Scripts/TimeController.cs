@@ -2,22 +2,22 @@
 
 public class TimeController : MonoBehaviour
 {
-    private float defaultTimeScale;
-    private float defaultFixedDeltaTime;
+    private static float defaultTimeScale;
+    private static float defaultFixedDeltaTime;
 
-    void Start()
+    private void Start()
     {
         defaultTimeScale = Time.timeScale;
         defaultFixedDeltaTime = Time.fixedDeltaTime;
     }
 
-    public void SlowDownTime(float factor)
+    public static void SlowDownTime(float factor)
     {
         Time.timeScale *= factor;
         Time.fixedDeltaTime *= factor;
     }
 
-    public void ResetTime()
+    public static void ResetTime()
     {
         Time.timeScale = defaultTimeScale;
         Time.fixedDeltaTime = defaultFixedDeltaTime;

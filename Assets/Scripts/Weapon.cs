@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     private Player_Controller playerController;
     public GameObject bulletPrefab;
-    private Transform firepoint = null;
+    private Transform firePoint = null;
     private Transform rotationCenter = null;
     private Text ammoDisplay;
 
@@ -23,9 +23,9 @@ public class Weapon : MonoBehaviour
     public int maxAmmo = 150;
     private bool allowFire = true;
 
-    void Start()
+    private void Start()
     {
-        firepoint = gameObject.transform.Find("FirePoint");
+        firePoint = gameObject.transform.Find("FirePoint");
         rotationCenter = gameObject.transform.parent.parent.Find("Center");
 
         cam = FindObjectOfType<Camera>();
@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
         ammoDisplay = GameObject.Find("Ammo Amount").GetComponent<Text>();
     }
 
-    void Update()
+    private void Update()
     {
         if (playerController.inputBlocked)
             return;
@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (playerController.inputBlocked)
             return;
@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
         Aim();
     }
 
-    void Aim()
+    private void Aim()
     {
         var centerPosition = rotationCenter.position;
         Vector2 center = new Vector2(centerPosition.x, centerPosition.y);
@@ -64,7 +64,8 @@ public class Weapon : MonoBehaviour
         Vector2 lookDir = mousePos - center;
         float lookAngle = -(Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f);
 
-        Vector2 gunDir = new Vector2(firepoint.position.x, firepoint.position.y) - center;
+        var position = firePoint.position;
+        Vector2 gunDir = new Vector2(position.x, position.y) - center;
         float gunAngle = -(Mathf.Atan2(gunDir.y, gunDir.x) * Mathf.Rad2Deg - 180f);
 
         gameObject.transform.RotateAround(centerPosition, Vector3.back, lookAngle - gunAngle);
@@ -86,9 +87,9 @@ public class Weapon : MonoBehaviour
         ammoDisplay.text = remainingAmmo.ToString();
 
 
-        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(-firepoint.right * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(-firePoint.right * bulletForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(fireCooldown);
 
         allowFire = true;

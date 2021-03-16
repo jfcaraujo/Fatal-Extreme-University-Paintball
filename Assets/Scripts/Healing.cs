@@ -6,7 +6,7 @@ public class Healing : StateMachineBehaviour
     List<GameObject> splatters;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         splatters = new List<GameObject>();
 
@@ -25,7 +25,7 @@ public class Healing : StateMachineBehaviour
         }
     }
 
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         Transform paperTowel = animator.gameObject.transform.Find("body").Find("PaperTowel");
 
@@ -44,12 +44,12 @@ public class Healing : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.gameObject.GetComponent<Player_Controller>().inputBlocked = false;
         animator.gameObject.GetComponent<HealthController>().StopHeal();
 
-        // Remove any lefting splatters
+        // Remove any splatters left
         foreach (GameObject splatter in splatters)
         {
             Destroy(splatter);
