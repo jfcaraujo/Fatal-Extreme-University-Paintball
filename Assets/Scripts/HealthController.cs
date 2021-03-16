@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
@@ -16,6 +14,8 @@ public class HealthController : MonoBehaviour
     public delegate void OnHeal();
     public event OnHeal onHeal;
     public event OnHeal onStopHeal;
+
+    public PowerUpController powerUpController;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,8 @@ public class HealthController : MonoBehaviour
         // Vulnerability is set to true here
         // Has to be set to false at the end of the Heal animation
         invulnerable = true;
-
+        powerUpController.DisableAll();
+        
         // Disable collisions between player and enemies
         // Has to be reenabled at the end of the Heal animation
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);

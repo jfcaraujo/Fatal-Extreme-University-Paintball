@@ -1085,7 +1085,6 @@ GameObject:
   - component: {fileID: 1859432315757257779}
   - component: {fileID: 6749050554057712010}
   - component: {fileID: 7231152984334000535}
-  - component: {fileID: 2668773010069035251}
   m_Layer: 17
   m_Name: TilemapWall
   m_TagString: Untagged
@@ -1762,24 +1761,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!68 &2668773010069035251
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5617993632891857044}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.2
-  m_Points:
-  - {x: -9, y: 0.5}
-  - {x: 9, y: 0.5}
 --- !u!1 &8393503464721617757
 GameObject:
   m_ObjectHideFlags: 0

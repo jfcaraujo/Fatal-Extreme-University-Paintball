@@ -28,7 +28,7 @@ public class Enemy_Controller : MonoBehaviour
     private bool m_Grounded;
     public float runSpeed = 8f;
     private Transform player;
-    public Transform firepoint;
+    public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
 
@@ -157,7 +157,7 @@ public class Enemy_Controller : MonoBehaviour
     {
         allowFire = false;
 
-        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
         if (colorIndex != -1)
         {
@@ -166,7 +166,7 @@ public class Enemy_Controller : MonoBehaviour
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.layer = LayerMask.NameToLayer("EnemyBullets");
-        rb.AddForce(firepoint.right * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(fireCooldown);
 

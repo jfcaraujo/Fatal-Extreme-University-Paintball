@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Bits: 36864
   m_GroundCheck: {fileID: 1941108553074494870}
   runSpeed: 8
-  firepoint: {fileID: 1941108552681324305}
+  firePoint: {fileID: 1941108552681324305}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
   bulletForce: 20

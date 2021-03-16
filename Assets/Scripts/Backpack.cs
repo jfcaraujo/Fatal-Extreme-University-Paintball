@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Backpack : MonoBehaviour
 {
@@ -6,13 +6,11 @@ public class Backpack : MonoBehaviour
     
     private Vector2 mousePos;
     
-    private Transform rotationCenter = null;
+    public Transform rotationCenter;
 
     // Start is called before the first frame update
     private void Start()
     {
-        rotationCenter = gameObject.transform.parent.Find("Center");
-
         cam = FindObjectOfType<Camera>();
     }
 

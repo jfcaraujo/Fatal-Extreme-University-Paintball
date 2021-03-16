@@ -327,6 +327,7 @@ MonoBehaviour:
   maxPaperTowels: 10
   invulnerable: 1
   healthDisplay: {fileID: 0}
+  powerUpController: {fileID: 0}
 --- !u!1 &1315759352830414
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ab2d65ec00d0c45a79aba60ccb15ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationCenter: {fileID: 105095039}
 --- !u!1 &8472775450100972174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1017,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5916248941715427416, guid: ef8308db7854dcc41837d6f2e5030537,
         type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 4834498377679441422}
+    - target: {fileID: -5916248941715427416, guid: ef8308db7854dcc41837d6f2e5030537,
+        type: 3}
       propertyPath: bulletForce
       value: 20
       objectReference: {fileID: 0}
@@ -1023,6 +1030,16 @@ PrefabInstance:
       propertyPath: remainingAmmo
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -5916248941715427416, guid: ef8308db7854dcc41837d6f2e5030537,
+        type: 3}
+      propertyPath: rotationCenter
+      value: 
+      objectReference: {fileID: 105095039}
+    - target: {fileID: -5916248941715427416, guid: ef8308db7854dcc41837d6f2e5030537,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1837310077}
     - target: {fileID: 4098890654367285386, guid: ef8308db7854dcc41837d6f2e5030537,
         type: 3}
       propertyPath: m_Name
@@ -1106,6 +1123,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1309393635}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4834498377679441422 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4834498378853436653, guid: ef8308db7854dcc41837d6f2e5030537,
+    type: 3}
+  m_PrefabInstance: {fileID: 1309393635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2052813758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
         type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 4144912081610359625}
+    - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
+        type: 3}
       propertyPath: automaticFire
       value: 1
       objectReference: {fileID: 0}
@@ -1138,6 +1166,16 @@ PrefabInstance:
       propertyPath: remainingAmmo
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
+        type: 3}
+      propertyPath: rotationCenter
+      value: 
+      objectReference: {fileID: 105095039}
+    - target: {fileID: 2816387343611392132, guid: bac2a1563afbfa84d869a724672d3882,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1837310077}
     - target: {fileID: 8510265984142237197, guid: bac2a1563afbfa84d869a724672d3882,
         type: 3}
       propertyPath: m_RootOrder
@@ -1195,6 +1233,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bac2a1563afbfa84d869a724672d3882, type: 3}
+--- !u!4 &4144912081610359625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4144912080707203319, guid: bac2a1563afbfa84d869a724672d3882,
+    type: 3}
+  m_PrefabInstance: {fileID: 2052813758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8510265984038743475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8510265984142237197, guid: bac2a1563afbfa84d869a724672d3882,

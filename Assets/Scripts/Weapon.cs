@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +8,11 @@ public class Weapon : MonoBehaviour
 
     private Vector2 mousePos;
 
-    private Player_Controller playerController;
+    public Player_Controller playerController;
     public GameObject bulletPrefab;
-    private Transform firePoint = null;
-    private Transform rotationCenter = null;
-    private Text ammoDisplay;
+    public Transform firePoint;
+    public Transform rotationCenter;
+    public Text ammoDisplay;
 
     public bool automaticFire = false;
     public float bulletForce = 20f;
@@ -25,13 +24,8 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        firePoint = gameObject.transform.Find("FirePoint");
-        rotationCenter = gameObject.transform.parent.parent.Find("Center");
-
         cam = FindObjectOfType<Camera>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<Player_Controller>();
-        ammoDisplay = GameObject.Find("Ammo Amount").GetComponent<Text>();
+
     }
 
     private void Update()

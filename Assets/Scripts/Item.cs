@@ -1,24 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
     private void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Collider2D[] playerColliders = player.GetComponents<Collider2D>();
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
 
         Collider2D[] itemColliders = GetComponents<Collider2D>();
 
         foreach (var itemCollider in itemColliders)
         {
             if (itemCollider.isTrigger) continue;
-            
-            foreach (var playerCollider in playerColliders)
-            {
-                Physics2D.IgnoreCollision(itemCollider, playerCollider);
-            }
+            Physics2D.IgnoreCollision(itemCollider, playerCollider);
         }
     }
 
@@ -26,7 +20,7 @@ public abstract class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(ConsumeItem())
+            if (ConsumeItem())
                 Destroy(gameObject);
         }
     }

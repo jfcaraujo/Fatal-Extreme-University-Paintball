@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,7 @@ public class Round_Controller : MonoBehaviour
     [SerializeField] private float timeBetweenRounds = 2;
 
     private bool fleeing = false;
-    private HealthController healthController;
+    public HealthController healthController;
 
     public Text scoreText;
     private int score;
@@ -24,7 +23,6 @@ public class Round_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthController = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
         StartNextRound();
