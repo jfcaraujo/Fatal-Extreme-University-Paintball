@@ -7,6 +7,7 @@ public class PowerUpDisplay : MonoBehaviour
 {
     public Slider slider;
     private int maxDuration;
+    public Transform powerUpSprite;
 
     public void SetMaxDuration(int duration)
     {
@@ -33,5 +34,12 @@ public class PowerUpDisplay : MonoBehaviour
         //TODO display powerup image?
         slider.value = maxDuration;
         gameObject.SetActive(true);
+        int i = 0;
+        foreach (Transform powerup in powerUpSprite)
+        {
+            powerup.gameObject.SetActive(i == powerUp);
+            i++;
+
+        }
     }
 }

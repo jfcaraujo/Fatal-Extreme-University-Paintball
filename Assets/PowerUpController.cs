@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    private Player_Controller playerController;
-    private TimeController timeController;
+    public Player_Controller playerController;
+    public TimeController timeController;
+    public Backpack backpack;
 
     public bool DoubleSpeed { get; private set; }
     public bool SlowMotion { get; private set; }
@@ -17,8 +18,6 @@ public class PowerUpController : MonoBehaviour
 
     private void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Controller>();
-        timeController = GameObject.FindObjectOfType<TimeController>();
         powerUpDisplay.SetMaxDuration((int) powerUpDuration);
     }
 
@@ -26,22 +25,23 @@ public class PowerUpController : MonoBehaviour
     {
         if (IsAnyActive())
             return false;
-        powerUpDisplay.StartNewPowerUp(1);
+        
         switch (powerUp)
         {
             case nameof(DoubleSpeed):
                 DoubleSpeed = true;
                 playerController.doubleSpeed = true;
+                powerUpDisplay.StartNewPowerUp(1);
                 break;
             case nameof(SlowMotion):
                 SlowMotion = true;
                 timeController.SlowDownTime(slowMotionFactor);
+                powerUpDisplay.StartNewPowerUp(2);
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = true;
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                Backpack backpack = player.GetComponentInChildren<Backpack>(true);
                 backpack.gameObject.SetActive(true);
+                powerUpDisplay.StartNewPowerUp(0);
                 break;
             default:
                 return false;
@@ -59,12 +59,12 @@ public class PowerUpController : MonoBehaviour
         DisablePowerUp(powerUp);
     }
 
-    public bool IsAnyActive()
+    private bool IsAnyActive()
     {
         return DoubleSpeed || ShieldProtection || SlowMotion;
     }
 
-    public void DisablePowerUp(string powerUp)
+    private void DisablePowerUp(string powerUp)
     {
         switch (powerUp)
         {
@@ -78,8 +78,6 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = false;
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                Backpack backpack = player.GetComponentInChildren<Backpack>(true);
                 backpack.gameObject.SetActive(false);
                 break;
             default:
