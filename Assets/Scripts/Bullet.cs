@@ -125,7 +125,9 @@ public class Bullet : MonoBehaviour
 
         // Places paint splatter
         GameObject splatterObject = Instantiate(splatterPrefab, hitObject.transform, true);
-        splatterObject.transform.position = position;
+        
+        // Z should always be positive
+        splatterObject.transform.position = new Vector3(position.x, position.y, Mathf.Abs(position.z));
 
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
