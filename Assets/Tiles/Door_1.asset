@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Door1
+  m_Name: Door_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -628721560438913397, guid: d31c3ec8539eb0a41b1985cf8b0562f4,
-    type: 3}
+  m_Sprite: {fileID: 436563815456543028, guid: d959df5afafa9004fa64206433c5335e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
