@@ -18,14 +18,14 @@ public class PowerUpDisplay : MonoBehaviour
     {
         if (slider.value > 0)
         {
-            slider.value -= Time.unscaledDeltaTime;
+            if (!PauseMenu.gameIsPaused)
+                slider.value -= Time.unscaledDeltaTime;
         }
 
-        if (slider.value<=0)
+        if (slider.value <= 0)
         {
             gameObject.SetActive(false);
         }
-        
     }
 
     public void StartNewPowerUp(int powerUp)
@@ -37,7 +37,6 @@ public class PowerUpDisplay : MonoBehaviour
         {
             powerup.gameObject.SetActive(i == powerUp);
             i++;
-
         }
     }
 

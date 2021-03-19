@@ -24,7 +24,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (IsAnyActive())
             return false;
-        
+
         switch (powerUp)
         {
             case nameof(DoubleSpeed):
@@ -53,7 +53,10 @@ public class PowerUpController : MonoBehaviour
 
     private IEnumerator TimePowerUp(string powerUp)
     {
-        yield return new WaitForSecondsRealtime(powerUpDuration);
+        if (powerUp == nameof(SlowMotion))
+            yield return new WaitForSeconds(powerUpDuration/slowMotionFactor);
+        else
+            yield return new WaitForSeconds(powerUpDuration);
 
         DisablePowerUp(powerUp);
     }
@@ -83,6 +86,7 @@ public class PowerUpController : MonoBehaviour
                 break;
         }
     }
+
     public void DisableAll()
     {
         if (DoubleSpeed) DisablePowerUp(nameof(DoubleSpeed));
