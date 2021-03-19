@@ -24,7 +24,7 @@ TagManager:
   - EnvironmentObjects
   - Obstacles
   - BackgroundWall
-  - 
+  - UpperGround
   - 
   - 
   - 
@@ -45,12 +45,18 @@ TagManager:
   - name: Environment
     uniqueID: 1911017379
     locked: 0
-  - name: Player
+  - name: PlayerBack
     uniqueID: 2148575761
     locked: 0
-  - name: Items
+  - name: ItemsBack
     uniqueID: 2235853373
     locked: 0
   - name: Foreground
-    uniqueID: 2569936547
+    uniqueID: 248260163
+    locked: 0
+  - name: PlayerFront
+    uniqueID: 4195372701
+    locked: 0
+  - name: ItemsFront
+    uniqueID: 2974422007
     locked: 0

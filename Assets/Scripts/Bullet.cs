@@ -134,7 +134,7 @@ public class Bullet : MonoBehaviour
         // Set splatter color to pellet color
         splatterSR.color = color;
 
-        if (hitObject.layer == LayerMask.NameToLayer("Ground"))
+        if (hitObject.layer == LayerMask.NameToLayer("Ground") || hitObject.layer == LayerMask.NameToLayer("UpperGround"))
         {
             // On the ground, the splatter is scaled so it looks angle
             splatterObject.transform.localScale = Vector3.Scale(splatterObject.transform.localScale, new Vector3(1, 0.75f, 1));

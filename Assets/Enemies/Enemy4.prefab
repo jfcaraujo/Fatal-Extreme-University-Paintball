@@ -100,8 +100,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2146391535
-  m_SortingLayer: 2
+  m_SortingLayerID: -99594595
+  m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: -6726780753110142722, guid: ee659e2541604c0468e28c87fa22c03f,
     type: 3}
@@ -252,8 +252,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2059113923
-  m_SortingLayer: 3
+  m_SortingLayerID: -99594595
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ca0932a3ba487db43869c2622f2bbbf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 7862320417276006211}
   - component: {fileID: 7862320417276006209}
   - component: {fileID: 1368000385}
+  - component: {fileID: 6870382526895631832}
   m_Layer: 14
   m_Name: Enemy4
   m_TagString: Untagged
@@ -367,6 +368,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0069856644, y: -0.0908339}
   m_Size: {x: 0.8772192, y: 1.3214121}
   m_Direction: 0
+--- !u!114 &6870382526895631832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862320417276006214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f55ed6a9c33b54cbc6d9b330430fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontLayerId: -99594595
+  backLayerId: -2146391535
 --- !u!1 &7862320417300832199
 GameObject:
   m_ObjectHideFlags: 0

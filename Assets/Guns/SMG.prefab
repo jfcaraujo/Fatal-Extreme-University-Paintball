@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2146391535
-  m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingLayer: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: fa8feb6960aa40e43a8daa35348197b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -95,8 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631f0abfeca9f0f42accad4eaa788bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
+  firePoint: {fileID: 0}
+  rotationCenter: {fileID: 0}
+  ammoDisplay: {fileID: 0}
   automaticFire: 1
   bulletForce: 40
   fireCooldown: 0.15

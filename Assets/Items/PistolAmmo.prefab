@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2059113923
-  m_SortingLayer: 3
+  m_SortingLayerID: -1320545289
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1e465a02d057a4ca315cd2301ee4d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 5140166328663893557}
   - component: {fileID: 5140166328663893449}
   - component: {fileID: 5254315906164271614}
+  - component: {fileID: -5942463157983510228}
   m_Layer: 9
   m_Name: PistolAmmo
   m_TagString: Untagged
@@ -223,3 +224,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   ammo: 10
+--- !u!114 &-5942463157983510228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140166328663893556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f55ed6a9c33b54cbc6d9b330430fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontLayerId: -1320545289
+  backLayerId: -2059113923
