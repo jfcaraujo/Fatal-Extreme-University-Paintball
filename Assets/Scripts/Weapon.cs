@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
             return;
 
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
-        if (shouldFire && allowFire && remainingAmmo > 0)
+        if (shouldFire && allowFire && remainingAmmo > 0 && !PauseMenu.gameIsPaused)
         {
             StartCoroutine(Shoot());
         }
