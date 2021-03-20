@@ -84,20 +84,39 @@ public class DepthLevelManager : MonoBehaviour
     /// <param name="front">If the object should be placed in the front layer (<c>false</c> for back layer).</param>
     public void SwitchSortingLayer(bool front)
     {
+        List<Renderer> objectsToRemove = new List<Renderer>();
+
         int layerID = front ? frontLayerId : backLayerId;
 
         foreach (SpriteRenderer item in sprites)
         {
-            item.sortingLayerID = layerID;
+            if (item == null)
+            {
+                objectsToRemove.Add(item);
+            }
+            else
+            {
+                item.sortingLayerID = layerID;
+            }
         }
 
         if (changeMask)
         {
             foreach (SpriteMask item in spriteMasks)
             {
-                item.frontSortingLayerID = layerID;
-                item.backSortingLayerID = layerID;
+                if (item == null)
+                {
+                    objectsToRemove.Add(item);
+                }
+                else
+                {
+                    item.frontSortingLayerID = layerID;
+                    item.backSortingLayerID = layerID;
+                }
             }
         }
+
+        sprites.RemoveAll(x => objectsToRemove.Contains(x));
+        spriteMasks.RemoveAll(x => objectsToRemove.Contains(x));
     }
 }
