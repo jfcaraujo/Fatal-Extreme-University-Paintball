@@ -10,11 +10,13 @@ public class DepthLevelManagerEditor : Editor
 {
     private SerializedProperty frontLayerId;
     private SerializedProperty backLayerId;
+    private SerializedProperty changeMask;
 
     private void OnEnable()
     {
         frontLayerId = serializedObject.FindProperty("frontLayerId");
         backLayerId = serializedObject.FindProperty("backLayerId");
+        changeMask = serializedObject.FindProperty("changeMask");
     }
 
     public override void OnInspectorGUI()
@@ -36,6 +38,8 @@ public class DepthLevelManagerEditor : Editor
             backLayerId.intValue = newId;
         }
         EditorGUILayout.EndHorizontal();
+
+        changeMask.boolValue = EditorGUILayout.Toggle("Change Mask", changeMask.boolValue);
 
         if (GUI.changed)
         {

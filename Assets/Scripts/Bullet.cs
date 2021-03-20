@@ -169,7 +169,7 @@ public class Bullet : MonoBehaviour
         else if (hitObject.layer == LayerMask.NameToLayer("Player"))
         {
             // Player splatters are visible on the "Player" sorting layer
-            splatterSR.sortingLayerName = "Player";
+            splatterSR.sortingLayerName = "PlayerFront";
 
             // Different order for each body part
             if (hitObject.name == "LegLeft")
@@ -193,7 +193,7 @@ public class Bullet : MonoBehaviour
         {
             // Enemy splatters are visible on the "Player" sorting layer,
             // with order 6
-            splatterSR.sortingLayerName = "Player";
+            splatterSR.sortingLayerName = "PlayerFront";
             splatterSR.sortingOrder = 6;
         }
     }
