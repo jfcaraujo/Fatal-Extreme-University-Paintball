@@ -60,7 +60,7 @@ public class Player_Controller : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         foreach (Collider2D temp_collider in colliders)
         {
-            if (temp_collider.gameObject != gameObject)
+            if (temp_collider.gameObject != gameObject && !temp_collider.isTrigger)
             {
                 m_Grounded = true;
 
