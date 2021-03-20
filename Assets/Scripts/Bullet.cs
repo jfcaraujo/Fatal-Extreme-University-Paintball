@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public GameObject splatterPrefab;
     public float maxDistance = 20f;
 
+    [SerializeField] private bool isTrap=false;
     private bool exists = true;
     private float travelledDistance = 0f;
     private Rigidbody2D m_Rigidbody2D;
@@ -15,14 +16,15 @@ public class Bullet : MonoBehaviour
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         color = gameObject.GetComponent<SpriteRenderer>().color;
+        if (color == Color.white) color = Color.red;
     }
-    
+
     private void Update()
     {
         travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
 
         if (travelledDistance <= maxDistance) return;
-        
+
         RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
 
         List<GameObject> hitObjectsList = new List<GameObject>();
@@ -33,7 +35,7 @@ public class Bullet : MonoBehaviour
         {
             if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
             {
-                hitObjectsList = new List<GameObject> { raycast.transform.gameObject };
+                hitObjectsList = new List<GameObject> {raycast.transform.gameObject};
                 break;
             }
 
@@ -51,10 +53,10 @@ public class Bullet : MonoBehaviour
     {
         if (!exists)
             return;
-        
+
         GameObject hitObject = hitInfo.gameObject;
 
-        GameObject[] hitGameObjects = new GameObject[] { hitObject };
+        GameObject[] hitGameObjects = new GameObject[] {hitObject};
 
         if (hitObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -63,15 +65,16 @@ public class Bullet : MonoBehaviour
             Transform body = hitObject.transform.Find("body");
             Transform head = body.Find("Head");
 
-            hitGameObjects = new GameObject[] { legRight.gameObject, legLeft.gameObject, body.gameObject, head.gameObject };
+            hitGameObjects = new GameObject[]
+                {legRight.gameObject, legLeft.gameObject, body.gameObject, head.gameObject};
         }
         else if (hitObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             GameObject obj = hitObject.GetComponentInChildren<SpriteRenderer>().gameObject;
 
-            hitGameObjects = new GameObject[] { obj };
+            hitGameObjects = new GameObject[] {obj};
         }
-
+        
         DestroyPellet(hitGameObjects);
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -85,6 +88,7 @@ public class Bullet : MonoBehaviour
 
             enemy.Damage(1, hitFront);
         }
+
         HealthController healthController = hitObject.GetComponent<HealthController>();
         if (healthController != null)
         {
@@ -125,19 +129,29 @@ public class Bullet : MonoBehaviour
 
         // Places paint splatter
         GameObject splatterObject = Instantiate(splatterPrefab, hitObject.transform, true);
-        
+
         // Z should always be positive
-        splatterObject.transform.position = new Vector3(position.x, position.y, Mathf.Abs(position.z));
+        if (isTrap)
+        {
+            splatterObject.transform.position = new Vector3(position.x, position.y-0.3f, Mathf.Abs(position.z));
+            splatterObject.transform.localScale = splatterObject.transform.localScale * 3;
+        }
+        else
+        {
+            splatterObject.transform.position = new Vector3(position.x, position.y, Mathf.Abs(position.z));
+        }
 
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
         splatterSR.color = color;
 
-        if (hitObject.layer == LayerMask.NameToLayer("Ground") || hitObject.layer == LayerMask.NameToLayer("UpperGround"))
+        if (hitObject.layer == LayerMask.NameToLayer("Ground") ||
+            hitObject.layer == LayerMask.NameToLayer("UpperGround"))
         {
             // On the ground, the splatter is scaled so it looks angle
-            splatterObject.transform.localScale = Vector3.Scale(splatterObject.transform.localScale, new Vector3(1, 0.75f, 1));
+            splatterObject.transform.localScale =
+                Vector3.Scale(splatterObject.transform.localScale, new Vector3(1, 0.75f, 1));
 
             // Ground splatters are visible on the "Default" sorting layer,
             // with order 5
