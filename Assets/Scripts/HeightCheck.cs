@@ -45,8 +45,9 @@ public class HeightCheck : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If the object that entered is coming from above, it'll be on the level
-        if (other.attachedRigidbody != null && other.attachedRigidbody.velocity.y <= 0)
+        if (other.attachedRigidbody != null && other.attachedRigidbody.velocity.y <= -0.01)
         {
+
             DepthLevelManager cc;
             bool isPlayer = false;
 

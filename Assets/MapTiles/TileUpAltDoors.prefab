@@ -387,7 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3959132512536140719}
   m_Layer: 0
-  m_Name: TileUpAlt
+  m_Name: TileUpAltDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1984,8 +1984,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -9, y: 1}
-  - {x: 9, y: 1}
+  - {x: -10, y: 1}
+  - {x: 10, y: 1}
 --- !u!114 &6326050833126287964
 MonoBehaviour:
   m_ObjectHideFlags: 0
