@@ -6,13 +6,13 @@ public class Bullet : MonoBehaviour
     public GameObject splatterPrefab;
     public float maxDistance = 20f;
 
-    [SerializeField] private bool isTrap=false;
+    [SerializeField] private bool isTrap = false;
     private bool exists = true;
     private float travelledDistance = 0f;
     private Rigidbody2D m_Rigidbody2D;
     private Color color;
 
-    private void Start()
+    private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         color = gameObject.GetComponent<SpriteRenderer>().color;
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         {
             if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
             {
-                hitObjectsList = new List<GameObject> {raycast.transform.gameObject};
+                hitObjectsList = new List<GameObject> { raycast.transform.gameObject };
                 break;
             }
 
@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
 
         GameObject hitObject = hitInfo.gameObject;
 
-        GameObject[] hitGameObjects = new GameObject[] {hitObject};
+        GameObject[] hitGameObjects = new GameObject[] { hitObject };
 
         if (hitObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -72,19 +72,17 @@ public class Bullet : MonoBehaviour
         {
             GameObject obj = hitObject.GetComponentInChildren<SpriteRenderer>().gameObject;
 
-            hitGameObjects = new GameObject[] {obj};
+            hitGameObjects = new GameObject[] { obj };
         }
-        
-        DestroyPellet(hitGameObjects);
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        DestroyPellet(hitGameObjects);
 
         // Damage entity (if applicable)
         Enemy_Controller enemy = hitObject.GetComponent<Enemy_Controller>();
         if (enemy != null)
         {
-            bool hitFront = enemy.getFacingRight() && rb.velocity.x < 0 ||
-                            !enemy.getFacingRight() && rb.velocity.x > 0;
+            bool hitFront = enemy.getFacingRight() && m_Rigidbody2D.velocity.x < 0 ||
+                            !enemy.getFacingRight() && m_Rigidbody2D.velocity.x > 0;
 
             enemy.Damage(1, hitFront);
         }
@@ -94,7 +92,7 @@ public class Bullet : MonoBehaviour
         {
             Player_Controller pc = hitObject.GetComponent<Player_Controller>();
 
-            var velocity = rb.velocity;
+            var velocity = m_Rigidbody2D.velocity;
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
@@ -111,15 +109,15 @@ public class Bullet : MonoBehaviour
 
         Vector3 position = gameObject.transform.position;
 
-        Destroy(gameObject);
-
-        if (hitObjectsList == null)
-            return;
-
-        foreach (var hitObject in hitObjectsList)
+        if (hitObjectsList != null)
         {
-            PlaceSplatter(position, hitObject);
+            foreach (var hitObject in hitObjectsList)
+            {
+                PlaceSplatter(position, hitObject);
+            }
         }
+
+        Destroy(gameObject);
     }
 
     private void PlaceSplatter(Vector3 position, GameObject hitObject)
@@ -133,7 +131,7 @@ public class Bullet : MonoBehaviour
         // Z should always be positive
         if (isTrap)
         {
-            splatterObject.transform.position = new Vector3(position.x, position.y-0.3f, Mathf.Abs(position.z));
+            splatterObject.transform.position = new Vector3(position.x, position.y - 0.3f, Mathf.Abs(position.z));
             splatterObject.transform.localScale = splatterObject.transform.localScale * 3;
         }
         else
