@@ -15,9 +15,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        TimeController.OnTimeScaleChange += AdjustPitchToTime;
+
         if (mainAudioSource == null)
         {
             Debug.LogWarning("No main audio source specified, general sounds won't be played.");
+        }
+        else
+        {
+            mainAudioSource.pitch = Time.timeScale;
         }
 
         sounds = new List<Sound>();
@@ -90,5 +96,25 @@ public class AudioManager : MonoBehaviour
         }
 
         return inds.IsPlaying();
+    }
+
+    public void ChangePitchAll(float newPitch)
+    {
+        mainAudioSource.pitch = newPitch;
+
+        foreach (IndividualSound item in individualSounds)
+        {
+            item.ChangePitch(newPitch);
+        }
+    }
+
+    private void AdjustPitchToTime()
+    {
+        ChangePitchAll(Time.timeScale);
+    }
+
+    private void OnDestroy()
+    {
+        TimeController.OnTimeScaleChange -= AdjustPitchToTime;
     }
 }

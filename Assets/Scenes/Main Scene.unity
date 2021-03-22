@@ -270,6 +270,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93902178}
   m_CullTransparentMesh: 0
+--- !u!1001 &103221722
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4793205
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.496522
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.885674
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716193, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137720377273716254, guid: 878ab2398e603d14f8174f9bfb3ee632,
+        type: 3}
+      propertyPath: m_Name
+      value: EnergyDrink
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 878ab2398e603d14f8174f9bfb3ee632, type: 3}
 --- !u!1 &127504951
 GameObject:
   m_ObjectHideFlags: 0

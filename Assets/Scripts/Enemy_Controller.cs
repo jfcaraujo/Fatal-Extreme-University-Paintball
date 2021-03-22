@@ -158,6 +158,9 @@ public class Enemy_Controller : MonoBehaviour
         if (m_Rigidbody2D.velocity.y > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
+
+        audioManager.PlaySound("Jump");
+
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 
