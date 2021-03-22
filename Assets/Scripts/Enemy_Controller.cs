@@ -101,7 +101,7 @@ public class Enemy_Controller : MonoBehaviour
                 Move(roamingDirection * runSpeed);
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position,
                     roamingDirection * Vector2.right,
-                    2, LayerMask.GetMask("Ground"));
+                    2, LayerMask.GetMask("Ground","UpperGround"));
                 
                 if (raycast.collider)//if near a wall
                 {
