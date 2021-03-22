@@ -133,5 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6223fdcc324c62f48bfa1bef5a0cc8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   splatterPrefab: {fileID: 5992111770401644293, guid: 66dddb183b001cc4b9110bee22138add,
     type: 3}
+  maxDistance: 20
+  isTrap: 0
