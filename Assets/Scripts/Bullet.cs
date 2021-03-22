@@ -10,13 +10,13 @@ public class Bullet : MonoBehaviour
     private bool exists = true;
     private float travelledDistance = 0f;
     private Rigidbody2D m_Rigidbody2D;
-    private Color color;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        color = gameObject.GetComponent<SpriteRenderer>().color;
-        if (color == Color.white) color = Color.red;
+
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -142,7 +142,10 @@ public class Bullet : MonoBehaviour
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
-        splatterSR.color = color;
+        if(isTrap)
+            splatterSR.color = Color.red;
+        else
+            splatterSR.color = spriteRenderer.color;
 
         if (hitObject.layer == LayerMask.NameToLayer("Ground") ||
             hitObject.layer == LayerMask.NameToLayer("UpperGround"))
