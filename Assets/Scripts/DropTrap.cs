@@ -16,8 +16,11 @@ public class DropTrap : MonoBehaviour
         //activated when rectangle is hit
         if (other.name == "Player")
         {
-            m_rigidbody2D.gravityScale = 1.5f;
-            m_rigidbody2D.angularVelocity = 100f;
+            if (m_rigidbody2D != null)
+            {
+                m_rigidbody2D.gravityScale = 1.5f;
+                m_rigidbody2D.angularVelocity = 100f;
+            }
             Destroy(gameObject.GetComponent<Collider2D>());
         }
     }
