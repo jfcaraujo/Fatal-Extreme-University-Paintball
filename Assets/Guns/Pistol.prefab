@@ -220,7 +220,7 @@ MonoBehaviour:
   mainAudioSource: {fileID: -5130172800469741276}
   generalSounds:
   - name: Gun Shot
-    clip: {fileID: 8300000, guid: 1b53058af8749534dbd77c80c74762e2, type: 3}
+    clip: {fileID: 8300000, guid: 79e8986b1138fd74a880c372f065eaf9, type: 3}
   individualSounds: []
 --- !u!1 &2992716866022215653
 GameObject:

@@ -497,10 +497,10 @@ MonoBehaviour:
   mainAudioSource: {fileID: 1707062334402903861}
   generalSounds:
   - name: Gun Shot
-    clip: {fileID: 8300000, guid: 1b53058af8749534dbd77c80c74762e2, type: 3}
+    clip: {fileID: 8300000, guid: 79e8986b1138fd74a880c372f065eaf9, type: 3}
   individualSounds:
   - name: Run
-    clip: {fileID: 8300000, guid: 3d65eca56f5bd0e41bb9285af7c4da66, type: 3}
+    clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}
     volume: 1
     pitch: 1
     loop: 1

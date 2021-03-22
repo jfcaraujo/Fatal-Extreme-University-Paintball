@@ -543,10 +543,10 @@ MonoBehaviour:
   mainAudioSource: {fileID: 184678897}
   generalSounds:
   - name: Jump
-    clip: {fileID: 8300000, guid: e9427eb7f1a54d246b732f49aecaea65, type: 3}
+    clip: {fileID: 8300000, guid: f33c91ee6cf200c4f8650c0dc44be752, type: 3}
   individualSounds:
   - name: Run
-    clip: {fileID: 8300000, guid: 3d65eca56f5bd0e41bb9285af7c4da66, type: 3}
+    clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}
     volume: 1
     pitch: 1
     loop: 1
