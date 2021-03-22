@@ -8,6 +8,8 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;
 
+    public AudioManager audioManager;
+
     public Animator animator;
 
     const float k_GroundedRadius = .1f;
@@ -84,6 +86,11 @@ public class Player_Controller : MonoBehaviour
     {
         var velocity = m_Rigidbody2D.velocity;
 
+        if (m_Grounded && Mathf.Abs(move) > 0.01 && !audioManager.IsSoundPlaying("Run"))
+            audioManager.PlaySound("Run");
+        else if (!m_Grounded || Mathf.Abs(move) < 0.01)
+            audioManager.StopSound("Run");
+
         Vector3 targetVelocity = new Vector2(move, velocity.y);
 
         m_Rigidbody2D.velocity =
@@ -92,6 +99,8 @@ public class Player_Controller : MonoBehaviour
         if (!m_Grounded || !jump || m_Rigidbody2D.velocity.y > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
+
+        audioManager.PlaySound("Jump");
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 

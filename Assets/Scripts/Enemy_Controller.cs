@@ -21,6 +21,8 @@ public class Enemy_Controller : MonoBehaviour
 
     private Animator animator;
 
+    public AudioManager audioManager;
+
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
@@ -136,6 +138,12 @@ public class Enemy_Controller : MonoBehaviour
         animator.SetFloat("HorizontalMove", Mathf.Abs(move));
         var velocity = m_Rigidbody2D.velocity;
         Vector3 targetVelocity = new Vector2(move, velocity.y);
+
+        if(m_Grounded && Mathf.Abs(move) > 0.01 && !audioManager.IsSoundPlaying("Run"))
+            audioManager.PlaySound("Run");
+        else if(!m_Grounded || Mathf.Abs(move) < 0.01)
+            audioManager.StopSound("Run");
+
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
         if (m_Grounded && Math.Abs(m_Rigidbody2D.velocity.x) > 0.5 &&
@@ -167,6 +175,8 @@ public class Enemy_Controller : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.layer = LayerMask.NameToLayer("EnemyBullets");
         rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+        audioManager.PlaySound("Gun Shot");
 
         yield return new WaitForSeconds(fireCooldown);
 

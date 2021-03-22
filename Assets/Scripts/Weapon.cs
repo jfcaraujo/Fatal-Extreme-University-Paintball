@@ -8,6 +8,8 @@ public class Weapon : MonoBehaviour
 
     private Vector2 mousePos;
 
+    public AudioManager audioManager;
+
     public Player_Controller playerController;
     public GameObject bulletPrefab;
     public Transform firePoint;
@@ -25,7 +27,6 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         cam = FindObjectOfType<Camera>();
-
     }
 
     private void Update()
@@ -84,6 +85,9 @@ public class Weapon : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(-firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+        audioManager.PlaySound("Gun Shot");
+
         yield return new WaitForSeconds(fireCooldown);
 
         allowFire = true;
