@@ -24,9 +24,27 @@ public class Weapon : MonoBehaviour
     public int maxAmmo = 150;
     private bool allowFire = true;
 
+    private float timeWhenDisabled = -1;
+
     private void Start()
     {
         cam = FindObjectOfType<Camera>();
+    }
+
+    private void OnEnable()
+    {
+        if (!allowFire && timeWhenDisabled != -1)
+        {
+            float cooldownLeft = fireCooldown - (Time.time - timeWhenDisabled);
+
+            if (cooldownLeft > 0)
+                StartCoroutine(Cooldown(cooldownLeft));
+            else
+                allowFire = true;
+        }
+        // It should never enter here, but just in case
+        else
+            allowFire = true;
     }
 
     private void Update()
@@ -37,7 +55,7 @@ public class Weapon : MonoBehaviour
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
         if (shouldFire && allowFire && remainingAmmo > 0 && !PauseMenu.gameIsPaused)
         {
-            StartCoroutine(Shoot());
+            Shoot();
         }
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -75,7 +93,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot()
+    private void Shoot()
     {
         remainingAmmo--;
         allowFire = false;
@@ -88,7 +106,12 @@ public class Weapon : MonoBehaviour
 
         audioManager.PlaySound("Gun Shot");
 
-        yield return new WaitForSeconds(fireCooldown);
+        StartCoroutine(Cooldown(fireCooldown));
+    }
+
+    IEnumerator Cooldown(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
 
         allowFire = true;
     }
@@ -103,5 +126,10 @@ public class Weapon : MonoBehaviour
         if (gameObject.activeSelf)
             ammoDisplay.text = remainingAmmo.ToString();
         return true;
+    }
+
+    private void OnDisable()
+    {
+        timeWhenDisabled = Time.time;
     }
 }
