@@ -40,10 +40,14 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private float health = 1;
     private bool allowFire = true;
     public GameObject ammoDrop;
+
     private HealthController healthController;
+
     // fleeing: 0 = not fleeing; 1 = fleeing right; -1 = fleeing left
     private int fleeingDirection = 0;
+
     public delegate void OnEnemyDeath();
+
     public event OnEnemyDeath onEnemyDeath;
 
     public bool inputBlocked = false;
@@ -78,7 +82,7 @@ public class Enemy_Controller : MonoBehaviour
         }
 
         float playerDistance = player.position.x - gameObject.transform.position.x;
-        bool playerIsRight = playerDistance>0;
+        bool playerIsRight = playerDistance > 0;
         playerDistance = Math.Abs(playerDistance);
 
         if (inputBlocked)
@@ -105,13 +109,16 @@ public class Enemy_Controller : MonoBehaviour
             }
             else
             {
-                RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? 1 : -1) * Vector2.right, Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
+                RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? 1 : -1) * Vector2.right,
+                    Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
 
-                if (playerDistance < 1.8 || raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                if (playerDistance < 1.8 || raycast.transform &&
+                    raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     Move(0);
                     if (allowFire)
                         StartCoroutine(Shoot());
+                    if (m_Grounded) Jump();
                 }
                 else
                 {
@@ -134,20 +141,19 @@ public class Enemy_Controller : MonoBehaviour
 
     private void Move(float move)
     {
-
         animator.SetFloat("HorizontalMove", Mathf.Abs(move));
-        var velocity = m_Rigidbody2D.velocity;
-        Vector3 targetVelocity = new Vector2(move, velocity.y);
+        var oldVelocity = m_Rigidbody2D.velocity;
+        Vector3 targetVelocity = new Vector2(move, oldVelocity.y);
 
-        if(m_Grounded && Mathf.Abs(move) > 0.01 && !audioManager.IsSoundPlaying("Run"))
+        if (m_Grounded && Mathf.Abs(move) > 0.01 && !audioManager.IsSoundPlaying("Run"))
             audioManager.PlaySound("Run");
-        else if(!m_Grounded || Mathf.Abs(move) < 0.01)
+        else if (!m_Grounded || Mathf.Abs(move) < 0.01)
             audioManager.StopSound("Run");
 
         m_Rigidbody2D.velocity =
-            Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+            Vector3.SmoothDamp(oldVelocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
         if (m_Grounded && Math.Abs(m_Rigidbody2D.velocity.x) > 0.5 &&
-            Math.Abs(velocity.x) < Math.Abs(2 * m_Rigidbody2D.velocity.x / 3))
+            Math.Abs(oldVelocity.x) < Math.Abs(2 * m_Rigidbody2D.velocity.x / 3))
         {
             Jump();
         }
@@ -217,7 +223,8 @@ public class Enemy_Controller : MonoBehaviour
     {
         bool playerIsRight = player.position.x > gameObject.transform.position.x;
 
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? -1 : 1) * Vector2.right, seeingDistance, LayerMask.GetMask("Ground"));
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? -1 : 1) * Vector2.right,
+            seeingDistance, LayerMask.GetMask("Ground"));
 
         if (raycast.collider == null)
         {
