@@ -34,7 +34,7 @@ public class PowerUpController : MonoBehaviour
                 break;
             case nameof(SlowMotion):
                 SlowMotion = true;
-                TimeController.SlowDownTime(slowMotionFactor);
+                TimeController.ChangeTime(slowMotionFactor);
                 powerUpDisplay.StartNewPowerUp(2);
                 break;
             case nameof(ShieldProtection):
@@ -54,7 +54,7 @@ public class PowerUpController : MonoBehaviour
     private IEnumerator TimePowerUp(string powerUp)
     {
         if (powerUp == nameof(SlowMotion))
-            yield return new WaitForSeconds(powerUpDuration/slowMotionFactor);
+            yield return new WaitForSeconds(powerUpDuration*slowMotionFactor);
         else
             yield return new WaitForSeconds(powerUpDuration);
 
