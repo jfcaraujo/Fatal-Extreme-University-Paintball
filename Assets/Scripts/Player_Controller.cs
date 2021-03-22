@@ -96,7 +96,7 @@ public class Player_Controller : MonoBehaviour
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-        if (!m_Grounded || !jump || m_Rigidbody2D.velocity.y > 0.05) return;
+        if (!m_Grounded || !jump || Mathf.Abs(m_Rigidbody2D.velocity.y) > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
 
