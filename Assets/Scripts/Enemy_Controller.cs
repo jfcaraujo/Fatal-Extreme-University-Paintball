@@ -45,6 +45,8 @@ public class Enemy_Controller : MonoBehaviour
 
     // fleeing: 0 = not fleeing; 1 = fleeing right; -1 = fleeing left
     private int fleeingDirection = 0;
+    private bool roaming;
+    private int roamingDirection = -1;
 
     public delegate void OnEnemyDeath();
 
@@ -85,42 +87,34 @@ public class Enemy_Controller : MonoBehaviour
         bool playerIsRight = playerDistance > 0;
         playerDistance = Math.Abs(playerDistance);
 
-        if (inputBlocked)
+        if (inputBlocked) //if dying
         {
             Move(0);
             return;
         }
 
-        if (fleeingDirection == 0)
+        if (fleeingDirection == 0) //if not fleeing
         {
-            //flip the player
-            Flip(playerIsRight);
-
-            if (playerDistance > 5)
+            CheckLevel();
+            if (roaming)
             {
-                if (playerIsRight)
+                Move(roamingDirection * runSpeed);
+                RaycastHit2D raycast = Physics2D.Raycast(transform.position,
+                    roamingDirection * Vector2.right,
+                    2, LayerMask.GetMask("Ground"));
+                
+                if (raycast.collider)//if near a wall
                 {
-                    Move(runSpeed);
-                }
-                else
-                {
-                    Move(-runSpeed);
+                    roamingDirection *= -1;
+                    Flip(roamingDirection==1);
                 }
             }
-            else
+            else //chasing player if is in same level
             {
-                RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? 1 : -1) * Vector2.right,
-                    Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
+                //flip the player
+                Flip(playerIsRight);
 
-                if (playerDistance < 1.8 || raycast.transform &&
-                    raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
-                {
-                    Move(0);
-                    if (allowFire)
-                        StartCoroutine(Shoot());
-                    if (m_Grounded) Jump();
-                }
-                else
+                if (playerDistance > 5)
                 {
                     if (playerIsRight)
                     {
@@ -131,9 +125,35 @@ public class Enemy_Controller : MonoBehaviour
                         Move(-runSpeed);
                     }
                 }
+                else
+                {
+                    RaycastHit2D raycast = Physics2D.Raycast(transform.position,
+                        (playerIsRight ? 1 : -1) * Vector2.right,
+                        Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
+
+                    if (playerDistance < 1.8 || raycast.transform &&
+                        raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                    {
+                        Move(0);
+                        if (allowFire)
+                            StartCoroutine(Shoot());
+                        if (m_Grounded) Jump();
+                    }
+                    else
+                    {
+                        if (playerIsRight)
+                        {
+                            Move(runSpeed);
+                        }
+                        else
+                        {
+                            Move(-runSpeed);
+                        }
+                    }
+                }
             }
         }
-        else
+        else //if fleeing
         {
             Move(fleeingDirection * runSpeed);
         }
@@ -217,6 +237,18 @@ public class Enemy_Controller : MonoBehaviour
             animator.SetTrigger("HitFront");
         else
             animator.SetTrigger("HitBack");
+    }
+
+    private void CheckLevel()
+    {
+        float enemyY = transform.position.y;
+        float playerY = player.position.y;
+        if ((playerY > 4 && enemyY > 5) || //both on top
+            (playerY < 5 && enemyY < 5)) //both on bottom
+        {
+            roaming = false;
+        }
+        else roaming = true;
     }
 
     private void Flee()
