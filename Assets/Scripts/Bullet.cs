@@ -21,32 +21,14 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        if (!exists)
+            return;
+
         travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
 
         if (travelledDistance <= maxDistance) return;
 
-        RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
-
-        List<GameObject> hitObjectsList = new List<GameObject>();
-
-        // If there is an environment object, the splatter will only be placed on it
-        // If not, the splatter will be placed in every BackgroundWall captured by the raycast
-        foreach (var raycast in raycasts)
-        {
-            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
-            {
-                hitObjectsList = new List<GameObject> { raycast.transform.gameObject };
-                break;
-            }
-
-            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("BackgroundWall"))
-            {
-                // BackgroundWall layer is used only for colliders and masks, so we should send the parent
-                hitObjectsList.Add(raycast.transform.parent.gameObject);
-            }
-        }
-
-        DestroyPellet(hitObjectsList.ToArray());
+        PaintOtherSurfaces();
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -55,6 +37,13 @@ public class Bullet : MonoBehaviour
             return;
 
         GameObject hitObject = hitInfo.gameObject;
+
+        // If hit object is a bullet, only paint background surfaces
+        if (hitObject.layer == LayerMask.NameToLayer("PlayerBullets") || hitObject.layer == LayerMask.NameToLayer("EnemyBullets"))
+        {
+            PaintOtherSurfaces();
+            return;
+        }
 
         GameObject[] hitGameObjects = new GameObject[] { hitObject };
 
@@ -100,6 +89,32 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    void PaintOtherSurfaces()
+    {
+        RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
+
+        List<GameObject> hitObjectsList = new List<GameObject>();
+
+        // If there is an environment object, the splatter will only be placed on it
+        // If not, the splatter will be placed in every BackgroundWall captured by the raycast
+        foreach (var raycast in raycasts)
+        {
+            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
+            {
+                hitObjectsList = new List<GameObject> { raycast.transform.gameObject };
+                break;
+            }
+
+            if (raycast.transform.gameObject.layer == LayerMask.NameToLayer("BackgroundWall"))
+            {
+                // BackgroundWall layer is used only for colliders and masks, so we should send the parent
+                hitObjectsList.Add(raycast.transform.parent.gameObject);
+            }
+        }
+
+        DestroyPellet(hitObjectsList.ToArray());
+    }
+
     private void DestroyPellet(GameObject[] hitObjectsList)
     {
         if (!exists)
@@ -142,7 +157,7 @@ public class Bullet : MonoBehaviour
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
-        if(isTrap)
+        if (isTrap)
             splatterSR.color = Color.red;
         else
             splatterSR.color = spriteRenderer.color;
