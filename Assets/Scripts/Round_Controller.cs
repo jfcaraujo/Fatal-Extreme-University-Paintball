@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Round_Controller : MonoBehaviour
 {
@@ -26,45 +28,6 @@ public class Round_Controller : MonoBehaviour
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
         StartNextRound();
-    }
-
-    private void SpawnEnemyPistol()
-    {
-        Transform gameObjectTransform = gameObject.transform;
-        Enemy_Controller enemy = Instantiate(enemyPistol, gameObjectTransform.position, gameObjectTransform.rotation)
-            .GetComponent<Enemy_Controller>();
-        enemy.onEnemyDeath += EnemyPistolDeath;
-    }
-
-    private void SpawnEnemyMachineGun()
-    {
-        Transform gameObjectTransform = gameObject.transform;
-        Enemy_Controller enemy =
-            Instantiate(enemyMachineGun, gameObjectTransform.position, gameObjectTransform.rotation)
-                .GetComponent<Enemy_Controller>();
-        enemy.onEnemyDeath += EnemyMachineGunDeath;
-    }
-
-    private void EnemyPistolDeath()
-    {
-        enemiesRemaining--;
-        enemiesLeftText.text = enemiesRemaining.ToString();
-        score += 15;
-        scoreText.text = score.ToString();
-        //Debug.Log("Enemies remaining:" + enemiesRemaining);
-        if (enemiesRemaining == 0)
-            StartNextRound();
-    }
-
-    private void EnemyMachineGunDeath()
-    {
-        enemiesRemaining--;
-        enemiesLeftText.text = enemiesRemaining.ToString();
-        score += 30;
-        scoreText.text = score.ToString();
-        //Debug.Log("Enemies remaining:" + enemiesRemaining);
-        if (enemiesRemaining == 0)
-            StartNextRound();
     }
 
     private void StartNextRound()
@@ -109,9 +72,48 @@ public class Round_Controller : MonoBehaviour
                 i--;
             else
                 SpawnEnemyMachineGun();
-
         }
     }
+
+    private void SpawnEnemyPistol()
+    {
+        Transform gameObjectTransform = gameObject.transform.GetChild(Random.Range(0, transform.childCount));
+        Enemy_Controller enemy = Instantiate(enemyPistol, gameObjectTransform.position, gameObjectTransform.rotation)
+            .GetComponent<Enemy_Controller>();
+        enemy.onEnemyDeath += EnemyPistolDeath;
+    }
+
+    private void SpawnEnemyMachineGun()
+    {
+        Transform gameObjectTransform = gameObject.transform.GetChild(Random.Range(0, transform.childCount));
+        Enemy_Controller enemy =
+            Instantiate(enemyMachineGun, gameObjectTransform.position, gameObjectTransform.rotation)
+                .GetComponent<Enemy_Controller>();
+        enemy.onEnemyDeath += EnemyMachineGunDeath;
+    }
+
+    private void EnemyPistolDeath()
+    {
+        enemiesRemaining--;
+        enemiesLeftText.text = enemiesRemaining.ToString();
+        score += 15;
+        scoreText.text = score.ToString();
+        //Debug.Log("Enemies remaining:" + enemiesRemaining);
+        if (enemiesRemaining == 0)
+            StartNextRound();
+    }
+
+    private void EnemyMachineGunDeath()
+    {
+        enemiesRemaining--;
+        enemiesLeftText.text = enemiesRemaining.ToString();
+        score += 30;
+        scoreText.text = score.ToString();
+        //Debug.Log("Enemies remaining:" + enemiesRemaining);
+        if (enemiesRemaining == 0)
+            StartNextRound();
+    }
+
 
     private void Flee()
     {
