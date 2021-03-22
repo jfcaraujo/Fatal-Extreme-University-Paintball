@@ -9,6 +9,14 @@ public class IndividualSound : Sound
     public float pitch = 1f;
     public bool loop;
 
+    [Range(0f, 1f)]
+    public float spatialBlend = 0f;
+
+    public AudioRolloffMode audioRolloffMode;
+
+    public float minDistance = 1f;
+    public float maxDistance = 500f;
+
     public void CreateSource(GameObject obj)
     {
         source = obj.AddComponent<AudioSource>();
@@ -17,6 +25,11 @@ public class IndividualSound : Sound
         source.volume = volume;
         source.pitch = pitch;
         source.loop = loop;
+
+        source.spatialBlend = spatialBlend;
+        source.rolloffMode = audioRolloffMode;
+        source.minDistance = minDistance;
+        source.maxDistance = maxDistance;
     }
 
     public override void Play()

@@ -407,9 +407,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -442,7 +442,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -504,6 +504,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    spatialBlend: 1
+    audioRolloffMode: 1
+    minDistance: 1
+    maxDistance: 30
 --- !u!1 &7862320417300832199
 GameObject:
   m_ObjectHideFlags: 0
