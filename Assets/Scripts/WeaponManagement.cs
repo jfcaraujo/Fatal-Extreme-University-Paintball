@@ -5,7 +5,7 @@ public class WeaponManagement : MonoBehaviour
 {
     public int selectedWeapon = 0;
     int previousSelectedWeapon = 0;
-    int penultimateWeapon = 0;
+    int penultimateWeapon = 1;
     public Transform weaponUI;
     public Text ammoDisplay;
 
