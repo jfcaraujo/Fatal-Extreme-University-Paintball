@@ -183,10 +183,10 @@ SpriteMask:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d843bdc711e689e49b636a4b8a824c67, type: 3}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: -2146391535
-  m_BackSortingLayerID: -2146391535
-  m_FrontSortingLayer: 2
-  m_BackSortingLayer: 2
+  m_FrontSortingLayerID: -99594595
+  m_BackSortingLayerID: -99594595
+  m_FrontSortingLayer: 5
+  m_BackSortingLayer: 5
   m_FrontSortingOrder: 4
   m_BackSortingOrder: 3
   m_IsCustomRangeActive: 1
@@ -206,6 +206,8 @@ GameObject:
   - component: {fileID: 1837310077}
   - component: {fileID: 1837310080}
   - component: {fileID: 1649043662}
+  - component: {fileID: 184678897}
+  - component: {fileID: 184678898}
   m_Layer: 8
   m_Name: sword_man
   m_TagString: Player
@@ -305,6 +307,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 380928
   m_GroundCheck: {fileID: 1639961258}
+  audioManager: {fileID: 184678898}
   animator: {fileID: 1837310079}
   m_FacingRight: 0
   runSpeed: 8
@@ -324,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658b149709840584b9394b453c4d375e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 184678898}
   startingPaperTowels: 5
   maxPaperTowels: 10
   invulnerable: 0
@@ -343,6 +347,133 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontLayerId: -99594595
   backLayerId: -2146391535
+  changeMask: 1
+--- !u!82 &184678897
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290715225530138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &184678898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290715225530138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011fd21d1eb489b45b509da250ec0be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainAudioSource: {fileID: 184678897}
+  generalSounds:
+  - name: Jump
+    clip: {fileID: 8300000, guid: f33c91ee6cf200c4f8650c0dc44be752, type: 3}
+  - name: Damage1
+    clip: {fileID: 8300000, guid: 3983d6036ef2b70449c0911da114a4a8, type: 3}
+  - name: Damage2
+    clip: {fileID: 8300000, guid: 3a03132082db8a24d8aacbbdc5e7a01e, type: 3}
+  individualSounds:
+  - name: Run
+    clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 1
+    audioRolloffMode: 1
+    minDistance: 1
+    maxDistance: 30
 --- !u!1 &1315759352830414
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,10 +602,10 @@ SpriteMask:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 681cdb2853ae7144c815013a86c8da7c, type: 3}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: -2146391535
-  m_BackSortingLayerID: -2146391535
-  m_FrontSortingLayer: 2
-  m_BackSortingLayer: 2
+  m_FrontSortingLayerID: -99594595
+  m_BackSortingLayerID: -99594595
+  m_FrontSortingLayer: 5
+  m_BackSortingLayer: 5
   m_FrontSortingOrder: 3
   m_BackSortingOrder: 2
   m_IsCustomRangeActive: 1
@@ -602,10 +733,10 @@ SpriteMask:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72186849934bfde4484d95f21e9e9145, type: 3}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: -2146391535
-  m_BackSortingLayerID: -2146391535
-  m_FrontSortingLayer: 2
-  m_BackSortingLayer: 2
+  m_FrontSortingLayerID: -99594595
+  m_BackSortingLayerID: -99594595
+  m_FrontSortingLayer: 5
+  m_BackSortingLayer: 5
   m_FrontSortingOrder: 1
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
@@ -733,10 +864,10 @@ SpriteMask:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72186849934bfde4484d95f21e9e9145, type: 3}
   m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: -2146391535
-  m_BackSortingLayerID: -2146391535
-  m_FrontSortingLayer: 2
-  m_BackSortingLayer: 2
+  m_FrontSortingLayerID: -99594595
+  m_BackSortingLayerID: -99594595
+  m_FrontSortingLayer: 5
+  m_BackSortingLayer: 5
   m_FrontSortingOrder: 2
   m_BackSortingOrder: 1
   m_IsCustomRangeActive: 1

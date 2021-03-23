@@ -4,11 +4,16 @@ public class Splatter : MonoBehaviour
 {
     public AudioManager audioManager;
 
+    public bool isTrap;
+
     private void Start()
     {
         SendMessageUpwards("OnObjectAdded", gameObject, SendMessageOptions.DontRequireReceiver);
 
         int randomNumber = Random.Range(0, 3);
+
+        if (isTrap)
+            audioManager.PlaySound("GlassBreak");
 
         switch (Random.Range(0, 3))
         {

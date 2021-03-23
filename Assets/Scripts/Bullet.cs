@@ -154,6 +154,11 @@ public class Bullet : MonoBehaviour
             splatterObject.transform.position = new Vector3(position.x, position.y, Mathf.Abs(position.z));
         }
 
+        Splatter splatterScript = splatterObject.GetComponent<Splatter>();
+
+        if(splatterScript != null)
+            splatterScript.isTrap = isTrap;
+
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
