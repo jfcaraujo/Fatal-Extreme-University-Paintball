@@ -46,6 +46,10 @@ public class Enemy_Controller : MonoBehaviour
     private bool roaming;
     private int roamingDirection = 1;
 
+    private bool overcomingObstacle = false;
+    private float overcomingDistanceToStop = 0;
+    private bool overcomingRight = false;
+
     public delegate void OnEnemyDeath();
 
     public event OnEnemyDeath onEnemyDeath;
@@ -115,7 +119,8 @@ public class Enemy_Controller : MonoBehaviour
             }
             else //chasing player if is in same level
             {
-                Flip(playerIsRight); //flip in the direction of the player
+                if (!overcomingObstacle)
+                    Flip(playerIsRight); //flip in the direction of the player
 
                 if (playerDistance <= 5) //if close
                 {
@@ -134,22 +139,47 @@ public class Enemy_Controller : MonoBehaviour
                             StartCoroutine(Shoot());
                         return;
                     }
-                    else if (playerDistance < 1.8) //if really close stop moving
+                    else if (!overcomingObstacle && playerDistance < 1.8) //if really close stop moving
                     {
                         Move(0);
                         return;
                     }
+
+                    if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+                    {
+                        overcomingObstacle = true;
+                        overcomingDistanceToStop = playerDistance;
+                        overcomingRight = playerIsRight;
+                    }
+                    else if (overcomingObstacle && overcomingDistanceToStop <= playerDistance)
+                    {
+                        overcomingObstacle = false;
+                    }
                 }
 
-                //only reaches if x distance between 1.8 and 5 and can't see player
-                //or if x distance > 5
-                if (playerIsRight)
+                if (overcomingObstacle)
                 {
-                    Move(runSpeed);
+                    if (overcomingRight)
+                    {
+                        Move(runSpeed * 1.15f);
+                    }
+                    else
+                    {
+                        Move(-runSpeed * 1.15f);
+                    }
                 }
                 else
                 {
-                    Move(-runSpeed);
+                    //only reaches if x distance between 1.8 and 5 and can't see player
+                    //or if x distance > 5
+                    if (playerIsRight)
+                    {
+                        Move(runSpeed);
+                    }
+                    else
+                    {
+                        Move(-runSpeed);
+                    }
                 }
             }
         }

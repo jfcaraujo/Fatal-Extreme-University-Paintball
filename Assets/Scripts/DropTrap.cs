@@ -17,10 +17,10 @@ public class DropTrap : MonoBehaviour
         //activated when rectangle is hit
         if (other.name == "Player")
         {
-            audioManager.PlaySound("Release");
-
             if (m_rigidbody2D != null)
             {
+                audioManager.PlaySound("Release");
+
                 m_rigidbody2D.gravityScale = 1.5f;
                 m_rigidbody2D.angularVelocity = 100f;
             }
