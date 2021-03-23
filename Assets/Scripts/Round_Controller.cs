@@ -17,16 +17,24 @@ public class Round_Controller : MonoBehaviour
 
     private bool fleeing = false;
     public HealthController healthController;
+    public Transform player;
 
     public Text scoreText;
     private int score;
     public Text enemiesLeftText;
+
+    private float leftBorder, rightBorder, up, down;
+    private bool spawnAtRight = true;
 
     // Start is called before the first frame update
     void Start()
     {
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
+        leftBorder = transform.GetChild(0).position.x;
+        rightBorder = transform.GetChild(1).position.x;
+        up = transform.GetChild(0).position.y;
+        down = transform.GetChild(1).position.y;
         StartNextRound();
     }
 
@@ -77,19 +85,27 @@ public class Round_Controller : MonoBehaviour
 
     private void SpawnEnemyPistol()
     {
-        Transform gameObjectTransform = gameObject.transform.GetChild(Random.Range(0, transform.childCount));
-        Enemy_Controller enemy = Instantiate(enemyPistol, gameObjectTransform.position, gameObjectTransform.rotation)
+        Enemy_Controller enemy = Instantiate(enemyPistol, GetSpawnPosition(), transform.rotation)
             .GetComponent<Enemy_Controller>();
         enemy.onEnemyDeath += EnemyPistolDeath;
     }
 
     private void SpawnEnemyMachineGun()
     {
-        Transform gameObjectTransform = gameObject.transform.GetChild(Random.Range(0, transform.childCount));
         Enemy_Controller enemy =
-            Instantiate(enemyMachineGun, gameObjectTransform.position, gameObjectTransform.rotation)
+            Instantiate(enemyMachineGun, GetSpawnPosition(), transform.rotation)
                 .GetComponent<Enemy_Controller>();
         enemy.onEnemyDeath += EnemyMachineGunDeath;
+    }
+
+    private Vector2 GetSpawnPosition()
+    {
+        Vector2 playerPosition = player.position;
+        float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 10;
+        if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 10;
+        float y = playerPosition.y < 5 ? down : up;
+        spawnAtRight = x < playerPosition.x;
+        return new Vector2(x, y);
     }
 
     private void EnemyPistolDeath()

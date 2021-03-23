@@ -12,7 +12,7 @@ public class Enemy_Controller : MonoBehaviour
 
     private int colorIndex = -1;
 
-    [SerializeField] private float m_JumpForce = 500f;
+    [SerializeField] private float m_JumpForce = 10.5f;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
     [SerializeField] private LayerMask m_WhatIsGround;
     [SerializeField] private Transform m_GroundCheck;

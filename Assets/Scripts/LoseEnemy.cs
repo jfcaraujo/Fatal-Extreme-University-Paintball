@@ -11,7 +11,8 @@ public class LoseEnemy : StateMachineBehaviour
     {
         var parent = animator.transform.parent;
         Destroy(parent.gameObject);
-        Instantiate(parent.GetComponent<Enemy_Controller>().ammoDrop, parent.position, Quaternion.identity);
+        Instantiate(parent.GetComponent<Enemy_Controller>().ammoDrop, parent.position, Quaternion.identity)
+            .GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0.5f), ForceMode2D.Impulse);
         float probability = Random.value;
         GameObject item = null;
         if (probability < 0.025)
@@ -36,6 +37,6 @@ public class LoseEnemy : StateMachineBehaviour
         }
 
         if (item)
-            item.GetComponent<Rigidbody2D>().AddForce(new Vector2(2f, 0f), ForceMode2D.Impulse);
+            item.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f, 0.5f), ForceMode2D.Impulse);
     }
 }
