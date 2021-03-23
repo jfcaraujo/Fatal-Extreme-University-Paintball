@@ -102,6 +102,7 @@ public class Enemy_Controller : MonoBehaviour
             CheckLevel();
             if (roaming)
             {
+                Flip(roamingDirection == 1);
                 Move(roamingDirection * runSpeed);
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position,
                     roamingDirection * Vector2.right,
@@ -110,7 +111,6 @@ public class Enemy_Controller : MonoBehaviour
                 if (raycast.collider) //if near a wall
                 {
                     roamingDirection *= -1;
-                    Flip(roamingDirection == 1);
                 }
             }
             else //chasing player if is in same level
