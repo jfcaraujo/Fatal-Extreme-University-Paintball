@@ -24,7 +24,7 @@ public class Player_Controller : MonoBehaviour
     public float dropDownInterval = 0.25f;
     public float dropDownForce = 1f;
 
-    public bool doubleSpeed = false;
+    public bool speedUp = false;
 
     public bool inputBlocked = false;
 
@@ -46,7 +46,7 @@ public class Player_Controller : MonoBehaviour
         }
         else
         {
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (doubleSpeed ? 2 : 1);
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * (speedUp ? 1.5f : 1f);
             if (Input.GetButtonDown("Jump"))
                 jump = true;
 

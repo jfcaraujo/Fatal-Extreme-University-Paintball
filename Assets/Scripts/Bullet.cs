@@ -38,6 +38,10 @@ public class Bullet : MonoBehaviour
 
         GameObject hitObject = hitInfo.gameObject;
 
+        // Bullet knockback
+        if(hitInfo.attachedRigidbody != null)
+            hitInfo.attachedRigidbody.AddForce(m_Rigidbody2D.velocity.normalized * 15, ForceMode2D.Impulse);
+
         // If hit object is a bullet, only paint background surfaces
         if (hitObject.layer == LayerMask.NameToLayer("PlayerBullets") || hitObject.layer == LayerMask.NameToLayer("EnemyBullets"))
         {
@@ -73,7 +77,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = enemy.getFacingRight() && m_Rigidbody2D.velocity.x < 0 ||
                             !enemy.getFacingRight() && m_Rigidbody2D.velocity.x > 0;
 
-            enemy.Damage(1, hitFront);
+            enemy.Damage(isTrap ? 2 : 1, hitFront);
         }
 
         HealthController healthController = hitObject.GetComponent<HealthController>();
@@ -85,7 +89,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
-            healthController.Damage(1, hitFront);
+            healthController.Damage(isTrap ? 2 : 1, hitFront);
         }
     }
 
@@ -238,5 +242,10 @@ public class Bullet : MonoBehaviour
             splatterSR.sortingLayerName = "PlayerFront";
             splatterSR.sortingOrder = 6;
         }
+    }
+
+    private void OnDestroy() {
+        if(isTrap)
+            SendMessageUpwards("OnChildDestroy", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -6,6 +6,6 @@ public class Coffee : Item
     {
         PowerUpController powerUpController = GameObject.FindObjectOfType<PowerUpController>();
 
-        return powerUpController.ActivatePowerUp("DoubleSpeed");
+        return powerUpController.ActivatePowerUp("SpeedUp");
     }
 }

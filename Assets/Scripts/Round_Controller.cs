@@ -101,8 +101,8 @@ public class Round_Controller : MonoBehaviour
     private Vector2 GetSpawnPosition()
     {
         Vector2 playerPosition = player.position;
-        float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 10;
-        if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 10;
+        float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 15;
+        if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 15;
         float y = playerPosition.y < 5 ? down : up;
         spawnAtRight = x < playerPosition.x;
         return new Vector2(x, y);

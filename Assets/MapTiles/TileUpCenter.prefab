@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 5991490572653052646}
   - component: {fileID: 5991490572653052648}
   - component: {fileID: 5991490572653052649}
-  m_Layer: 15
+  m_Layer: 20
   m_Name: HeightCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

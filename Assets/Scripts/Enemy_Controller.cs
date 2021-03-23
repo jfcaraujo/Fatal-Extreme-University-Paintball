@@ -149,7 +149,7 @@ public class Enemy_Controller : MonoBehaviour
                         overcomingObstacle = true;
                         overcomingDistanceToStop = playerDistance;
                         overcomingRight = playerIsRight;
-                        Move(overcomingRight ? 1 : -1 * runSpeed * 1.15f);
+                        Move((overcomingRight ? 1 : -1) * runSpeed * 1.15f);
                         return;
                     }
                 }
@@ -159,13 +159,13 @@ public class Enemy_Controller : MonoBehaviour
                     if (overcomingDistanceToStop <= playerDistance)
                         overcomingObstacle = false;
                     else
-                        Move(overcomingRight ? 1 : -1 * runSpeed * 1.15f);
+                        Move((overcomingRight ? 1 : -1) * runSpeed * 1.15f);
                 }
                 else
                 {
                     //only reaches if x distance between 1.8 and 5 and can't see player
                     //or if x distance > 5
-                    Move(playerIsRight ? 1 : -1 * runSpeed);
+                    Move((playerIsRight ? 1 : -1) * runSpeed);
                 }
             }
         }

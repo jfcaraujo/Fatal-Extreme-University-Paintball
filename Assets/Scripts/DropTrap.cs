@@ -32,4 +32,9 @@ public class DropTrap : MonoBehaviour
             Destroy(gameObject.GetComponent<Collider2D>());
         }
     }
+
+    private void OnChildDestroy()
+    {
+        Destroy(gameObject);
+    }
 }
