@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 5991490571102922230}
   - component: {fileID: 5991490571102922231}
   - component: {fileID: 5991490571102922228}
+  - component: {fileID: 1730234007}
   m_Layer: 18
   m_Name: TilemapGround
   m_TagString: Untagged
@@ -1514,6 +1515,24 @@ EdgeCollider2D:
   m_Points:
   - {x: -9, y: 0.5}
   - {x: 9, y: 0.5}
+--- !u!68 &1730234007
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991490571102922226}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.2
+  m_Points:
+  - {x: -9, y: 5.5}
+  - {x: 9, y: 5.5}
 --- !u!1 &5991490571159223947
 GameObject:
   m_ObjectHideFlags: 0
