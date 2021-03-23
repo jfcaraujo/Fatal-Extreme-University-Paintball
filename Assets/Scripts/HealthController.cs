@@ -36,6 +36,9 @@ public class HealthController : MonoBehaviour
 
         numPaperTowels = Mathf.Min(numPaperTowels + num, maxPaperTowels);
         healthDisplay.text = numPaperTowels.ToString();
+
+        audioManager.PlaySound("PaperRip");
+
         return true;
     }
 

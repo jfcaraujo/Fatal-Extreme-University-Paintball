@@ -6163,6 +6163,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184678898, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: generalSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 184678898, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: generalSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 15d89db695c736f4394e638633071daa, type: 3}
+    - target: {fileID: 184678898, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: generalSounds.Array.data[3].name
+      value: PaperRip
+      objectReference: {fileID: 0}
     - target: {fileID: 1410218023, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: weaponUI
       value: 
