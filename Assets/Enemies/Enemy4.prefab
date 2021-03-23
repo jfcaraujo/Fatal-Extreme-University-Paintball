@@ -349,12 +349,16 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
   bulletForce: 20
-  seeingDistance: 8
   fireCooldown: 0.4
   health: 1
   ammoDrop: {fileID: 5140166328663893556, guid: cf2234c64b77a8643b2e53f202102608,
     type: 3}
   inputBlocked: 0
+  Droppables:
+  - {fileID: 8789478576760226214, guid: 0ceb81cb707f5fe49970842d8fcb890f, type: 3}
+  - {fileID: 8789478576760226214, guid: 0ceb81cb707f5fe49970842d8fcb890f, type: 3}
+  - {fileID: 4885416548181311534, guid: 11c8d73073a74d24da5282a484bad99e, type: 3}
+  - {fileID: 8883228599437563161, guid: 2f921cf6b65f81049a905511ad04cfb5, type: 3}
 --- !u!70 &1368000385
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
