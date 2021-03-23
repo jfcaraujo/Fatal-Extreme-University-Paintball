@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class WeaponManagement : MonoBehaviour
 {
+    public AudioManager audioManager;
     public int selectedWeapon = 0;
     int previousSelectedWeapon = 0;
     int penultimateWeapon = 1;
@@ -19,7 +20,8 @@ public class WeaponManagement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("SwitchLastWeapon")) {
+        if (Input.GetButtonDown("SwitchLastWeapon"))
+        {
             selectedWeapon = penultimateWeapon;
         }
 
@@ -39,7 +41,7 @@ public class WeaponManagement : MonoBehaviour
                 selectedWeapon--;
         }
 
-        if(previousSelectedWeapon != selectedWeapon)
+        if (previousSelectedWeapon != selectedWeapon)
             SelectWeapon();
     }
 
@@ -55,7 +57,26 @@ public class WeaponManagement : MonoBehaviour
             weapon.gameObject.SetActive(i == selectedWeapon);
             i++;
         }
-        ammoDisplay.text=gameObject.GetComponentInChildren<Weapon>(false).remainingAmmo.ToString();
+        ammoDisplay.text = gameObject.GetComponentInChildren<Weapon>(false).remainingAmmo.ToString();
 
+    }
+
+    public bool AddAmmo(string weaponName, int amount)
+    {
+        foreach (Transform weapon in transform)
+        {
+            if (weapon.name == weaponName)
+            {
+                Weapon weaponScript = weapon.GetComponent<Weapon>();
+                bool consumed = weaponScript.gainAmmo(amount);
+
+                if(consumed)
+                    audioManager.PlaySound("Ammo");
+
+                return consumed;
+            }
+        }
+
+        return false;
     }
 }

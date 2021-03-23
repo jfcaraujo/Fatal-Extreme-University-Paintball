@@ -8,15 +8,12 @@ public class WeaponAmmo : Item
     protected override bool ConsumeItem()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Weapon[] weapons = player.GetComponentsInChildren<Weapon>(true);
 
-        foreach (var weapon in weapons)
-        {
-            if(weapon.name == weaponName) {
-                return weapon.gainAmmo(ammo);
-            }
-        }
+        WeaponManagement weaponManagement = player.GetComponentInChildren<WeaponManagement>();
 
-        return false;
+        if(weaponManagement == null)
+            return false;
+
+        return weaponManagement.AddAmmo(weaponName, ammo);
     }
 }
