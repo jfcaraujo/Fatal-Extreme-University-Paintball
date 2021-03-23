@@ -46,7 +46,7 @@ public class Enemy_Controller : MonoBehaviour
     // fleeing: 0 = not fleeing; 1 = fleeing right; -1 = fleeing left
     private int fleeingDirection = 0;
     private bool roaming;
-    private int roamingDirection = -1;
+    private int roamingDirection = 1;
 
     public delegate void OnEnemyDeath();
 
@@ -93,7 +93,11 @@ public class Enemy_Controller : MonoBehaviour
             return;
         }
 
-        if (fleeingDirection == 0) //if not fleeing
+        if (fleeingDirection != 0) //if fleeing
+        {
+            Move(fleeingDirection * runSpeed);
+        }
+        else //if not fleeing
         {
             CheckLevel();
             if (roaming)
@@ -103,7 +107,7 @@ public class Enemy_Controller : MonoBehaviour
                     roamingDirection * Vector2.right,
                     2, LayerMask.GetMask("Ground", "UpperGround"));
 
-                if (raycast.collider)//if near a wall
+                if (raycast.collider) //if near a wall
                 {
                     roamingDirection *= -1;
                     Flip(roamingDirection == 1);
@@ -111,51 +115,42 @@ public class Enemy_Controller : MonoBehaviour
             }
             else //chasing player if is in same level
             {
-                //flip the player
-                Flip(playerIsRight);
+                Flip(playerIsRight); //flip in the direction of the player
 
-                if (playerDistance > 5)
+                if (playerDistance <= 5) //if close
                 {
-                    if (playerIsRight)
-                    {
-                        Move(runSpeed);
-                    }
-                    else
-                    {
-                        Move(-runSpeed);
-                    }
-                }
-                else
-                {
-                    RaycastHit2D raycast = Physics2D.Raycast(transform.position,
+                    //check if sees player
+                    RaycastHit2D raycast = Physics2D.Raycast(
+                        new Vector2(transform.position.x, transform.position.y - 0.06f),
                         (playerIsRight ? 1 : -1) * Vector2.right,
-                        Mathf.Infinity, LayerMask.GetMask("Player", "Obstacles"));
-
-                    if (playerDistance < 1.8 || raycast.transform &&
-                        raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                        6, LayerMask.GetMask("Player", "Obstacles"));
+                    if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player")
+                    ) //if sees player shoot
                     {
                         Move(0);
                         if (allowFire)
                             StartCoroutine(Shoot());
-                        if (m_Grounded) Jump();
+                        return;
                     }
-                    else
+                    else if (playerDistance < 1.8) //if really close stop moving
                     {
-                        if (playerIsRight)
-                        {
-                            Move(runSpeed);
-                        }
-                        else
-                        {
-                            Move(-runSpeed);
-                        }
+                        Move(0);
+                        if (m_Grounded) Jump();
+                        return;
                     }
                 }
+
+                //only reaches if x distance between 1.8 and 5 and can't see player
+                //or if x distance > 5
+                if (playerIsRight)
+                {
+                    Move(runSpeed);
+                }
+                else
+                {
+                    Move(-runSpeed);
+                }
             }
-        }
-        else //if fleeing
-        {
-            Move(fleeingDirection * runSpeed);
         }
     }
 
@@ -181,7 +176,7 @@ public class Enemy_Controller : MonoBehaviour
 
     void Jump()
     {
-        if (m_Rigidbody2D.velocity.y > 0.05) return;
+        if (Math.Abs(m_Rigidbody2D.velocity.y) > 0.05) return;
         // Add a vertical force to the player.
         m_Grounded = false;
 
