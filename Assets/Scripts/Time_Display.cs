@@ -6,14 +6,21 @@ public class Time_Display : MonoBehaviour
 {
     public Text timeDisplay;
     private float startTime;
+    private static bool stopTime = false;
 
     void Start()
     {
         startTime = Time.time;
     }
+
     void FixedUpdate()
     {
-        timeDisplay.text=Math.Floor(Time.time-startTime).ToString();
+        if (!stopTime)
+            timeDisplay.text = Math.Floor(Time.time - startTime).ToString();
+    }
 
+    public static void Stop()
+    {
+        stopTime = true;
     }
 }

@@ -34,7 +34,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletForce = 20f;
 
-    public float seeingDistance = 5f;
+    private float seeingDistance = 15f;
 
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
     [SerializeField] private float health = 1;
@@ -261,7 +261,7 @@ public class Enemy_Controller : MonoBehaviour
         bool playerIsRight = player.position.x > gameObject.transform.position.x;
 
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, (playerIsRight ? -1 : 1) * Vector2.right,
-            seeingDistance, LayerMask.GetMask("Ground"));
+            seeingDistance, LayerMask.GetMask("Ground", "UpperGround"));
 
         if (raycast.collider == null)
         {
