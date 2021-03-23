@@ -101,12 +101,12 @@ public class Enemy_Controller : MonoBehaviour
                 Move(roamingDirection * runSpeed);
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position,
                     roamingDirection * Vector2.right,
-                    2, LayerMask.GetMask("Ground","UpperGround"));
-                
+                    2, LayerMask.GetMask("Ground", "UpperGround"));
+
                 if (raycast.collider)//if near a wall
                 {
                     roamingDirection *= -1;
-                    Flip(roamingDirection==1);
+                    Flip(roamingDirection == 1);
                 }
             }
             else //chasing player if is in same level
@@ -237,6 +237,16 @@ public class Enemy_Controller : MonoBehaviour
             animator.SetTrigger("HitFront");
         else
             animator.SetTrigger("HitBack");
+
+        switch (UnityEngine.Random.Range(0, 2))
+        {
+            case 0:
+                audioManager.PlaySound("Damage1");
+                break;
+            default:
+                audioManager.PlaySound("Damage2");
+                break;
+        }
     }
 
     private void CheckLevel()

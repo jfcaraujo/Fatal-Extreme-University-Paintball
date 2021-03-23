@@ -688,6 +688,10 @@ MonoBehaviour:
   generalSounds:
   - name: Jump
     clip: {fileID: 8300000, guid: f33c91ee6cf200c4f8650c0dc44be752, type: 3}
+  - name: Damage1
+    clip: {fileID: 8300000, guid: 3983d6036ef2b70449c0911da114a4a8, type: 3}
+  - name: Damage2
+    clip: {fileID: 8300000, guid: 3a03132082db8a24d8aacbbdc5e7a01e, type: 3}
   individualSounds:
   - name: Run
     clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}
@@ -5190,6 +5194,10 @@ PrefabInstance:
       propertyPath: runAudioSource
       value: 
       objectReference: {fileID: 184678897}
+    - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 184678898}
     - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: invulnerable
       value: 0
