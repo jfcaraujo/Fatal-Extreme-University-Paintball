@@ -156,7 +156,7 @@ public class Bullet : MonoBehaviour
 
         Splatter splatterScript = splatterObject.GetComponent<Splatter>();
 
-        if(splatterScript != null)
+        if (splatterScript != null)
             splatterScript.isTrap = isTrap;
 
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
@@ -203,7 +203,7 @@ public class Bullet : MonoBehaviour
         }
         else if (hitObject.layer == LayerMask.NameToLayer("Player"))
         {
-            // Player splatters are visible on the "Player" sorting layer
+            // Player splatters are visible on the "PlayerFront" and "PlayerBack" sorting layer
             splatterSR.sortingLayerName = "PlayerFront";
 
             // Different order for each body part
@@ -223,6 +223,13 @@ public class Bullet : MonoBehaviour
             {
                 splatterSR.sortingOrder = 4;
             }
+        }
+        else if (hitObject.layer == LayerMask.NameToLayer("BulletShield"))
+        {
+            // Bullet shield splatters are visible on the "PlayerFront" and "PlayerBack" sorting layer
+            // with order 5
+            splatterSR.sortingLayerName = "PlayerFront";
+            splatterSR.sortingOrder = 5;
         }
         else if (hitObject.layer == LayerMask.NameToLayer("Enemy"))
         {
