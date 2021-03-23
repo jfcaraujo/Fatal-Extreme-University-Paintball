@@ -313,7 +313,7 @@ MonoBehaviour:
   runSpeed: 8
   dropDownInterval: 0.25
   dropDownForce: 1
-  doubleSpeed: 0
+  speedUp: 0
   inputBlocked: 0
 --- !u!114 &1837310080
 MonoBehaviour:
@@ -332,6 +332,7 @@ MonoBehaviour:
   maxPaperTowels: 10
   invulnerable: 0
   healthDisplay: {fileID: 0}
+  gameOverUI: {fileID: 0}
   powerUpController: {fileID: 0}
 --- !u!114 &1649043662
 MonoBehaviour:
@@ -464,6 +465,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3983d6036ef2b70449c0911da114a4a8, type: 3}
   - name: Damage2
     clip: {fileID: 8300000, guid: 3a03132082db8a24d8aacbbdc5e7a01e, type: 3}
+  - name: PaperRip
+    clip: {fileID: 8300000, guid: 15d89db695c736f4394e638633071daa, type: 3}
   individualSounds:
   - name: Run
     clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}
@@ -882,6 +885,8 @@ GameObject:
   m_Component:
   - component: {fileID: 281776844881960221}
   - component: {fileID: 1410218023}
+  - component: {fileID: 1819877674}
+  - component: {fileID: 1819877673}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -917,9 +922,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e29abebaddb8840a75bd047092538e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 1819877673}
   selectedWeapon: 0
   weaponUI: {fileID: 0}
   ammoDisplay: {fileID: 0}
+--- !u!82 &1819877674
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44059699113360353}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1819877673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44059699113360353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011fd21d1eb489b45b509da250ec0be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainAudioSource: {fileID: 1819877674}
+  generalSounds:
+  - name: Ammo
+    clip: {fileID: 8300000, guid: f94f58f20ee47c24f83ef847eed48663, type: 3}
+  individualSounds: []
 --- !u!1 &5613983497831730202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7108989862718492761}
   - component: {fileID: 2934474000816617565}
+  - component: {fileID: 1874392726}
   m_Layer: 11
   m_Name: BackpackSprite
   m_TagString: Untagged
@@ -1153,6 +1273,55 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!331 &1874392726
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8472775450100972174}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 677d3a79b09395041ab137fadf779227, type: 3}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: -99594595
+  m_BackSortingLayerID: -99594595
+  m_FrontSortingLayer: 5
+  m_BackSortingLayer: 5
+  m_FrontSortingOrder: 5
+  m_BackSortingOrder: 4
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1001 &1309393635
 PrefabInstance:
