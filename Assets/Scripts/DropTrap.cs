@@ -2,6 +2,7 @@
 
 public class DropTrap : MonoBehaviour
 {
+    public AudioManager audioManager;
     Rigidbody2D m_rigidbody2D;
 
     // Start is called before the first frame update
@@ -16,6 +17,8 @@ public class DropTrap : MonoBehaviour
         //activated when rectangle is hit
         if (other.name == "Player")
         {
+            audioManager.PlaySound("Release");
+
             if (m_rigidbody2D != null)
             {
                 m_rigidbody2D.gravityScale = 1.5f;

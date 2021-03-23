@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 6910940894563683085}
+  isTrap: 0
 --- !u!114 &6910940894563683085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +118,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 60a87e60966f4b844a92777cb696e0ad, type: 3}
   - name: Splatter3
     clip: {fileID: 8300000, guid: a6edca184bc2fb246b956c641bed95a7, type: 3}
+  - name: GlassBreak
+    clip: {fileID: 8300000, guid: f31b4e61b78036b4592ce9c494acffdd, type: 3}
   individualSounds: []
 --- !u!82 &-4402907233009795598
 AudioSource:
