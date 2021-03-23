@@ -6,11 +6,12 @@ public class Time_Display : MonoBehaviour
 {
     public Text timeDisplay;
     private float startTime;
-    private static bool stopTime = false;
+    private static bool stopTime;
 
     void Start()
     {
         startTime = Time.time;
+        stopTime = false;
     }
 
     void FixedUpdate()

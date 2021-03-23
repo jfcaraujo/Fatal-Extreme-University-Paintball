@@ -7,9 +7,7 @@ public class Enemy_Controller : MonoBehaviour
 {
     private static readonly List<Color> colors = new List<Color>()
     {
-        new Color(1f, 0f, 0f, 1f), // Red
-        new Color(0f, 1f, 0f, 1f), // Green
-        new Color(0f, 0f, 1f, 1f), // Blue 
+        Color.red, Color.green, Color.blue
     };
 
     private int colorIndex = -1;
@@ -53,6 +51,8 @@ public class Enemy_Controller : MonoBehaviour
     public event OnEnemyDeath onEnemyDeath;
 
     public bool inputBlocked = false;
+
+    public GameObject[] Droppables;
 
     void Start()
     {
