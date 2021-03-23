@@ -23,7 +23,7 @@ public class PowerUpController : MonoBehaviour
 
     public bool ActivatePowerUp(string powerUp)
     {
-        if (IsAnyActive())
+        if (IsAnyActive() || playerController.inputBlocked)
             return false;
 
         switch (powerUp)
