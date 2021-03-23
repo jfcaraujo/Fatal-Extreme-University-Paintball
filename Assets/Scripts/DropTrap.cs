@@ -3,7 +3,7 @@
 public class DropTrap : MonoBehaviour
 {
     public AudioManager audioManager;
-    Rigidbody2D m_rigidbody2D;
+    private Rigidbody2D m_rigidbody2D;
 
     // Start is called before the first frame update
     void Start()

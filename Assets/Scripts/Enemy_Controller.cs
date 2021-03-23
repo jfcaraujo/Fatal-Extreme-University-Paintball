@@ -63,7 +63,7 @@ public class Enemy_Controller : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponentInChildren<Animator>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        this.player = playerObject.transform;
+        player = playerObject.transform;
         healthController = playerObject.GetComponent<HealthController>();
         healthController.onHeal += Flee;
         healthController.onStopHeal += StopFlee;
@@ -119,8 +119,7 @@ public class Enemy_Controller : MonoBehaviour
             }
             else //chasing player if is in same level
             {
-                if (!overcomingObstacle)
-                    Flip(playerIsRight); //flip in the direction of the player
+                Flip(playerIsRight); //flip in the direction of the player
 
                 if (playerDistance <= 5) //if close
                 {
@@ -150,36 +149,23 @@ public class Enemy_Controller : MonoBehaviour
                         overcomingObstacle = true;
                         overcomingDistanceToStop = playerDistance;
                         overcomingRight = playerIsRight;
-                    }
-                    else if (overcomingObstacle && overcomingDistanceToStop <= playerDistance)
-                    {
-                        overcomingObstacle = false;
+                        Move(overcomingRight ? 1 : -1 * runSpeed * 1.15f);
+                        return;
                     }
                 }
 
                 if (overcomingObstacle)
                 {
-                    if (overcomingRight)
-                    {
-                        Move(runSpeed * 1.15f);
-                    }
+                    if (overcomingDistanceToStop <= playerDistance)
+                        overcomingObstacle = false;
                     else
-                    {
-                        Move(-runSpeed * 1.15f);
-                    }
+                        Move(overcomingRight ? 1 : -1 * runSpeed * 1.15f);
                 }
                 else
                 {
                     //only reaches if x distance between 1.8 and 5 and can't see player
                     //or if x distance > 5
-                    if (playerIsRight)
-                    {
-                        Move(runSpeed);
-                    }
-                    else
-                    {
-                        Move(-runSpeed);
-                    }
+                    Move(playerIsRight ? 1 : -1 * runSpeed);
                 }
             }
         }
