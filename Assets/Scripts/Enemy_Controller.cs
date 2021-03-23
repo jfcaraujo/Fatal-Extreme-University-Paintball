@@ -119,9 +119,11 @@ public class Enemy_Controller : MonoBehaviour
 
                 if (playerDistance <= 5) //if close
                 {
+                    if (m_Grounded) Jump();
+
                     //check if sees player
                     RaycastHit2D raycast = Physics2D.Raycast(
-                        new Vector2(transform.position.x, transform.position.y - 0.06f),
+                        new Vector2(transform.position.x, transform.position.y - 0.144f),
                         (playerIsRight ? 1 : -1) * Vector2.right,
                         6, LayerMask.GetMask("Player", "Obstacles"));
                     if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player")
@@ -135,7 +137,6 @@ public class Enemy_Controller : MonoBehaviour
                     else if (playerDistance < 1.8) //if really close stop moving
                     {
                         Move(0);
-                        if (m_Grounded) Jump();
                         return;
                     }
                 }
