@@ -38,6 +38,10 @@ public class Bullet : MonoBehaviour
 
         GameObject hitObject = hitInfo.gameObject;
 
+        // Bullet knockback
+        if(hitInfo.attachedRigidbody != null)
+            hitInfo.attachedRigidbody.AddForce(m_Rigidbody2D.velocity.normalized * 15, ForceMode2D.Impulse);
+
         // If hit object is a bullet, only paint background surfaces
         if (hitObject.layer == LayerMask.NameToLayer("PlayerBullets") || hitObject.layer == LayerMask.NameToLayer("EnemyBullets"))
         {
