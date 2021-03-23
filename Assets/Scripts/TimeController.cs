@@ -47,8 +47,8 @@ public class TimeController : MonoBehaviour
 
     public static void ChangeTime(float factor)
     {
-        targetTimeScale = Time.timeScale * factor;
-        targetFixedDeltaTime = Time.fixedDeltaTime * factor;
+        targetTimeScale = targetTimeScale * factor;
+        targetFixedDeltaTime = targetFixedDeltaTime * factor;
     }
 
     public static void PauseTime()
