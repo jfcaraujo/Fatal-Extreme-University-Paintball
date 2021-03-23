@@ -35,6 +35,7 @@ public class Player_Controller : MonoBehaviour
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         playerCollider = gameObject.GetComponent<Collider2D>();
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
     }
 
     private void Update()

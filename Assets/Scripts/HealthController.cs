@@ -13,6 +13,7 @@ public class HealthController : MonoBehaviour
 
     private Animator animator;
     public Text healthDisplay;
+    public GameObject gameOverUI;
     public delegate void OnHeal();
     public event OnHeal onHeal;
     public event OnHeal onStopHeal;
@@ -53,11 +54,12 @@ public class HealthController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
 
         onHeal?.Invoke();
-
-        // TODO: Invoke another event to signal that the player has lost and put enemies fighting against each other
+        
         if (numPaperTowels <= 0)
         {
             animator.SetTrigger("Lose");
+            gameOverUI.SetActive(true);
+            Time_Display.Stop();
         }
 
         if (hitFront)

@@ -5,12 +5,10 @@
 /// </summary>
 public class HeightCheck : MonoBehaviour
 {
-    private EdgeCollider2D edgeCol;
     private DepthLevelManager playerDepthManager;
 
     void Start()
     {
-        edgeCol = GetComponent<EdgeCollider2D>();
         playerDepthManager = GameObject.FindGameObjectWithTag("Player").GetComponent<DepthLevelManager>();
     }
 

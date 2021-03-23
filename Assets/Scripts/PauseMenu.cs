@@ -10,6 +10,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseMenuUI;
     private float previousTimeScale;
 
+    void Start()
+    {
+        previousTimeScale = Time.timeScale;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,23 +24,26 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else {Pause();}
+            else
+            {
+                Pause();
+            }
         }
     }
-    
+
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
-        Time.timeScale=previousTimeScale;
-        gameIsPaused=false;
+        Time.timeScale = previousTimeScale;
+        gameIsPaused = false;
     }
-    
+
     void Pause()
     {
         PauseMenuUI.SetActive(true);
         previousTimeScale = Time.timeScale;
-        Time.timeScale=0f;
-        gameIsPaused=true;
+        Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 
     public void LoadMenu()
@@ -48,5 +56,9 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
-   
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Main Scene");
+    }
 }
