@@ -89,7 +89,7 @@ public class Enemy_Controller : MonoBehaviour
 
         float playerDistance = player.position.x - gameObject.transform.position.x;
         bool playerIsRight = playerDistance > 0;
-        playerDistance = Math.Abs(playerDistance);
+        float playerDistanceAbs = Math.Abs(playerDistance);
 
         if (inputBlocked) //if dying
         {
@@ -107,21 +107,26 @@ public class Enemy_Controller : MonoBehaviour
             if (roaming)
             {
                 Flip(roamingDirection == 1);
-                Move(roamingDirection * runSpeed);
+
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position,
                     roamingDirection * Vector2.right,
                     2, LayerMask.GetMask("Ground", "UpperGround"));
 
-                if (raycast.collider) //if near a wall
+                //if near a wall or too far from enemy
+                //second part of condition checks if next movement will be atleast 30 units away from the player
+                if (raycast.collider || Mathf.Abs(-playerDistance + roamingDirection * runSpeed) > 30)
                 {
                     roamingDirection *= -1;
                 }
+
+                Move(roamingDirection * runSpeed);
+
             }
             else //chasing player if is in same level
             {
                 Flip(playerIsRight); //flip in the direction of the player
 
-                if (playerDistance <= 5) //if close
+                if (playerDistanceAbs <= 5) //if close
                 {
                     if (m_Grounded) Jump();
 
@@ -138,7 +143,7 @@ public class Enemy_Controller : MonoBehaviour
                             StartCoroutine(Shoot());
                         return;
                     }
-                    else if (!overcomingObstacle && playerDistance < 1.8) //if really close stop moving
+                    else if (!overcomingObstacle && playerDistanceAbs < 1.8) //if really close stop moving
                     {
                         Move(0);
                         return;
@@ -147,7 +152,7 @@ public class Enemy_Controller : MonoBehaviour
                     if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
                     {
                         overcomingObstacle = true;
-                        overcomingDistanceToStop = playerDistance;
+                        overcomingDistanceToStop = playerDistanceAbs;
                         overcomingRight = playerIsRight;
                         Move((overcomingRight ? 1 : -1) * runSpeed * 1.15f);
                         return;
@@ -156,7 +161,7 @@ public class Enemy_Controller : MonoBehaviour
 
                 if (overcomingObstacle)
                 {
-                    if (overcomingDistanceToStop <= playerDistance)
+                    if (overcomingDistanceToStop <= playerDistanceAbs)
                         overcomingObstacle = false;
                     else
                         Move((overcomingRight ? 1 : -1) * runSpeed * 1.15f);
