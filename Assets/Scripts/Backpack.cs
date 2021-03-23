@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Backpack : MonoBehaviour
 {
     private Camera cam;
-    
+
     private Vector2 mousePos;
-    
+
     public Transform rotationCenter;
 
     // Start is called before the first frame update
@@ -34,5 +35,25 @@ public class Backpack : MonoBehaviour
         float backpackAngle = -(Mathf.Atan2(backpackDir.y, backpackDir.x) * Mathf.Rad2Deg - 180f);
 
         gameObject.transform.RotateAround(center, Vector3.back, lookAngle - backpackAngle);
+    }
+
+    private void OnDisable()
+    {
+        List<Transform> splattersToRemove = new List<Transform>();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform splatter = transform.GetChild(i);
+
+            if (splatter.CompareTag("Splatter"))
+            {
+                splattersToRemove.Add(splatter);
+            }
+        }
+
+        foreach (Transform item in splattersToRemove)
+        {
+            Destroy(item.gameObject);
+        }
     }
 }
