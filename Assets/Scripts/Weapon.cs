@@ -126,8 +126,6 @@ public class Weapon : MonoBehaviour
         if (gameObject.activeSelf)
             ammoDisplay.text = remainingAmmo.ToString();
 
-        audioManager.PlaySound("Ammo");
-
         return true;
     }
 
