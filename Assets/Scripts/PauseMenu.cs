@@ -8,12 +8,6 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public GameObject PauseMenuUI;
-    private float previousTimeScale;
-
-    void Start()
-    {
-        previousTimeScale = Time.timeScale;
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,15 +28,14 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
-        Time.timeScale = previousTimeScale;
+        TimeController.UnpauseTime();
         gameIsPaused = false;
     }
 
     void Pause()
     {
         PauseMenuUI.SetActive(true);
-        previousTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
+        TimeController.PauseTime();
         gameIsPaused = true;
     }
 

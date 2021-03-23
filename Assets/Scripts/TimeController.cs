@@ -8,6 +8,9 @@ public class TimeController : MonoBehaviour
     private static float defaultTimeScale;
     private static float defaultFixedDeltaTime;
 
+    private static float unpausedTimeScale;
+    private static float unpausedTargetTimeScale;
+
     private static float targetTimeScale;
     private static float targetFixedDeltaTime;
 
@@ -23,6 +26,8 @@ public class TimeController : MonoBehaviour
 
         targetTimeScale = Time.timeScale;
         targetFixedDeltaTime = Time.fixedDeltaTime;
+
+        unpausedTimeScale = Time.timeScale;
     }
 
     private void Update()
@@ -44,6 +49,27 @@ public class TimeController : MonoBehaviour
     {
         targetTimeScale = Time.timeScale * factor;
         targetFixedDeltaTime = Time.fixedDeltaTime * factor;
+    }
+
+    public static void PauseTime()
+    {
+        if(Time.timeScale == 0)
+            return;
+
+        unpausedTimeScale = Time.timeScale;
+        unpausedTargetTimeScale = targetTimeScale;
+
+        Time.timeScale = 0f;
+        targetTimeScale = 0f;
+    }
+
+    public static void UnpauseTime()
+    {
+        if(Time.timeScale != 0)
+            return;
+
+        Time.timeScale = unpausedTimeScale;
+        targetTimeScale = unpausedTargetTimeScale;
     }
 
     public static void ResetTime()
