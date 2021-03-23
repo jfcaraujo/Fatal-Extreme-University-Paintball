@@ -7,7 +7,7 @@ public class PowerUpController : MonoBehaviour
     public Player_Controller playerController;
     public Backpack backpack;
 
-    public bool DoubleSpeed { get; private set; }
+    public bool SpeedUp { get; private set; }
     public bool SlowMotion { get; private set; }
     public bool ShieldProtection { get; private set; }
 
@@ -28,9 +28,9 @@ public class PowerUpController : MonoBehaviour
 
         switch (powerUp)
         {
-            case nameof(DoubleSpeed):
-                DoubleSpeed = true;
-                playerController.doubleSpeed = true;
+            case nameof(SpeedUp):
+                SpeedUp = true;
+                playerController.speedUp = true;
                 powerUpDisplay.StartNewPowerUp(1);
                 audioManager.PlaySound("Drinking");
                 break;
@@ -67,16 +67,16 @@ public class PowerUpController : MonoBehaviour
 
     private bool IsAnyActive()
     {
-        return DoubleSpeed || ShieldProtection || SlowMotion;
+        return SpeedUp || ShieldProtection || SlowMotion;
     }
 
     private void DisablePowerUp(string powerUp)
     {
         switch (powerUp)
         {
-            case nameof(DoubleSpeed):
-                DoubleSpeed = false;
-                playerController.doubleSpeed = false;
+            case nameof(SpeedUp):
+                SpeedUp = false;
+                playerController.speedUp = false;
                 break;
             case nameof(SlowMotion):
                 SlowMotion = false;
@@ -93,7 +93,7 @@ public class PowerUpController : MonoBehaviour
 
     public void DisableAll()
     {
-        if (DoubleSpeed) DisablePowerUp(nameof(DoubleSpeed));
+        if (SpeedUp) DisablePowerUp(nameof(SpeedUp));
         if (SlowMotion) DisablePowerUp(nameof(SlowMotion));
         if (ShieldProtection) DisablePowerUp(nameof(ShieldProtection));
         powerUpDisplay.EndDisplay();

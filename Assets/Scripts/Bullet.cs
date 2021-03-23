@@ -77,7 +77,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = enemy.getFacingRight() && m_Rigidbody2D.velocity.x < 0 ||
                             !enemy.getFacingRight() && m_Rigidbody2D.velocity.x > 0;
 
-            enemy.Damage(1, hitFront);
+            enemy.Damage(isTrap ? 2 : 1, hitFront);
         }
 
         HealthController healthController = hitObject.GetComponent<HealthController>();
@@ -89,7 +89,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
-            healthController.Damage(1, hitFront);
+            healthController.Damage(isTrap ? 2 : 1, hitFront);
         }
     }
 
@@ -242,5 +242,10 @@ public class Bullet : MonoBehaviour
             splatterSR.sortingLayerName = "PlayerFront";
             splatterSR.sortingOrder = 6;
         }
+    }
+
+    private void OnDestroy() {
+        if(isTrap)
+            SendMessageUpwards("OnChildDestroy", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -33,6 +33,9 @@ public class HeightCheck : MonoBehaviour
                 cc = other.gameObject.GetComponent<DepthLevelManager>();
             }
 
+            if (cc == null)
+                return;
+
             if (isPlayer)
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
 
@@ -58,6 +61,9 @@ public class HeightCheck : MonoBehaviour
             {
                 cc = other.gameObject.GetComponent<DepthLevelManager>();
             }
+
+            if (cc == null)
+                return;
 
             if (isPlayer && Input.GetButton("Drop"))
             {
@@ -91,6 +97,9 @@ public class HeightCheck : MonoBehaviour
         {
             cc = other.gameObject.GetComponent<DepthLevelManager>();
         }
+
+        if (cc == null)
+            return;
 
         // If the object exited to above, it'll be on the level
         if (other.attachedRigidbody.velocity.y >= 0)

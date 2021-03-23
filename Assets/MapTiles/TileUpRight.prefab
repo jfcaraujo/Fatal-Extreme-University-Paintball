@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 6903116641784034460}
   - component: {fileID: 6903116641784034450}
   - component: {fileID: 6903116641784034451}
-  m_Layer: 15
+  m_Layer: 20
   m_Name: HeightCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
