@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
+    public AudioManager audioManager;
     public Player_Controller playerController;
     public Backpack backpack;
 
@@ -31,16 +32,19 @@ public class PowerUpController : MonoBehaviour
                 DoubleSpeed = true;
                 playerController.doubleSpeed = true;
                 powerUpDisplay.StartNewPowerUp(1);
+                audioManager.PlaySound("Drinking");
                 break;
             case nameof(SlowMotion):
                 SlowMotion = true;
                 TimeController.ChangeTime(slowMotionFactor);
                 powerUpDisplay.StartNewPowerUp(2);
+                audioManager.PlaySound("Drinking");
                 break;
             case nameof(ShieldProtection):
                 ShieldProtection = true;
                 backpack.gameObject.SetActive(true);
                 powerUpDisplay.StartNewPowerUp(0);
+                audioManager.PlaySound("Zipper");
                 break;
             default:
                 return false;

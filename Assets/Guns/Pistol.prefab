@@ -221,6 +221,8 @@ MonoBehaviour:
   generalSounds:
   - name: Gun Shot
     clip: {fileID: 8300000, guid: 79e8986b1138fd74a880c372f065eaf9, type: 3}
+  - name: Ammo
+    clip: {fileID: 8300000, guid: 5ed7aeadb04f2cc4f8c1dd78fe6afc5b, type: 3}
   individualSounds: []
 --- !u!1 &2992716866022215653
 GameObject:
