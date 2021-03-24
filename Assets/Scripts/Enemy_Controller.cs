@@ -138,8 +138,7 @@ public class Enemy_Controller : MonoBehaviour
                     2, LayerMask.GetMask("Ground", "UpperGround"));
 
                 //if near a wall or too far from enemy
-                //second part of condition checks if next movement will be atleast 30 units away from the player
-                if (raycast.collider || Mathf.Abs(-playerDistance + roamingDirection * runSpeed) > 30)
+                if (raycast.collider || -playerDistance * roamingDirection > 30)
                 {
                     roamingDirection *= -1;
                 }
