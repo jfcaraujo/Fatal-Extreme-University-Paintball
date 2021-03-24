@@ -22,7 +22,8 @@ public class Round_Controller : MonoBehaviour
     public Text enemiesLeftText;
 
     private float leftBorder, rightBorder, up, down;
-    private bool spawnAtRight = true, spawnAbove = false;
+    private bool spawnAtRight = true;
+    private float spawnAbove = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +41,9 @@ public class Round_Controller : MonoBehaviour
             enemiesThisRoundPistol = 2;
             enemiesThisRoundMachineGun = 3;
         }
-        WeaponAmmo temp1=enemyPistol.GetComponent<Enemy_Controller>().ammoDrop;
-        WeaponAmmo temp2=enemyMachineGun.GetComponent<Enemy_Controller>().ammoDrop;
+
+        WeaponAmmo temp1 = enemyPistol.GetComponent<Enemy_Controller>().ammoDrop;
+        WeaponAmmo temp2 = enemyMachineGun.GetComponent<Enemy_Controller>().ammoDrop;
         if (MainMenu.difficulty == 1)
         {
             temp1.ammo = 5;
@@ -58,6 +60,7 @@ public class Round_Controller : MonoBehaviour
             temp1.ammo = 3;
             temp2.ammo = 3;
         }
+
         StartNextRound();
     }
 
@@ -126,8 +129,8 @@ public class Round_Controller : MonoBehaviour
         Vector2 playerPosition = player.position;
         float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 15;
         if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 15;
-        float y = /*playerPosition.y > 5*/spawnAbove ? up : down;
-        spawnAbove = !spawnAbove;
+        float y = /*playerPosition.y < 5*/spawnAbove < 2 ? down : up;
+        spawnAbove = (spawnAbove + 1) % 4;
         spawnAtRight = x < playerPosition.x;
         return new Vector2(x, y);
     }
