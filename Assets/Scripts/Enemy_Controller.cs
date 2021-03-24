@@ -54,6 +54,8 @@ public class Enemy_Controller : MonoBehaviour
     private float overcomingDistanceToStop = 0;
     private bool overcomingRight = false;
 
+    public float sightDistance = 7.5f;
+
     public delegate void OnEnemyDeath();
 
     public event OnEnemyDeath onEnemyDeath;
@@ -154,7 +156,7 @@ public class Enemy_Controller : MonoBehaviour
             {
                 Flip(playerIsRight); //flip in the direction of the player
 
-                if (playerDistanceAbs <= 5) //if close
+                if (playerDistanceAbs <= sightDistance) //if close
                 {
                     if (m_Grounded) Jump();
 
@@ -162,13 +164,13 @@ public class Enemy_Controller : MonoBehaviour
                     RaycastHit2D raycast = Physics2D.Raycast(
                         new Vector2(transform.position.x, transform.position.y - 0.144f),
                         (playerIsRight ? 1 : -1) * Vector2.right,
-                        6, LayerMask.GetMask("Player", "Obstacles"));
+                        sightDistance + 1, LayerMask.GetMask("Player", "Obstacles"));
                     if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player")
                     ) //if sees player shoot
                     {
                         Move(0);
                         if (allowFire)
-                            StartCoroutine(Shoot());
+                            StartCoroutine(Shoot((playerDistance / sightDistance) * 0.14f, (playerDistance / sightDistance) * 1f));
                         return;
                     }
                     else if (!overcomingObstacle && playerDistanceAbs < 1.8) //if really close stop moving
@@ -235,9 +237,11 @@ public class Enemy_Controller : MonoBehaviour
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot(float delay, float innacuracy)
     {
         allowFire = false;
+
+        yield return new WaitForSeconds(delay);
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
@@ -248,7 +252,10 @@ public class Enemy_Controller : MonoBehaviour
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.layer = LayerMask.NameToLayer("EnemyBullets");
-        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
+        float randomInnacuracy = UnityEngine.Random.Range(-innacuracy, innacuracy);
+
+        rb.AddForce(new Vector2(firePoint.right.x * bulletForce, randomInnacuracy * 5), ForceMode2D.Impulse);
 
         audioManager.PlaySound("Gun Shot");
 
