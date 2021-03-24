@@ -25,12 +25,12 @@ public class LoseEnemy : StateMachineBehaviour
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[1], parent.position,
                 Quaternion.identity);
         }
-        else if (probability < 0.1)
+        else if (probability < 0.075)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[2], parent.position,
                 Quaternion.identity);
         }
-        else if (probability < 0.25)
+        else if (probability < 0.125)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[3], parent.position,
                 Quaternion.identity);

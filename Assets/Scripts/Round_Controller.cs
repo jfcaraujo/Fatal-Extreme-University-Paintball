@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class Round_Controller : MonoBehaviour
 {
@@ -24,7 +22,7 @@ public class Round_Controller : MonoBehaviour
     public Text enemiesLeftText;
 
     private float leftBorder, rightBorder, up, down;
-    private bool spawnAtRight = true;
+    private bool spawnAtRight = true, spawnAbove = false;
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +101,8 @@ public class Round_Controller : MonoBehaviour
         Vector2 playerPosition = player.position;
         float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 15;
         if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 15;
-        float y = playerPosition.y < 5 ? down : up;
+        float y = /*playerPosition.y > 5*/spawnAbove ? up : down;
+        spawnAbove = !spawnAbove;
         spawnAtRight = x < playerPosition.x;
         return new Vector2(x, y);
     }

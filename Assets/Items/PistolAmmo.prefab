@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  ammo: 10
+  ammo: 3
 --- !u!114 &-5942463157983510228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +238,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontLayerId: -1320545289
   backLayerId: -2059113923
+  changeMask: 0

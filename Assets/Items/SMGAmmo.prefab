@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: SMG
-  ammo: 15
+  ammo: 5
 --- !u!114 &-2653782666048026373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +238,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontLayerId: -1320545289
   backLayerId: -2059113923
+  changeMask: 0
