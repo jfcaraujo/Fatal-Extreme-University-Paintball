@@ -12,11 +12,29 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private SpriteRenderer spriteRenderer;
 
+    private Collider2D bulletCollider;
+    private Collider2D deactivatedCollider;
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+        bulletCollider = GetComponent<Collider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        deactivatedCollider = null;
+
+        if (isTrap)
+        {
+            RaycastHit2D raycast = Physics2D.Raycast(new Vector3(transform.position.x, 4, transform.position.z), Vector2.up,
+                    Mathf.Infinity, LayerMask.GetMask("UpperGround"));
+
+            if (raycast.collider)
+            {
+                deactivatedCollider = raycast.collider;
+
+                Physics2D.IgnoreCollision(deactivatedCollider, bulletCollider, true);
+            }
+        }
     }
 
     private void Update()
@@ -25,6 +43,14 @@ public class Bullet : MonoBehaviour
             return;
 
         travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
+
+        if (isTrap && travelledDistance > 0)
+        {
+            if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= 0.01)
+            {
+                Physics2D.IgnoreCollision(deactivatedCollider, bulletCollider, false);
+            }
+        }
 
         if (travelledDistance <= maxDistance) return;
 
@@ -39,7 +65,7 @@ public class Bullet : MonoBehaviour
         GameObject hitObject = hitInfo.gameObject;
 
         // Bullet knockback
-        if(hitInfo.attachedRigidbody != null)
+        if (hitInfo.attachedRigidbody != null)
             hitInfo.attachedRigidbody.AddForce(m_Rigidbody2D.velocity.normalized * 15, ForceMode2D.Impulse);
 
         // If hit object is a bullet, only paint background surfaces
@@ -244,8 +270,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
-        if(isTrap)
+    private void OnDestroy()
+    {
+        if (isTrap)
             SendMessageUpwards("OnChildDestroy", SendMessageOptions.DontRequireReceiver);
     }
 }
