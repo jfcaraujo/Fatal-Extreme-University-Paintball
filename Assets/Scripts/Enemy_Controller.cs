@@ -305,7 +305,7 @@ public class Enemy_Controller : MonoBehaviour
     private void CheckLevel()
     {
         float playerY = player.position.y;
-        if ((playerY > 4 && IsOnUpperLevel()) || //both on top
+        if ((playerY > 5 && IsOnUpperLevel()) || //both on top
             (playerY < 5 && !IsOnUpperLevel())) //both on bottom
         {
             roaming = false;

@@ -82,8 +82,11 @@ MonoBehaviour:
   firePoint: {fileID: 1941108552681324305}
   bulletPrefab: {fileID: 8484902151697641359, guid: 752ddc8bb374da04692537adbc0fb62a,
     type: 3}
+  grenadePrefab: {fileID: 6898291141007140094, guid: bb870c00d714ff740982de0d3d3e42d9,
+    type: 3}
   bulletForce: 20
   fireCooldown: 0.15
+  grenadeCooldown: 1
   health: 1
   ammoDrop: {fileID: 5104931113129625706, guid: 46130719e2448194ab5bc2ad906f064d,
     type: 3}

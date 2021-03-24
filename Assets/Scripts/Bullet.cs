@@ -103,7 +103,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = enemy.getFacingRight() && m_Rigidbody2D.velocity.x < 0 ||
                             !enemy.getFacingRight() && m_Rigidbody2D.velocity.x > 0;
 
-            enemy.Damage(isTrap ? 2 : 1, hitFront);
+            enemy.Damage(1, hitFront);
         }
 
         HealthController healthController = hitObject.GetComponent<HealthController>();
@@ -115,7 +115,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
-            healthController.Damage(isTrap ? 2 : 1, hitFront);
+            healthController.Damage(1, hitFront);
         }
     }
 
