@@ -30,13 +30,16 @@ public class Enemy_Controller : MonoBehaviour
     private Transform player;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject grenadePrefab;
     public float bulletForce = 20f;
 
     private float seeingDistance = 15f;
 
     public float fireCooldown = 0.4f; // Fire cooldown in seconds
+    public float grenadeCooldown = 1f; // Grenade cooldown in seconds
     [SerializeField] private float health = 1;
     private bool allowFire = true;
+    private bool allowGrenade = true;
     public GameObject ammoDrop;
 
     private HealthController healthController;
@@ -107,6 +110,28 @@ public class Enemy_Controller : MonoBehaviour
             if (roaming)
             {
                 Flip(roamingDirection == 1);
+
+                if (allowGrenade)
+                {
+                    RaycastHit2D raycastPlayer = Physics2D.Raycast(transform.position, (IsOnUpperLevel() ? -1 : 1) * Vector2.up,
+                    Mathf.Infinity, LayerMask.GetMask("Player"));
+
+                    if (raycastPlayer.collider)
+                    {
+                        GameObject grenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
+                        Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
+                        rb.angularVelocity = 100f;
+                        rb.gravityScale = 1.5f;
+
+                        rb.AddForce(new Vector2(0, IsOnUpperLevel() ? -1 : 15), ForceMode2D.Impulse);
+
+                        grenade.layer = LayerMask.NameToLayer("EnemyBullets");
+
+                        allowGrenade = false;
+
+                        StartCoroutine(GrenadeCooldown());
+                    }
+                }
 
                 RaycastHit2D raycast = Physics2D.Raycast(transform.position,
                     roamingDirection * Vector2.right,
@@ -229,6 +254,13 @@ public class Enemy_Controller : MonoBehaviour
         allowFire = true;
     }
 
+    IEnumerator GrenadeCooldown()
+    {
+        yield return new WaitForSeconds(grenadeCooldown);
+
+        allowGrenade = true;
+    }
+
     private void Flip(bool right)
     {
         if (m_FacingRight && !right || !m_FacingRight && right)
@@ -266,12 +298,16 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
+    private bool IsOnUpperLevel()
+    {
+        return transform.position.y > 5;
+    }
+
     private void CheckLevel()
     {
-        float enemyY = transform.position.y;
         float playerY = player.position.y;
-        if ((playerY > 4 && enemyY > 5) || //both on top
-            (playerY < 5 && enemyY < 5)) //both on bottom
+        if ((playerY > 4 && IsOnUpperLevel()) || //both on top
+            (playerY < 5 && !IsOnUpperLevel())) //both on bottom
         {
             roaming = false;
         }
