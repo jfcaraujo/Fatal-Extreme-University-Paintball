@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static int difficulty;
+    public static int difficulty = 2;
+
     public void PlayGame(int choice)
     {
         difficulty = choice;
