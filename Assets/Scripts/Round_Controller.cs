@@ -33,6 +33,31 @@ public class Round_Controller : MonoBehaviour
         rightBorder = transform.GetChild(1).position.x;
         up = transform.GetChild(0).position.y;
         down = transform.GetChild(1).position.y;
+        if (MainMenu.difficulty == 2)
+            enemiesThisRoundPistol = 2;
+        if (MainMenu.difficulty == 3)
+        {
+            enemiesThisRoundPistol = 2;
+            enemiesThisRoundMachineGun = 3;
+        }
+        WeaponAmmo temp1=enemyPistol.GetComponent<Enemy_Controller>().ammoDrop;
+        WeaponAmmo temp2=enemyMachineGun.GetComponent<Enemy_Controller>().ammoDrop;
+        if (MainMenu.difficulty == 1)
+        {
+            temp1.ammo = 5;
+            temp2.ammo = 5;
+        }
+        else if (MainMenu.difficulty == 2)
+        {
+            temp1.ammo = 4;
+            temp2.ammo = 4;
+        }
+
+        else if (MainMenu.difficulty == 3)
+        {
+            temp1.ammo = 3;
+            temp2.ammo = 3;
+        }
         StartNextRound();
     }
 

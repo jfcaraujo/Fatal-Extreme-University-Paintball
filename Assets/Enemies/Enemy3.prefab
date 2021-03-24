@@ -88,7 +88,7 @@ MonoBehaviour:
   fireCooldown: 0.15
   grenadeCooldown: 1
   health: 1
-  ammoDrop: {fileID: 5104931113129625706, guid: 46130719e2448194ab5bc2ad906f064d,
+  ammoDrop: {fileID: 5289132224948078496, guid: 46130719e2448194ab5bc2ad906f064d,
     type: 3}
   inputBlocked: 0
   Droppables:

@@ -40,7 +40,7 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private float health = 1;
     private bool allowFire = true;
     private bool allowGrenade = true;
-    public GameObject ammoDrop;
+    public WeaponAmmo ammoDrop;
 
     private HealthController healthController;
 
@@ -48,6 +48,7 @@ public class Enemy_Controller : MonoBehaviour
     private int fleeingDirection = 0;
     private bool roaming;
     private int roamingDirection = 1;
+    private int maxRoamingDistance=30;
 
     private bool overcomingObstacle = false;
     private float overcomingDistanceToStop = 0;
@@ -76,6 +77,9 @@ public class Enemy_Controller : MonoBehaviour
             System.Random rnd = new System.Random(gameObject.GetInstanceID());
             colorIndex = rnd.Next(colors.Count);
         }
+
+        if (MainMenu.difficulty == 1) maxRoamingDistance = 50;
+        if (MainMenu.difficulty == 2) maxRoamingDistance = 40;
     }
 
     void FixedUpdate()
@@ -138,7 +142,7 @@ public class Enemy_Controller : MonoBehaviour
                     2, LayerMask.GetMask("Ground", "UpperGround"));
 
                 //if near a wall or too far from enemy
-                if (raycast.collider || -playerDistance * roamingDirection > 30)
+                if (raycast.collider || -playerDistance * roamingDirection > maxRoamingDistance)
                 {
                     roamingDirection *= -1;
                 }

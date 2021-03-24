@@ -352,8 +352,9 @@ MonoBehaviour:
     type: 3}
   bulletForce: 20
   fireCooldown: 0.4
+  grenadeCooldown: 1
   health: 1
-  ammoDrop: {fileID: 5140166328663893556, guid: cf2234c64b77a8643b2e53f202102608,
+  ammoDrop: {fileID: 5254315906164271614, guid: cf2234c64b77a8643b2e53f202102608,
     type: 3}
   inputBlocked: 0
   Droppables:
