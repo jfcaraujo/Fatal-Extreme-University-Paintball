@@ -115,7 +115,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
-            healthController.Damage(1, hitFront);
+            healthController.Damage(isTrap ? healthController.maxDamage : 1, hitFront);
         }
     }
 

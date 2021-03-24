@@ -10,6 +10,8 @@ public class HealthController : MonoBehaviour
     public int startingPaperTowels = 5;
     public int maxPaperTowels = 10;
     public bool invulnerable = false;
+    private int damageDone = 0;
+    public int maxDamage = 3;
 
     private Animator animator;
     public Text healthDisplay;
@@ -27,6 +29,8 @@ public class HealthController : MonoBehaviour
 
         numPaperTowels = startingPaperTowels;
         healthDisplay.text = numPaperTowels.ToString();
+
+        damageDone = 0;
     }
 
     public bool AddPaperTowels(int num)
@@ -46,6 +50,11 @@ public class HealthController : MonoBehaviour
     {
         if (invulnerable)
             return false;
+
+        damageDone += damage;
+
+        if(damageDone < maxDamage)
+            return true;
 
         // Vulnerability is set to true here
         // Has to be set to false at the end of the Heal animation
@@ -80,7 +89,8 @@ public class HealthController : MonoBehaviour
                 break;
         }
 
-        numPaperTowels = Mathf.Max(numPaperTowels - damage, 0);
+        damageDone = 0;
+        numPaperTowels = Mathf.Max(numPaperTowels - 1, 0);
         healthDisplay.text = numPaperTowels.ToString();
         return true;
     }
