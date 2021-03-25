@@ -506,12 +506,16 @@ MonoBehaviour:
   generalSounds:
   - name: Gun Shot
     clip: {fileID: 8300000, guid: 79e8986b1138fd74a880c372f065eaf9, type: 3}
+    cooldown: 0
   - name: Jump
     clip: {fileID: 8300000, guid: ef8972ddb80a7574eacf3c765606a026, type: 3}
+    cooldown: 0.5
   - name: Damage1
     clip: {fileID: 8300000, guid: 9ce092a40cc1ef34191fc3bb068b0dd7, type: 3}
+    cooldown: 0
   - name: Damage2
     clip: {fileID: 8300000, guid: f1ac886732122c94ca04b96933a8f13b, type: 3}
+    cooldown: 0
   individualSounds:
   - name: Run
     clip: {fileID: 8300000, guid: 3a08315c9f6d6674eb9ca58e84c29af3, type: 3}

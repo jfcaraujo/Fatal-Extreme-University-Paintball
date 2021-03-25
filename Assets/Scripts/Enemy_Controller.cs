@@ -23,6 +23,7 @@ public class Enemy_Controller : MonoBehaviour
 
     const float k_GroundedRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
+    private Collider2D m_Collider2D;
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_FacingRight = true;
     private bool m_Grounded;
@@ -48,7 +49,7 @@ public class Enemy_Controller : MonoBehaviour
     private int fleeingDirection = 0;
     private bool roaming;
     private int roamingDirection = 1;
-    private int maxRoamingDistance=30;
+    private int maxRoamingDistance = 30;
 
     private bool overcomingObstacle = false;
     private float overcomingDistanceToStop = 0;
@@ -67,6 +68,7 @@ public class Enemy_Controller : MonoBehaviour
     void Start()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Collider2D = GetComponent<Collider2D>();
         animator = gameObject.GetComponentInChildren<Animator>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         player = playerObject.transform;
@@ -106,8 +108,20 @@ public class Enemy_Controller : MonoBehaviour
             return;
         }
 
+        // Check for obstacle in front, so it jumps before
+        RaycastHit2D raycastObstacle = Physics2D.Raycast(
+                                    new Vector2(transform.position.x, transform.position.y),
+                                    (m_FacingRight ? 1 : -1) * Vector2.right,
+                                    sightDistance / 2, LayerMask.GetMask("Obstacles", "UpperObstacles"));
+
         if (fleeingDirection != 0) //if fleeing
         {
+
+            if (raycastObstacle.transform)
+            {
+                Jump();
+            }
+
             Move(fleeingDirection * runSpeed);
         }
         else //if not fleeing
@@ -149,6 +163,11 @@ public class Enemy_Controller : MonoBehaviour
                     roamingDirection *= -1;
                 }
 
+                if (raycastObstacle.transform)
+                {
+                    Jump();
+                }
+
                 Move(roamingDirection * runSpeed);
 
             }
@@ -164,7 +183,7 @@ public class Enemy_Controller : MonoBehaviour
                     RaycastHit2D raycast = Physics2D.Raycast(
                         new Vector2(transform.position.x, transform.position.y - 0.144f),
                         (playerIsRight ? 1 : -1) * Vector2.right,
-                        sightDistance + 1, LayerMask.GetMask("Player", "Obstacles"));
+                        sightDistance + 1, LayerMask.GetMask("Player", "Obstacles", "UpperObstacles"));
                     if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Player")
                     ) //if sees player shoot
                     {
@@ -179,7 +198,7 @@ public class Enemy_Controller : MonoBehaviour
                         return;
                     }
 
-                    if (raycast.transform && raycast.transform.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+                    if (raycast.transform && (raycast.transform.gameObject.layer == LayerMask.NameToLayer("Obstacles") || raycast.transform.gameObject.layer == LayerMask.NameToLayer("UpperObstacles")))
                     {
                         overcomingObstacle = true;
                         overcomingDistanceToStop = playerDistanceAbs;
