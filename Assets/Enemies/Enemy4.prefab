@@ -341,7 +341,7 @@ MonoBehaviour:
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 364544
+    m_Bits: 2461696
   m_GroundCheck: {fileID: 7862320415833254348}
   audioManager: {fileID: -5997066509825556209}
   runSpeed: 8
@@ -356,6 +356,7 @@ MonoBehaviour:
   health: 1
   ammoDrop: {fileID: 5254315906164271614, guid: cf2234c64b77a8643b2e53f202102608,
     type: 3}
+  sightDistance: 7.5
   inputBlocked: 0
   Droppables:
   - {fileID: 8789478576760226214, guid: 0ceb81cb707f5fe49970842d8fcb890f, type: 3}

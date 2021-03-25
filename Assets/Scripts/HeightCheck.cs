@@ -6,10 +6,14 @@
 public class HeightCheck : MonoBehaviour
 {
     private DepthLevelManager playerDepthManager;
+    private Player_Controller player_Controller;
 
     void Start()
     {
-        playerDepthManager = GameObject.FindGameObjectWithTag("Player").GetComponent<DepthLevelManager>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        playerDepthManager = player.GetComponent<DepthLevelManager>();
+        player_Controller = player.GetComponent<Player_Controller>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -37,7 +41,10 @@ public class HeightCheck : MonoBehaviour
                 return;
 
             if (isPlayer)
+            {
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
+                player_Controller.ToggleCollisions("UpperObstacles", true);
+            }
 
             cc.SwitchSortingLayer(false);
         }
@@ -69,12 +76,16 @@ public class HeightCheck : MonoBehaviour
             {
                 // However, if the object is the player and they want to drop, it'll be off the level
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
+                player_Controller.ToggleCollisions("UpperObstacles", false);
                 cc.SwitchSortingLayer(true);
             }
             else
             {
                 if (isPlayer)
+                {
                     Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
+                    player_Controller.ToggleCollisions("UpperObstacles", true);
+                }
 
                 cc.SwitchSortingLayer(false);
             }
@@ -105,7 +116,10 @@ public class HeightCheck : MonoBehaviour
         if (other.attachedRigidbody.velocity.y >= 0)
         {
             if (isPlayer)
+            {
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
+                player_Controller.ToggleCollisions("UpperObstacles", true);
+            }
 
             cc.SwitchSortingLayer(false);
         }
@@ -113,7 +127,10 @@ public class HeightCheck : MonoBehaviour
         else
         {
             if (isPlayer)
+            {
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
+                player_Controller.ToggleCollisions("UpperObstacles", false);
+            }
 
             cc.SwitchSortingLayer(true);
         }

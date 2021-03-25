@@ -208,7 +208,7 @@ public class Bullet : MonoBehaviour
             // with order 5
             splatterSR.sortingOrder = 5;
         }
-        else if (hitObject.layer == LayerMask.NameToLayer("Obstacles"))
+        else if (hitObject.layer == LayerMask.NameToLayer("Obstacles") || hitObject.layer == LayerMask.NameToLayer("UpperObstacles"))
         {
             // Obstacle splatters are visible on the "Environment" sorting layer,
             // with order 6
