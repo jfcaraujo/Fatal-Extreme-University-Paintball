@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2061,6 +2061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!4 &429711605 stripped
@@ -3111,6 +3116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!1 &665160143
@@ -3712,6 +3722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!1 &741375391
@@ -4029,6 +4044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -4386,6 +4406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -5999,6 +6024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!1001 &1227437925
@@ -6067,6 +6097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -6750,6 +6785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!1 &1489106168
@@ -7397,6 +7437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -8394,6 +8439,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
 --- !u!1 &1826507058
@@ -8805,10 +8855,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1143153187}
     - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: invulnerable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: healthDisplay
       value: 
       objectReference: {fileID: 2115021597}
@@ -8816,10 +8862,6 @@ PrefabInstance:
       propertyPath: powerUpController
       value: 
       objectReference: {fileID: 1984226556}
-    - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: startingPaperTowels
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1290715225530138, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8873,26 +8915,11 @@ PrefabInstance:
       propertyPath: ammoDisplay
       value: 
       objectReference: {fileID: 1196315630}
-    - target: {fileID: 2816387341626082106, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: automaticFire
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2816387341626082106, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: remainingAmmo
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 3307123094233984331, guid: 6877fb649746c674d8fbbcf60d41892b,
         type: 3}
       propertyPath: ammoDisplay
       value: 
       objectReference: {fileID: 1196315630}
-    - target: {fileID: 3307123094233984331, guid: 6877fb649746c674d8fbbcf60d41892b,
-        type: 3}
-      propertyPath: remainingAmmo
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
 --- !u!114 &1874392724 stripped
@@ -9042,6 +9069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -9239,6 +9271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -9480,6 +9517,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}
@@ -10011,6 +10053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crate (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775278109704454100, guid: 6f613da2c3147a2439cc7445cf59cf0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f613da2c3147a2439cc7445cf59cf0e, type: 3}

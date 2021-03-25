@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
@@ -30,16 +31,49 @@ public class Player_Controller : MonoBehaviour
 
     private Collider2D playerCollider;
 
+    // Layer collisions asked to be toggled
+    private Dictionary<string, bool> collisionsToToggle;
+
     // Start is called before the first frame update
     private void Start()
     {
+        collisionsToToggle = new Dictionary<string, bool>();
+
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         playerCollider = gameObject.GetComponent<Collider2D>();
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperObstacles"), true);
     }
 
     private void Update()
     {
+        List<string> collisionsToRemove = new List<string>();
+
+        foreach (string layer in collisionsToToggle.Keys)
+        {
+            // Will check if player is overlapping any object from the layer
+            // before activating collisions
+            //
+            // If the player is overlapping, do not activate collision now
+            int numColliders = 5;
+            Collider2D[] colliders = new Collider2D[numColliders];
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.SetLayerMask(LayerMask.GetMask(layer));
+
+            if (playerCollider.OverlapCollider(contactFilter, colliders) == 0)
+            {
+                collisionsToToggle.TryGetValue(layer, out bool value);
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layer), !value);
+                collisionsToRemove.Add(layer);
+            }
+        }
+
+        // Remove toggled collisions
+        foreach (string layer in collisionsToRemove)
+        {
+            collisionsToToggle.Remove(layer);
+        }
+
         if (inputBlocked)
         {
             horizontalMove = 0;
@@ -117,6 +151,27 @@ public class Player_Controller : MonoBehaviour
 
         // Re-enable collisions between player and platform
         Physics2D.IgnoreCollision(platformCollider, playerCollider, false);
+    }
+
+    // Used to request a layer collision toggle, that will be placed on a list
+    // and will only be toggled when the player is not currently overlapping any of that layer's colliders
+    public void ToggleCollisions(string layer, bool enable)
+    {
+        // If a request for the opposite is already in the list,
+        // simply remove the previous request
+        if (collisionsToToggle.TryGetValue(layer, out bool value))
+        {
+            if (value != enable)
+                collisionsToToggle.Remove(layer);
+            
+            return;
+        }
+
+        // Only add to list if it isn't already as asked
+        if (Physics2D.GetIgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layer)) == enable)
+        {
+            collisionsToToggle.Add(layer, enable);
+        }
     }
 
     public void Flip()
