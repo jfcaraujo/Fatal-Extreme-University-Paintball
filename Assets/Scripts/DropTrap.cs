@@ -20,7 +20,6 @@ public class DropTrap : MonoBehaviour
         //activated when rectangle is hit
         if (other.name == "Player")
         {
-            onTrapSprung?.Invoke();
             if (m_rigidbody2D != null)
             {
                 audioManager.PlaySound("Release");
@@ -35,6 +34,7 @@ public class DropTrap : MonoBehaviour
 
     private void OnChildDestroy()
     {
+        onTrapSprung?.Invoke();
         Destroy(gameObject);
     }
 }

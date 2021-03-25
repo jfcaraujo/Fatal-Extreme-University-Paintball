@@ -15,22 +15,23 @@ public class LoseEnemy : StateMachineBehaviour
             .GetComponent<Rigidbody2D>().AddForce(new Vector2(-1f, 0.5f), ForceMode2D.Impulse);
         float probability = Random.value;
         GameObject item = null;
-        if (probability < 0.025)
+        double probabilityAux = 1+0.25*(3-MainMenu.difficulty);
+        if (probability < 0.025*probabilityAux)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[0], parent.position,
                 Quaternion.identity);
         }
-        else if (probability < 0.05)
+        else if (probability < 0.05*probabilityAux)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[1], parent.position,
                 Quaternion.identity);
         }
-        else if (probability < 0.075)
+        else if (probability < 0.075*probabilityAux)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[2], parent.position,
                 Quaternion.identity);
         }
-        else if (probability < 0.125)
+        else if (probability < 0.125*probabilityAux)
         {
             item = Instantiate(parent.GetComponent<Enemy_Controller>().Droppables[3], parent.position,
                 Quaternion.identity);
