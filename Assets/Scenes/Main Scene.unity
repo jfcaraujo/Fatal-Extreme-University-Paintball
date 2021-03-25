@@ -8855,6 +8855,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1143153187}
     - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: invulnerable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837310080, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: healthDisplay
       value: 
       objectReference: {fileID: 2115021597}
@@ -9352,8 +9356,10 @@ MonoBehaviour:
   generalSounds:
   - name: Drinking
     clip: {fileID: 8300000, guid: 28924f24f024d284b97318061da614ef, type: 3}
+    cooldown: 0
   - name: Zipper
     clip: {fileID: 8300000, guid: 92127bcfb1e04164cb62eeff6d128e4c, type: 3}
+    cooldown: 0
   individualSounds: []
 --- !u!82 &1984226559
 AudioSource:
