@@ -4,7 +4,7 @@ public class Splatter : MonoBehaviour
 {
     public AudioManager audioManager;
 
-    public bool isTrap;
+    public bool isGrenade;
 
     private void Start()
     {
@@ -12,7 +12,7 @@ public class Splatter : MonoBehaviour
 
         int randomNumber = Random.Range(0, 3);
 
-        if (isTrap)
+        if (isGrenade)
             audioManager.PlaySound("GlassBreak");
 
         switch (Random.Range(0, 3))

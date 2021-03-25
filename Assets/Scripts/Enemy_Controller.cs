@@ -143,9 +143,11 @@ public class Enemy_Controller : MonoBehaviour
                         rb.angularVelocity = 100f;
                         rb.gravityScale = 1.5f;
 
-                        rb.AddForce(new Vector2(0, IsOnUpperLevel() ? -1 : 15), ForceMode2D.Impulse);
+                        rb.velocity = new Vector2(0, IsOnUpperLevel() ? -1 : 15);
 
-                        grenade.layer = LayerMask.NameToLayer("EnemyBullets");
+                        Collider2D cl = grenade.GetComponent<Collider2D>();
+
+                        Physics2D.IgnoreCollision(m_Collider2D, cl);
 
                         allowGrenade = false;
 

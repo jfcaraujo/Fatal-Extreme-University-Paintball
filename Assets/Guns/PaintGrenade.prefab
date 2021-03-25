@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6898291141007140082}
   - component: {fileID: 6898291141007140083}
   - component: {fileID: 6898291141007140081}
-  m_Layer: 16
+  m_Layer: 22
   m_Name: PaintGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,8 @@ MonoBehaviour:
   splatterPrefab: {fileID: 5992111770401644293, guid: 66dddb183b001cc4b9110bee22138add,
     type: 3}
   maxDistance: 20
-  isTrap: 1
+  isTrap: 0
+  isGrenade: 1
 --- !u!70 &6898291141007140081
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

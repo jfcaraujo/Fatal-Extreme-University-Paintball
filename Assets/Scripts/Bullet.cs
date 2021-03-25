@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float maxDistance = 20f;
 
     [SerializeField] private bool isTrap = false;
+    [SerializeField] private bool isGrenade = false;
     private bool exists = true;
     private float travelledDistance = 0f;
     private Rigidbody2D m_Rigidbody2D;
@@ -23,7 +24,7 @@ public class Bullet : MonoBehaviour
 
         deactivatedCollider = null;
 
-        if (isTrap)
+        if (isGrenade && !isTrap)
         {
             RaycastHit2D raycast = Physics2D.Raycast(new Vector3(transform.position.x, 4, transform.position.z), Vector2.up,
                     Mathf.Infinity, LayerMask.GetMask("UpperGround"));
@@ -44,7 +45,7 @@ public class Bullet : MonoBehaviour
 
         travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
 
-        if (isTrap && travelledDistance > 0)
+        if (isGrenade && !isTrap && travelledDistance > 0)
         {
             if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= 0.01)
             {
@@ -69,7 +70,9 @@ public class Bullet : MonoBehaviour
             hitInfo.attachedRigidbody.AddForce(m_Rigidbody2D.velocity.normalized * 15, ForceMode2D.Impulse);
 
         // If hit object is a bullet, only paint background surfaces
-        if (hitObject.layer == LayerMask.NameToLayer("PlayerBullets") || hitObject.layer == LayerMask.NameToLayer("EnemyBullets"))
+        if (hitObject.layer == LayerMask.NameToLayer("PlayerBullets")
+            || hitObject.layer == LayerMask.NameToLayer("EnemyBullets")
+            || hitObject.layer == LayerMask.NameToLayer("Grenade"))
         {
             PaintOtherSurfaces();
             return;
@@ -115,7 +118,7 @@ public class Bullet : MonoBehaviour
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
 
-            healthController.Damage(isTrap ? healthController.maxDamage : 1, hitFront);
+            healthController.Damage(isGrenade ? healthController.maxDamage : 1, hitFront);
         }
     }
 
@@ -174,7 +177,7 @@ public class Bullet : MonoBehaviour
         GameObject splatterObject = Instantiate(splatterPrefab, hitObject.transform, true);
 
         // Z should always be positive
-        if (isTrap)
+        if (isGrenade)
         {
             splatterObject.transform.position = new Vector3(position.x, position.y - 0.3f, Mathf.Abs(position.z));
             splatterObject.transform.localScale = splatterObject.transform.localScale * 3;
@@ -187,12 +190,12 @@ public class Bullet : MonoBehaviour
         Splatter splatterScript = splatterObject.GetComponent<Splatter>();
 
         if (splatterScript != null)
-            splatterScript.isTrap = isTrap;
+            splatterScript.isGrenade = isGrenade;
 
         SpriteRenderer splatterSR = splatterObject.GetComponent<SpriteRenderer>();
 
         // Set splatter color to pellet color
-        if (isTrap)
+        if (isGrenade)
             splatterSR.color = Color.red;
         else
             splatterSR.color = spriteRenderer.color;
@@ -272,7 +275,7 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (isTrap)
+        if (isGrenade)
             SendMessageUpwards("OnChildDestroy", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -90,6 +90,7 @@ MonoBehaviour:
   generalSounds:
   - name: Release
     clip: {fileID: 8300000, guid: 1ca85c04711e9dd49883d036d500b860, type: 3}
+    cooldown: 0
   individualSounds: []
 --- !u!82 &6586978275983050827
 AudioSource:
@@ -194,10 +195,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7652603508475159881}
     m_Modifications:
+    - target: {fileID: 6898291141007140083, guid: bb870c00d714ff740982de0d3d3e42d9,
+        type: 3}
+      propertyPath: isTrap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6898291141007140094, guid: bb870c00d714ff740982de0d3d3e42d9,
         type: 3}
       propertyPath: m_Name
       value: PaintGrenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898291141007140094, guid: bb870c00d714ff740982de0d3d3e42d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6898291141007140095, guid: bb870c00d714ff740982de0d3d3e42d9,
         type: 3}
