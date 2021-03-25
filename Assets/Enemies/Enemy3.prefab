@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 2461696
+    m_Bits: 2428928
   m_GroundCheck: {fileID: 1941108553074494870}
   audioManager: {fileID: -7048452699124396181}
   runSpeed: 8

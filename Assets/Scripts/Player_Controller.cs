@@ -163,7 +163,7 @@ public class Player_Controller : MonoBehaviour
         {
             if (value != enable)
                 collisionsToToggle.Remove(layer);
-            
+
             return;
         }
 
