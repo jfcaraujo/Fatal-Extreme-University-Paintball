@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the power-up display
+/// </summary>
 public class PowerUpDisplay : MonoBehaviour
 {
     public Slider slider;
     private int maxDuration;
     public Transform powerUpSprite;
 
+    ///<summary>
+    /// Sets the maximum duration for the power-ups
+    ///</summary>
     public void SetMaxDuration(int duration)
     {
         slider.maxValue = duration;
         maxDuration = duration;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (slider.value > 0)
@@ -28,6 +33,9 @@ public class PowerUpDisplay : MonoBehaviour
         }
     }
 
+    ///<summary>
+    /// Activates the power-up display
+    ///</summary>
     public void StartNewPowerUp(int powerUp)
     {
         slider.value = maxDuration;
@@ -40,6 +48,9 @@ public class PowerUpDisplay : MonoBehaviour
         }
     }
 
+    ///<summary>
+    /// Deactivates the power-up display
+    ///</summary>
     public void EndDisplay()
     {
         slider.value = 0;

@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+/// <summary>
+/// Manages time scale and fixedDeltaTime changes
+/// </summary>
 public class TimeController : MonoBehaviour
 {
     public delegate void DelegateVoid();
@@ -24,33 +28,40 @@ public class TimeController : MonoBehaviour
         defaultTimeScale = Time.timeScale;
         defaultFixedDeltaTime = Time.fixedDeltaTime;
 
-        targetTimeScale = Time.timeScale;
-        targetFixedDeltaTime = Time.fixedDeltaTime;
+        targetTimeScale = defaultTimeScale;
+        targetFixedDeltaTime = defaultFixedDeltaTime;
 
-        unpausedTimeScale = Time.timeScale;
+        unpausedTimeScale = defaultTimeScale;
     }
 
     private void Update()
     {
-        if (Time.timeScale != targetTimeScale)
+        if (Math.Abs(Time.timeScale - targetTimeScale) > 0.000001)
         {
             Time.timeScale = Mathf.SmoothDamp(Time.timeScale, targetTimeScale, ref velocityTimeScale, smoothTime);
 
             OnTimeScaleChange?.Invoke();
         }
 
-        if (Time.fixedDeltaTime != targetFixedDeltaTime)
+        if (Math.Abs(Time.fixedDeltaTime - targetFixedDeltaTime) > 0.000001)
         {
             Time.fixedDeltaTime = Mathf.SmoothDamp(Time.fixedDeltaTime, targetFixedDeltaTime, ref velocityFixedDeltaTime, smoothTime);
         }
     }
 
+    ///<summary>
+    /// Changes the target timescale and the target fixedDeltaTime
+    ///</summary>
+    /// <param name="factor"> Factor to change time scale by </param>
     public static void ChangeTime(float factor)
     {
-        targetTimeScale = targetTimeScale * factor;
-        targetFixedDeltaTime = targetFixedDeltaTime * factor;
+        targetTimeScale *= factor;
+        targetFixedDeltaTime *= factor;
     }
 
+    ///<summary>
+    /// Pauses time and saves previous values for unpause
+    ///</summary>
     public static void PauseTime()
     {
         if(Time.timeScale == 0)
@@ -63,6 +74,9 @@ public class TimeController : MonoBehaviour
         targetTimeScale = 0f;
     }
 
+    ///<summary>
+    /// Unpauses time to values before pause
+    ///</summary>
     public static void UnpauseTime()
     {
         if(Time.timeScale != 0)
@@ -72,6 +86,9 @@ public class TimeController : MonoBehaviour
         targetTimeScale = unpausedTargetTimeScale;
     }
 
+    ///<summary>
+    /// sets target timescale and the target fixedDeltaTime to default values
+    ///</summary>
     public static void ResetTime()
     {
         targetTimeScale = defaultTimeScale;

@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the rounds and spawns enemies
+/// </summary>
 public class Round_Controller : MonoBehaviour
 {
     public GameObject enemyPistol;
@@ -25,7 +28,6 @@ public class Round_Controller : MonoBehaviour
     private bool spawnAtRight = true;
     private float spawnAbove = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         healthController.onHeal += Flee;
@@ -42,32 +44,32 @@ public class Round_Controller : MonoBehaviour
             enemiesThisRoundMachineGun = 3;
         }
 
-        WeaponAmmo temp1 = enemyPistol.GetComponent<Enemy_Controller>().ammoDrop;
-        WeaponAmmo temp2 = enemyMachineGun.GetComponent<Enemy_Controller>().ammoDrop;
-        if (MainMenu.difficulty == 1)
+        WeaponAmmo pistolAmmoDrop = enemyPistol.GetComponent<Enemy_Controller>().ammoDrop;
+        WeaponAmmo machineGunAmmoDrop = enemyMachineGun.GetComponent<Enemy_Controller>().ammoDrop;
+        switch (MainMenu.difficulty)
         {
-            temp1.ammo = 5;
-            temp2.ammo = 5;
-        }
-        else if (MainMenu.difficulty == 2)
-        {
-            temp1.ammo = 4;
-            temp2.ammo = 4;
-        }
-
-        else if (MainMenu.difficulty == 3)
-        {
-            temp1.ammo = 3;
-            temp2.ammo = 3;
+            case 1:
+                pistolAmmoDrop.ammo = 5;
+                machineGunAmmoDrop.ammo = 5;
+                break;
+            case 2:
+                pistolAmmoDrop.ammo = 4;
+                machineGunAmmoDrop.ammo = 4;
+                break;
+            case 3:
+                pistolAmmoDrop.ammo = 3;
+                machineGunAmmoDrop.ammo = 3;
+                break;
         }
 
         StartNextRound();
     }
 
+    ///<summary>
+    /// Starts the next round and increases the number of enemies per round
+    ///</summary>
     private void StartNextRound()
     {
-        /*score += 100;
-        scoreText.text = score.ToString();*/
         enemiesThisRoundPistol++;
         if (enemiesThisRoundPistol == 4)
         {
@@ -80,18 +82,18 @@ public class Round_Controller : MonoBehaviour
 
         StartCoroutine(SpawnEnemies());
 
-        // Debug.Log(enemiesThisRoundPistol + "  " + enemiesThisRoundMachineGun);
     }
 
+    ///<summary>
+    /// Spawns all the enemies for this round
+    ///</summary>
     IEnumerator SpawnEnemies()
     {
-        //Debug.Log(enemiesThisRoundPistol+"  "+enemiesThisRoundMachineGun+" "+enemiesRemaining);
         yield return new WaitForSeconds(timeBetweenRounds);
 
         for (var i = 0; i < enemiesThisRoundPistol; i++)
         {
             yield return new WaitForSeconds(timeBetweenSpawns);
-            //Debug.Log("Spawning pistol " + i);
             if (fleeing)
                 i--;
             else
@@ -109,6 +111,9 @@ public class Round_Controller : MonoBehaviour
         }
     }
 
+    ///<summary>
+    /// Spawns a pistol enemy
+    ///</summary>
     private void SpawnEnemyPistol()
     {
         Enemy_Controller enemy = Instantiate(enemyPistol, GetSpawnPosition(), transform.rotation)
@@ -116,6 +121,9 @@ public class Round_Controller : MonoBehaviour
         enemy.onEnemyDeath += EnemyPistolDeath;
     }
 
+    ///<summary>
+    /// Spawns a machine gun enemy
+    ///</summary>
     private void SpawnEnemyMachineGun()
     {
         Enemy_Controller enemy =
@@ -124,45 +132,58 @@ public class Round_Controller : MonoBehaviour
         enemy.onEnemyDeath += EnemyMachineGunDeath;
     }
 
+    ///<summary>
+    /// Creates a new position to spawn the enemy
+    ///</summary>
+    /// <returns> The new position </returns>
     private Vector2 GetSpawnPosition()
     {
         Vector2 playerPosition = player.position;
         float x = playerPosition.x + (spawnAtRight ? 1 : -1) * 15;
         if (x < leftBorder || x > rightBorder) x = playerPosition.x + (spawnAtRight ? -1 : 1) * 15;
-        float y = /*playerPosition.y < 5*/spawnAbove < 2 ? down : up;
+        float y = spawnAbove < 2 ? down : up;
         spawnAbove = (spawnAbove + 1) % 4;
         spawnAtRight = x < playerPosition.x;
         return new Vector2(x, y);
     }
 
+    ///<summary>
+    /// Called automatically if a pistol enemy dies
+    ///</summary>
     private void EnemyPistolDeath()
     {
         enemiesRemaining--;
         enemiesLeftText.text = enemiesRemaining.ToString();
         score += 15;
         scoreText.text = score.ToString();
-        //Debug.Log("Enemies remaining:" + enemiesRemaining);
         if (enemiesRemaining == 0)
             StartNextRound();
     }
 
+    ///<summary>
+    /// Called automatically if a machine gun enemy dies
+    ///</summary>
     private void EnemyMachineGunDeath()
     {
         enemiesRemaining--;
         enemiesLeftText.text = enemiesRemaining.ToString();
         score += 30;
         scoreText.text = score.ToString();
-        //Debug.Log("Enemies remaining:" + enemiesRemaining);
         if (enemiesRemaining == 0)
             StartNextRound();
     }
 
-
+    ///<summary>
+    /// Called automatically if the player is healing
+    ///</summary>
     private void Flee()
     {
         fleeing = true;
     }
 
+    ///<summary>
+    /// Called automatically if the player stops healing
+    ///</summary>
     private void StopFlee()
     {
         fleeing = false;

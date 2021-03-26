@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages a weapon of the player
+/// </summary>
 public class Weapon : MonoBehaviour
 {
     private Camera cam;
@@ -33,7 +36,7 @@ public class Weapon : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!allowFire && timeWhenDisabled != -1)
+        if (!allowFire && timeWhenDisabled != -1)//if when disabled there was cooldown left
         {
             float cooldownLeft = fireCooldown - (Time.time - timeWhenDisabled);
 
@@ -49,7 +52,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (playerController.inputBlocked)
+        if (playerController.inputBlocked)//if player is healing
             return;
 
         bool shouldFire = automaticFire ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
@@ -69,6 +72,9 @@ public class Weapon : MonoBehaviour
         Aim();
     }
 
+    ///<summary>
+    /// Changes position of weapon sprite and flips player depending on mouse position
+    ///</summary>
     private void Aim()
     {
         var centerPosition = rotationCenter.position;
@@ -93,6 +99,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    ///<summary>
+    /// Sends a bullet prefab flying out of the weapon
+    ///</summary>
     private void Shoot()
     {
         remainingAmmo--;
@@ -109,6 +118,9 @@ public class Weapon : MonoBehaviour
         StartCoroutine(Cooldown(fireCooldown));
     }
 
+    ///<summary>
+    /// Allows fire again at the end of the weapon cooldown
+    ///</summary>
     IEnumerator Cooldown(float seconds)
     {
         yield return new WaitForSeconds(seconds);
@@ -116,11 +128,15 @@ public class Weapon : MonoBehaviour
         allowFire = true;
     }
 
-    public bool gainAmmo(int amount)
+    ///<summary>
+    /// Adds ammo to the player. Fails if he already has the maximum amount of that ammo
+    ///</summary>
+    /// <param name="amount"> Amount to add </param>
+    /// <returns> If the ammo was successfully added </returns>
+    public bool GainAmmo(int amount)
     {
         if (remainingAmmo >= maxAmmo)
             return false;
-
         remainingAmmo = Mathf.Min(remainingAmmo + amount, maxAmmo);
 
         if (gameObject.activeSelf)
@@ -131,6 +147,6 @@ public class Weapon : MonoBehaviour
 
     private void OnDisable()
     {
-        timeWhenDisabled = Time.time;
+        timeWhenDisabled = Time.time;//In case it was disabled in the middle of cooldown
     }
 }

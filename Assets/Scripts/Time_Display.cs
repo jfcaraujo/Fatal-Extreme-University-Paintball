@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the timer display
+/// </summary>
 public class Time_Display : MonoBehaviour
 {
     public Text timeDisplay;
@@ -17,9 +20,12 @@ public class Time_Display : MonoBehaviour
     void FixedUpdate()
     {
         if (!stopTime)
-            timeDisplay.text = Math.Floor(Time.time - startTime).ToString();
+            timeDisplay.text = Math.Floor(Time.time - startTime).ToString();//displays seconds since start time
     }
 
+    ///<summary>
+    /// Stops updates in the time display. Used when the player dies.
+    ///</summary>
     public static void Stop()
     {
         stopTime = true;

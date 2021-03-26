@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Script to handle the Ammo item.
+/// </summary>
 public class WeaponAmmo : Item
 {
     public string weaponName = "Pistol";

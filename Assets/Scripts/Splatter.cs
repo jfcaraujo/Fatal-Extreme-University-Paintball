@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Manages a splatter 
+/// </summary>
 public class Splatter : MonoBehaviour
 {
     public AudioManager audioManager;
@@ -8,10 +11,9 @@ public class Splatter : MonoBehaviour
 
     private void Start()
     {
+        //for the depth level manager of a parent object to add the splatter sprite to the objects that will change layer 
         SendMessageUpwards("OnObjectAdded", gameObject, SendMessageOptions.DontRequireReceiver);
-
-        int randomNumber = Random.Range(0, 3);
-
+        
         if (isGrenade)
             audioManager.PlaySound("GlassBreak");
 
