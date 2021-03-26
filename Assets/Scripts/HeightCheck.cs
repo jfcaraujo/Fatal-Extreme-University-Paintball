@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Checks entry and exit of objects into the height level.
+/// Handles transitions between bottom and upper floor. Checks entry and exit of objects into the height level.
 /// </summary>
 public class HeightCheck : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class HeightCheck : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+        // Objects relative to the player are retrieved at Start, as they're the most used
+        // This will save some time during runtime
         playerDepthManager = player.GetComponent<DepthLevelManager>();
         player_Controller = player.GetComponent<Player_Controller>();
     }
@@ -42,20 +44,21 @@ public class HeightCheck : MonoBehaviour
 
             if (isPlayer)
             {
+                // In this case, the player is on the upper floor, so the collision will be on
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
                 player_Controller.ToggleCollisions("UpperObstacles", true);
             }
 
+            // Switches object to the back layer
             cc.SwitchSortingLayer(false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // If the object that entered is coming from above, it'll be on the level
+        // If the object that entered is coming from above, it'll be on the upper floor
         if (other.attachedRigidbody != null && other.attachedRigidbody.velocity.y <= -0.01)
         {
-
             DepthLevelManager cc;
             bool isPlayer = false;
 
@@ -74,19 +77,24 @@ public class HeightCheck : MonoBehaviour
 
             if (isPlayer && Input.GetButton("Drop"))
             {
-                // However, if the object is the player and they want to drop, it'll be off the level
+                // If the object is the player and they want to drop, it'll be off the upper floor
+                // So collisions are not on
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
                 player_Controller.ToggleCollisions("UpperObstacles", false);
+
+                // Switches object to the front layer
                 cc.SwitchSortingLayer(true);
             }
             else
             {
                 if (isPlayer)
                 {
+                    // In this case, the player is on the upper floor, so the collision will be on
                     Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
                     player_Controller.ToggleCollisions("UpperObstacles", true);
                 }
 
+                // Switches object to the back layer
                 cc.SwitchSortingLayer(false);
             }
         }
@@ -112,15 +120,17 @@ public class HeightCheck : MonoBehaviour
         if (cc == null)
             return;
 
-        // If the object exited to above, it'll be on the level
+        // If the object exited to above, it'll be on the upper floor
         if (other.attachedRigidbody.velocity.y >= 0)
         {
             if (isPlayer)
             {
+                // The collision will be on
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), false);
                 player_Controller.ToggleCollisions("UpperObstacles", true);
             }
 
+            // Switches object to the back layer
             cc.SwitchSortingLayer(false);
         }
         // If the object exited to below, it'll be off the level
@@ -128,10 +138,12 @@ public class HeightCheck : MonoBehaviour
         {
             if (isPlayer)
             {
+                // The collision will be off
                 Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
                 player_Controller.ToggleCollisions("UpperObstacles", false);
             }
 
+            // Switches object to the front layer
             cc.SwitchSortingLayer(true);
         }
     }

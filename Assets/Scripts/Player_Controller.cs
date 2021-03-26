@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Script to handle the player movement and interaction with the environment.
+/// </summary>
 public class Player_Controller : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 10f;
@@ -10,11 +13,11 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;
 
     public AudioManager audioManager;
-
     public Animator animator;
+    private Rigidbody2D m_Rigidbody2D;
+    private Collider2D playerCollider;
 
     const float k_GroundedRadius = .1f;
-    private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
     public bool m_FacingRight = false;
     private bool m_Grounded;
@@ -24,23 +27,20 @@ public class Player_Controller : MonoBehaviour
     public float runSpeed = 8f;
     public float dropDownInterval = 0.25f;
     public float dropDownForce = 1f;
-
     public bool speedUp = false;
-
     public bool inputBlocked = false;
-
-    private Collider2D playerCollider;
 
     // Layer collisions asked to be toggled
     private Dictionary<string, bool> collisionsToToggle;
 
-    // Start is called before the first frame update
     private void Start()
     {
         collisionsToToggle = new Dictionary<string, bool>();
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         playerCollider = gameObject.GetComponent<Collider2D>();
+
+        // Initially, disables collisions between the player and objects from the upper level
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperGround"), true);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("UpperObstacles"), true);
     }
@@ -74,6 +74,7 @@ public class Player_Controller : MonoBehaviour
             collisionsToToggle.Remove(layer);
         }
 
+        // Get user input if it is not blocked
         if (inputBlocked)
         {
             horizontalMove = 0;
@@ -93,16 +94,20 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Checks if player is touching the ground
         m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         foreach (Collider2D temp_collider in colliders)
         {
-            bool shouldCollide = !(Physics2D.GetIgnoreCollision(temp_collider, playerCollider) || Physics2D.GetIgnoreLayerCollision(temp_collider.gameObject.layer, gameObject.layer));
+            // Checks if collider and player are supposed to collide
+            bool shouldCollide = !(Physics2D.GetIgnoreCollision(temp_collider, playerCollider)
+                                    || Physics2D.GetIgnoreLayerCollision(temp_collider.gameObject.layer, gameObject.layer));
 
             if (temp_collider.gameObject != gameObject && !temp_collider.isTrigger && shouldCollide)
             {
                 m_Grounded = true;
 
+                // Drops down platform
                 if (dropDown && temp_collider.gameObject.layer == LayerMask.NameToLayer("EnvironmentObjects"))
                 {
                     StartCoroutine(DropDownPlatform(temp_collider));
@@ -117,10 +122,15 @@ public class Player_Controller : MonoBehaviour
         dropDown = false;
     }
 
+    /// <summary>
+    /// Moves player with the specified speed (from -runSpeed to runSpeed).
+    /// </summary>
+    /// <param name="move">Target horizontal velocity.</param>
     private void Move(float move)
     {
         var velocity = m_Rigidbody2D.velocity;
 
+        // Run sound is only played if the player is moving and sound was not already playing
         if (m_Grounded && Mathf.Abs(move) > 0.01 && !audioManager.IsSoundPlaying("Run"))
             audioManager.PlaySound("Run");
         else if (!m_Grounded || Mathf.Abs(move) < 0.01)
@@ -128,17 +138,24 @@ public class Player_Controller : MonoBehaviour
 
         Vector3 targetVelocity = new Vector2(move, velocity.y);
 
+        // Smoothly change velocity to target velocity
         m_Rigidbody2D.velocity =
             Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
         if (!m_Grounded || !jump || Mathf.Abs(m_Rigidbody2D.velocity.y) > 0.05) return;
-        // Add a vertical force to the player.
+
         m_Grounded = false;
 
         audioManager.PlaySound("Jump");
+        // Add a vertical force to the player.
         m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
     }
 
+    /// <summary>
+    /// Disables collision between the player and for him to drop down.
+    /// Waits a specific interval before reactivating collisions.
+    /// </summary>
+    /// <param name="platformCollider">Collider to be disabled.</param>
     private IEnumerator DropDownPlatform(Collider2D platformCollider)
     {
         // Disable collisions between player and platform
@@ -153,8 +170,12 @@ public class Player_Controller : MonoBehaviour
         Physics2D.IgnoreCollision(platformCollider, playerCollider, false);
     }
 
-    // Used to request a layer collision toggle, that will be placed on a list
-    // and will only be toggled when the player is not currently overlapping any of that layer's colliders
+    /// <summary>
+    /// Used to request a layer collision toggle, that will be placed on a list
+    /// and will only be toggled when the player is not currently overlapping any of that layer's colliders.
+    /// </summary>
+    /// <param name="layer">Layer for collisions to be toggled.</param>
+    /// <param name="enable">If it should enable or disable.</param>
     public void ToggleCollisions(string layer, bool enable)
     {
         // If a request for the opposite is already in the list,
@@ -174,6 +195,9 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Flips the enemy to the other direction.
+    /// </summary>
     public void Flip()
     {
         m_FacingRight = !m_FacingRight;

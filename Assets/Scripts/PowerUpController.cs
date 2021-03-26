@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Manages the power-ups in the game. Every effect is for the player.
+/// Names of power-ups are the name of the properties.
+/// </summary>
 public class PowerUpController : MonoBehaviour
 {
     public AudioManager audioManager;
     public Player_Controller playerController;
     public Backpack backpack;
+    public PowerUpDisplay powerUpDisplay;
 
     public bool SpeedUp { get; private set; }
     public bool SlowMotion { get; private set; }
@@ -14,13 +19,17 @@ public class PowerUpController : MonoBehaviour
     public float powerUpDuration = 15f;
     public float slowMotionFactor = 0.4f;
 
-    public PowerUpDisplay powerUpDisplay;
-
     private void Start()
     {
-        powerUpDisplay.SetMaxDuration((int) powerUpDuration);
+        // Adjust power-up display to the correct duration
+        powerUpDisplay.SetMaxDuration((int)powerUpDuration);
     }
 
+    /// <summary>
+    /// Activates a power-up.
+    /// </summary>
+    /// <param name="powerUp">Name of power-up to be activated.</param>
+    /// <returns>If the power-up was activated.</returns>
     public bool ActivatePowerUp(string powerUp)
     {
         if (IsAnyActive() || playerController.inputBlocked)
@@ -50,26 +59,39 @@ public class PowerUpController : MonoBehaviour
                 return false;
         }
 
+        // Starts the coroutine that will wait a specified time to disable the power-up
         StartCoroutine(TimePowerUp(powerUp));
 
         return true;
     }
 
+    /// <summary>
+    /// Waits the specified time to disable the power-up.
+    /// </summary>
+    /// <param name="powerUp">Name of power-up to be disabled.</param>
     private IEnumerator TimePowerUp(string powerUp)
     {
         if (powerUp == nameof(SlowMotion))
-            yield return new WaitForSeconds(powerUpDuration*slowMotionFactor);
+            yield return new WaitForSeconds(powerUpDuration * slowMotionFactor);
         else
             yield return new WaitForSeconds(powerUpDuration);
 
         DisablePowerUp(powerUp);
     }
 
+    /// <summary>
+    /// Checks if any of the power-ups is active.
+    /// </summary>
+    /// <returns>If any power-up is active.</returns>
     private bool IsAnyActive()
     {
         return SpeedUp || ShieldProtection || SlowMotion;
     }
 
+    /// <summary>
+    /// Disables power-up.
+    /// </summary>
+    /// <param name="powerUp">Name of power-up to be disabled.</param>
     private void DisablePowerUp(string powerUp)
     {
         switch (powerUp)
@@ -91,6 +113,9 @@ public class PowerUpController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables any active power-up.
+    /// </summary>
     public void DisableAll()
     {
         if (SpeedUp) DisablePowerUp(nameof(SpeedUp));

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Script to handle the Drop Trap objects.
+/// </summary>
 public class DropTrap : MonoBehaviour
 {
     public AudioManager audioManager;
     private Rigidbody2D m_rigidbody2D;
 
     public delegate void OnTrapSprung();
-
+    // Event invoked when trap is sprung
     public event OnTrapSprung onTrapSprung;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_rigidbody2D = gameObject.GetComponentInChildren<Rigidbody2D>();
@@ -17,7 +19,7 @@ public class DropTrap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //activated when rectangle is hit
+        // Activated when rectangle is hit
         if (other.name == "Player")
         {
             if (m_rigidbody2D != null)

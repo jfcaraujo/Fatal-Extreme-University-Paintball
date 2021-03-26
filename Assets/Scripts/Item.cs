@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Abstract class to handle items from the game.
+/// </summary>
 public abstract class Item : MonoBehaviour
 {
     private void Start()
     {
+        // At the start, collisions between normal colliders (not triggers)
+        // of the item object and the player are disabled
+        // Those colliders are only used for collision between the item and the environment
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Collider2D playerCollider = player.GetComponent<Collider2D>();
 
@@ -20,10 +26,15 @@ public abstract class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Item is only destroyed if it is in fact consumed
             if (ConsumeItem())
                 Destroy(gameObject);
         }
     }
 
+    /// <summary>
+    /// Consumes the item, applying its effect.
+    /// </summary>
+    /// <returns>If the item was consumed.</returns>
     protected abstract bool ConsumeItem();
 }

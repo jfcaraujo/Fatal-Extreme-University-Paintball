@@ -1,8 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the audio for an object.
+/// Needs a main AudioSource that will be used to play any short sound effects (General Sounds).
+/// Creates individual AudioSources for longer sounds that need to be stopped and played (Individual Sounds).
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
+    // Main audio source used to play general sounds
     public AudioSource mainAudioSource;
 
     // General sounds play in the main audio source
@@ -11,10 +17,12 @@ public class AudioManager : MonoBehaviour
     // Individual sounds play on their own audio source
     public IndividualSound[] individualSounds;
 
+    // Full list with all sounds
     private List<Sound> sounds;
 
     private void Awake()
     {
+        // Subscribe to TimeScaleChange event, to change the sound's pitch according to the game speed
         TimeController.OnTimeScaleChange += AdjustPitchToTime;
 
         if (mainAudioSource == null)
@@ -55,6 +63,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays a sound previously added to the AudioManager.
+    /// </summary>
+    /// <param name="soundName">Name of the sound to be played.</param>
     public void PlaySound(string soundName)
     {
         Sound s = sounds.Find(x => x.name == soundName);
@@ -68,6 +80,10 @@ public class AudioManager : MonoBehaviour
         s.Play();
     }
 
+    /// <summary>
+    /// Stops a sound if it is currently playing.
+    /// </summary>
+    /// <param name="soundName">Name of the sound to be stopped.</param>
     public void StopSound(string soundName)
     {
         Sound s = sounds.Find(x => x.name == soundName);
@@ -83,6 +99,11 @@ public class AudioManager : MonoBehaviour
         inds.Stop();
     }
 
+    /// <summary>
+    /// Checks if a sound is currently playing.
+    /// </summary>
+    /// <param name="soundName">Name of the sound to be checked.</param>
+    /// <returns>If the specified sound is currently playing.</returns>
     public bool IsSoundPlaying(string soundName)
     {
         Sound s = sounds.Find(x => x.name == soundName);
@@ -98,6 +119,10 @@ public class AudioManager : MonoBehaviour
         return inds.IsPlaying();
     }
 
+    /// <summary>
+    /// Changes the pitch of all of the sounds in the AudioManager.
+    /// </summary>
+    /// <param name="newPitch">New pitch value.</param>
     public void ChangePitchAll(float newPitch)
     {
         mainAudioSource.pitch = newPitch;
@@ -108,6 +133,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Receives events to change pitch of all sounds.
+    /// </summary>
     private void AdjustPitchToTime()
     {
         ChangePitchAll(Time.timeScale);

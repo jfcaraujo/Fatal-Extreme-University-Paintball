@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to handle the Backpack power-up.
+/// </summary>
 public class Backpack : MonoBehaviour
 {
+    // Used to get data to aim the Backpack
     private Camera cam;
-
     private Vector2 mousePos;
 
     public Transform rotationCenter;
 
-    // Start is called before the first frame update
     private void Start()
     {
         cam = FindObjectOfType<Camera>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -23,6 +24,9 @@ public class Backpack : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Here, the mouse position is checked so the backpack can be pointed in its direction
+        // The backpack rotates around the rotationCenter's position
+
         var centerPosition = rotationCenter.position;
         Vector2 center = new Vector2(centerPosition.x, centerPosition.y);
 
@@ -39,6 +43,7 @@ public class Backpack : MonoBehaviour
 
     private void OnDisable()
     {
+        // When disabling the backpack, splatters added to it have to be removed
         List<Transform> splattersToRemove = new List<Transform>();
 
         for (int i = 0; i < transform.childCount; i++)

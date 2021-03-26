@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Abstract class to represent a sound clip.
+/// </summary>
 public abstract class Sound
 {
     public string name;
@@ -12,7 +15,7 @@ public abstract class Sound
 
     public void ChangePitch(float value)
     {
-        if (source != null)
+        if (source)
         {
             source.pitch = value;
         }

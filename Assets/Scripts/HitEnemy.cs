@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Script to handle the hit state of the enemy. Blocks enemy movement while it's happening.
+/// </summary>
 public class HitEnemy : StateMachineBehaviour
 {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

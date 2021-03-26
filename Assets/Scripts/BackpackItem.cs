@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Script to handle the Backpack item.
+/// </summary>
 public class BackpackItem : Item
 {
     protected override bool ConsumeItem()

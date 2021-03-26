@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Represent an individual (long) sound clip.
+/// </summary>
 [System.Serializable]
 public class IndividualSound : Sound
 {
@@ -17,6 +20,10 @@ public class IndividualSound : Sound
     public float minDistance = 1f;
     public float maxDistance = 500f;
 
+    /// <summary>
+    /// Creates a new audio source for this clip.
+    /// </summary>
+    /// <param name="obj">Game object that will hold the AudioSource component.</param>
     public void CreateSource(GameObject obj)
     {
         source = obj.AddComponent<AudioSource>();
@@ -32,6 +39,9 @@ public class IndividualSound : Sound
         source.maxDistance = maxDistance;
     }
 
+    /// <summary>
+    /// Plays the clip.
+    /// </summary>
     public override void Play()
     {
         if (source == null) return;
@@ -39,6 +49,9 @@ public class IndividualSound : Sound
         source.Play();
     }
 
+    /// <summary>
+    /// Stops the clip.
+    /// </summary>
     public void Stop()
     {
         if (source == null) return;
@@ -46,6 +59,10 @@ public class IndividualSound : Sound
         source.Stop();
     }
 
+    /// <summary>
+    /// Check if clip is playing.
+    /// </summary>
+    /// <returns>If the clip is playing.</returns>
     public bool IsPlaying()
     {
         if (source == null) return false;

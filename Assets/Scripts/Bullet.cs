@@ -1,19 +1,30 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to handle the objects that act as projectiles.
+/// </summary>
 public class Bullet : MonoBehaviour
 {
+    // Splatter prefab to be placed
     public GameObject splatterPrefab;
+
+    // Maximum distance the bullet can travel before being destroyed
     public float maxDistance = 20f;
 
+    // These flags are used to give specific behaviour to an object
     [SerializeField] private bool isTrap = false;
     [SerializeField] private bool isGrenade = false;
+
     private bool exists = true;
     private float travelledDistance = 0f;
+
     private Rigidbody2D m_Rigidbody2D;
     private SpriteRenderer spriteRenderer;
-
     private Collider2D bulletCollider;
+
+    // To keep track of the collider that is deactivated before the object is sent
+    // (this is just used for traps or grenades)
     private Collider2D deactivatedCollider;
 
     private void Awake()
@@ -24,6 +35,8 @@ public class Bullet : MonoBehaviour
 
         deactivatedCollider = null;
 
+        // If object is grenade or trap, deactivate the collisions between it and the upper ground floor
+        // Upper ground floor collider will be stored so it can be activated later
         if (isGrenade && !isTrap)
         {
             RaycastHit2D raycast = Physics2D.Raycast(new Vector3(transform.position.x, 4, transform.position.z), Vector2.up,
@@ -43,8 +56,11 @@ public class Bullet : MonoBehaviour
         if (!exists)
             return;
 
+        // Travelled distance is recorded to trigger destruction
         travelledDistance += m_Rigidbody2D.velocity.magnitude * Time.deltaTime;
 
+        // Reactivate previously deactivated collider, when object has reached its trajectory peak
+        // (only applicable when object is thrown upwards, when it goes downwards the collision does not need to be reactivated)
         if (isGrenade && !isTrap && travelledDistance > 0)
         {
             if (Mathf.Abs(m_Rigidbody2D.velocity.y) <= 0.01)
@@ -55,6 +71,7 @@ public class Bullet : MonoBehaviour
 
         if (travelledDistance <= maxDistance) return;
 
+        // Paint background surfaces
         PaintOtherSurfaces();
     }
 
@@ -80,6 +97,7 @@ public class Bullet : MonoBehaviour
 
         GameObject[] hitGameObjects = new GameObject[] { hitObject };
 
+        // If hit object is the Player, get body parts of the player to have splatters placed
         if (hitObject.layer == LayerMask.NameToLayer("Player"))
         {
             Transform legRight = hitObject.transform.Find("LegRight");
@@ -103,6 +121,7 @@ public class Bullet : MonoBehaviour
         Enemy_Controller enemy = hitObject.GetComponent<Enemy_Controller>();
         if (enemy != null)
         {
+            // Check if the bullet hit the enemy on the back to trigger animation
             bool hitFront = enemy.getFacingRight() && m_Rigidbody2D.velocity.x < 0 ||
                             !enemy.getFacingRight() && m_Rigidbody2D.velocity.x > 0;
 
@@ -114,6 +133,7 @@ public class Bullet : MonoBehaviour
         {
             Player_Controller pc = hitObject.GetComponent<Player_Controller>();
 
+            // Check if the bullet hit the player on the back to trigger animation
             var velocity = m_Rigidbody2D.velocity;
             bool hitFront = pc.m_FacingRight && velocity.x < 0 ||
                             !pc.m_FacingRight && velocity.x > 0;
@@ -122,6 +142,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Places splatters on the objects/walls behind the bullet.
+    /// </summary>
     void PaintOtherSurfaces()
     {
         RaycastHit2D[] raycasts = Physics2D.RaycastAll(transform.position, Vector3.back);
@@ -148,6 +171,10 @@ public class Bullet : MonoBehaviour
         DestroyPellet(hitObjectsList.ToArray());
     }
 
+    /// <summary>
+    /// Destroys the object.
+    /// </summary>
+    /// <param name="hitObjectsList">List of hit objects</param>
     private void DestroyPellet(GameObject[] hitObjectsList)
     {
         if (!exists)
@@ -168,6 +195,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Places a splatter.
+    /// </summary>
+    /// <param name="position">Position where the splatter will be placed.</param>
+    /// <param name="hitObject">Object where the splatter will be placed.</param>
     private void PlaceSplatter(Vector3 position, GameObject hitObject)
     {
         if (!hitObject)
@@ -180,6 +212,7 @@ public class Bullet : MonoBehaviour
         if (isGrenade)
         {
             splatterObject.transform.position = new Vector3(position.x, position.y - 0.3f, Mathf.Abs(position.z));
+            // Grenade splatters are bigger
             splatterObject.transform.localScale = splatterObject.transform.localScale * 3;
         }
         else
@@ -275,6 +308,7 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
+        // Message is sent to trigger drop trap object destruction
         if (isGrenade)
             SendMessageUpwards("OnChildDestroy", SendMessageOptions.DontRequireReceiver);
     }
